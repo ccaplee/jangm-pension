@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>계곡산장 미리보기 - 장령산계곡산장</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',sans-serif;color:#3d2b1f;background:#faf6f0}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+:root{--wood:#5c3a1e;--accent:#c17817;--cream:#faf6f0;--warm:#f5ede0;--text:#4a3728;--text-light:#8a7560}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(250,246,240,0.97);box-shadow:0 2px 20px rgba(0,0,0,0.06);padding:14px 40px;display:flex;justify-content:space-between;align-items:center}
+.nav .logo{font-family:'Nanum Myeongjo',serif;font-size:1.3rem;color:var(--wood);font-weight:700}
+.nav .back{color:var(--text-light);font-size:0.9rem;display:flex;align-items:center;gap:6px;transition:color 0.3s}
+.nav .back:hover{color:var(--accent)}
+
+/* HERO */
+.page-hero{padding:100px 20px 40px;text-align:center;background:var(--warm)}
+.page-hero h1{font-family:'Nanum Myeongjo',serif;font-size:2.2rem;color:var(--wood);margin-bottom:10px}
+.page-hero p{color:var(--text-light);font-size:0.95rem}
+
+/* CATEGORY */
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.category{padding:50px 0}
+.category:nth-child(even){background:var(--warm)}
+.category:nth-child(odd){background:var(--cream)}
+.cat-header{margin-bottom:24px;display:flex;align-items:center;gap:14px}
+.cat-header h2{font-family:'Nanum Myeongjo',serif;font-size:1.6rem;color:var(--wood)}
+.cat-header .count{background:var(--accent);color:#fff;padding:4px 12px;border-radius:20px;font-size:0.75rem}
+
+/* PHOTO GRID */
+.photo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.photo-grid .photo{border-radius:8px;overflow:hidden;cursor:pointer;position:relative;aspect-ratio:4/3}
+.photo-grid .photo img{width:100%;height:100%;object-fit:cover;transition:transform 0.4s}
+.photo-grid .photo:hover img{transform:scale(1.06)}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.92);align-items:center;justify-content:center}
+.lightbox.active{display:flex}
+.lightbox img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:8px}
+.lb-close{position:absolute;top:20px;right:24px;color:#fff;font-size:2rem;cursor:pointer;background:none;border:none;z-index:201}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:2.5rem;cursor:pointer;background:rgba(255,255,255,0.1);border:none;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background 0.3s}
+.lb-prev{left:20px}
+.lb-next{right:20px}
+.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,0.25)}
+.lb-info{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,0.7);font-size:0.85rem;background:rgba(0,0,0,0.4);padding:6px 16px;border-radius:20px}
+
+/* FOOTER */
+.footer{background:var(--wood);color:rgba(255,255,255,0.5);padding:30px 0;text-align:center;font-size:0.8rem}
+.footer a{color:var(--accent)}
+
+/* FLOATING */
+.floating{position:fixed;bottom:24px;right:24px;z-index:90;display:flex;flex-direction:column;gap:10px}
+.float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 16px rgba(0,0,0,0.2);border:none;cursor:pointer;transition:transform 0.3s;text-decoration:none}
+.float-btn:hover{transform:scale(1.1)}
+.fb-phone{background:var(--accent);color:#fff}
+
+@media(max-width:768px){
+  .nav{padding:12px 16px}
+  .photo-grid{grid-template-columns:repeat(3,1fr);gap:4px}
+  .page-hero h1{font-size:1.7rem}
+  .cat-header h2{font-size:1.3rem}
+  .lb-prev,.lb-next{width:40px;height:40px;font-size:1.8rem}
+}
+@media(max-width:480px){
+  .photo-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="/" class="logo">장령산계곡산장</a>
+  <a href="/" class="back">← 홈으로</a>
+</nav>
+
+<div class="page-hero">
+  <h1>계곡산장 미리보기</h1>
+  <p>장령산계곡산장의 시설과 풍경을 사진으로 만나보세요</p>
+</div>
+
+<!-- 외부 전경 -->
+<div class="category">
+  <div class="container">
+    <div class="cat-header">
+      <h2>외부 전경</h2>
+      <span class="count">46장</span>
+    </div>
+    <div class="photo-grid" data-category="외부 전경">
+      <div class="photo"><img src="/uploads/gallery/preview_061_be3b450b.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_062_487f2471.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_063_c0e16719.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_064_74254e1d.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_065_a71e8452.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_066_6ffa8ccc.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_067_6774e694.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_068_eb185cf3.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_069_c64b857f.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_070_7ce91ed8.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_071_fc43a381.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_072_e7fb1285.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_073_93ae41b7.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_074_47806195.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_075_e655b70c.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_076_693c7a39.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_077_cf7028b5.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_078_2d8b3416.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_079_0ce4db92.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_080_191bb84e.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_081_b5ec1bc0.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_082_f5ceab32.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_083_1621068c.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_084_281435c6.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_085_10321c94.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_086_6a6d03ea.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_087_573891d1.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_088_0bba2868.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_089_4911dcd6.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_090_13025afa.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_091_8d97a5ea.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_092_46b2a468.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_093_a6608887.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_094_ae2fed0e.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_095_1bb2280a.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_096_812a3cfe.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_097_a0dea183.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_098_00c2197c.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_099_8b7b2562.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_100_43d73ef9.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_101_2783551e.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_102_32c7386f.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_103_7a0983da.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_104_f4653104.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_105_b8f8f2cb.jpg" alt="외부 전경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_106_b1efc048.jpg" alt="외부 전경" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 벚꽃동 외부 -->
+<div class="category">
+  <div class="container">
+    <div class="cat-header">
+      <h2>벚꽃동 외부</h2>
+      <span class="count">20장</span>
+    </div>
+    <div class="photo-grid" data-category="벚꽃동 외부">
+      <div class="photo"><img src="/uploads/gallery/preview_163_e2cdd3c2.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_164_3a100010.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_165_f8029864.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_166_8ff2e11d.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_167_5e5f6fea.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_168_d7c3482c.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_169_723efaf6.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_170_fd23fcf3.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_171_5f2a2aec.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_172_c1baf68f.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_173_8cb777d3.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_174_e4338672.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_175_b45a3723.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_176_c92b1ab5.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_177_ccab4d3d.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_178_45ac265d.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_179_403995d3.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_180_6287f3d3.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_181_e1faf7d6.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_182_9b042df4.jpg" alt="벚꽃동 외부" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 벚꽃동 2층 내부 -->
+<div class="category">
+  <div class="container">
+    <div class="cat-header">
+      <h2>벚꽃동 2층 내부</h2>
+      <span class="count">22장</span>
+    </div>
+    <div class="photo-grid" data-category="벚꽃동 2층">
+      <div class="photo"><img src="/uploads/gallery/preview_111_5ee7f4d5.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_112_e2e33965.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_113_3e35ea62.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_114_51aed496.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_115_6557f171.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_116_8e749cf1.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_117_9e09840c.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_118_55dcc934.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_119_1a12723b.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_120_8c832103.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_121_9471666c.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_122_21d492fe.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_123_539ce1d8.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_124_8d44358d.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_125_0fdeef6d.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_126_c9a13f9e.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_127_054a584f.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_128_709a145f.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_129_8fc2237e.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_130_ba9f073f.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_131_b2346785.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_132_ef6e8791.jpg" alt="벚꽃동 2층" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 벚꽃동 1층 내부 -->
+<div class="category">
+  <div class="container">
+    <div class="cat-header">
+      <h2>벚꽃동 1층 내부</h2>
+      <span class="count">15장</span>
+    </div>
+    <div class="photo-grid" data-category="벚꽃동 1층">
+      <div class="photo"><img src="/uploads/gallery/preview_137_58c19c16.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_138_06032789.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_139_7741509e.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_140_1129be62.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_141_86135016.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_142_f537c05d.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_143_6bf2355a.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_144_6eed2642.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_145_d72a78d8.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_146_0161d552.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_147_708efe38.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_148_603e7284.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_149_993efeb5.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_150_b0c69969.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_151_4b354279.jpg" alt="벚꽃동 1층" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 본관 내부 -->
+<div class="category">
+  <div class="container">
+    <div class="cat-header">
+      <h2>본관 내부</h2>
+      <span class="count">19장</span>
+    </div>
+    <div class="photo-grid" data-category="본관 내부">
+      <div class="photo"><img src="/uploads/gallery/preview_003_7a57c106.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_004_7bd111cd.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_005_d6fd9db1.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_006_8e0c05f8.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_007_e810e2b7.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_008_d796055d.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_009_bff02242.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_010_2ba0c2d2.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_011_4a10ac84.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_012_2d9bc46d.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_013_067e263b.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_014_4ccc857f.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_015_bb8cbccf.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_016_31c42dee.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_017_27596c06.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_018_388a5cb3.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_019_8c0d59b6.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_020_93bce9ae.jpg" alt="본관 내부" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_021_536f4e08.jpg" alt="본관 내부" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 바베큐장 -->
+<div class="category">
+  <div class="container">
+    <div class="cat-header">
+      <h2>바베큐장</h2>
+      <span class="count">3장</span>
+    </div>
+    <div class="photo-grid" data-category="바베큐장">
+      <div class="photo"><img src="/uploads/gallery/preview_156_c75be26c.jpg" alt="바베큐장" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_157_cd1771b8.jpg" alt="바베큐장" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_158_9dfa53f0.jpg" alt="바베큐장" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- 장령산 풍경 -->
+<div class="category">
+  <div class="container">
+    <div class="cat-header">
+      <h2>장령산 풍경</h2>
+      <span class="count">31장</span>
+    </div>
+    <div class="photo-grid" data-category="장령산 풍경">
+      <div class="photo"><img src="/uploads/gallery/preview_026_0ff0b5a6.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_027_dd749ecc.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_028_d6e0e039.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_029_1c1b0400.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_030_c684363b.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_031_5315de55.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_032_95fcda23.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_033_623588ef.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_034_4b16d605.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_035_abdb3d0d.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_036_bd1b84f6.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_037_b7cd2245.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_038_1484fed4.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_039_2198c245.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_040_9fed423f.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_041_2887a1a3.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_042_8409fca9.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_043_f463279a.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_044_6cb3ea23.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_045_a7821117.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_046_84da093b.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_047_63269c38.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_048_9c7bb3cf.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_049_28822ed2.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_050_194238ba.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_051_40f8f980.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_052_78c1e7fd.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_053_3b1401e1.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_054_85fa2802.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_055_fe319e8e.jpg" alt="장령산 풍경" loading="lazy"></div>
+      <div class="photo"><img src="/uploads/gallery/preview_056_41ff9d15.jpg" alt="장령산 풍경" loading="lazy"></div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox">
+  <button class="lb-close" id="lbClose">&times;</button>
+  <button class="lb-prev" id="lbPrev">&#8249;</button>
+  <button class="lb-next" id="lbNext">&#8250;</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lb-info" id="lbInfo"></div>
+</div>
+
+<footer class="footer">
+  <p>&copy; 2026 장령산계곡산장 · 010-4717-7233 · <a href="/">홈으로</a></p>
+</footer>
+
+<div class="floating">
+  <a href="tel:010-4717-7233" class="float-btn fb-phone">📞</a>
+</div>
+
+<script>
+// Lightbox
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbInfo = document.getElementById('lbInfo');
+let allPhotos = [];
+let currentIdx = 0;
+
+document.querySelectorAll('.photo-grid').forEach(grid => {
+  const category = grid.dataset.category;
+  grid.querySelectorAll('.photo img').forEach((img, i) => {
+    const globalIdx = allPhotos.length;
+    allPhotos.push({ src: img.src, category });
+    img.parentElement.addEventListener('click', () => openLightbox(globalIdx));
+  });
+});
+
+function openLightbox(idx) {
+  currentIdx = idx;
+  showPhoto();
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function showPhoto() {
+  const p = allPhotos[currentIdx];
+  lbImg.src = p.src;
+  lbInfo.textContent = `${p.category} (${currentIdx + 1} / ${allPhotos.length})`;
+}
+
+document.getElementById('lbClose').onclick = () => {
+  lightbox.classList.remove('active');
+  document.body.style.overflow = '';
+};
+
+document.getElementById('lbPrev').onclick = () => {
+  currentIdx = (currentIdx - 1 + allPhotos.length) % allPhotos.length;
+  showPhoto();
+};
+
+document.getElementById('lbNext').onclick = () => {
+  currentIdx = (currentIdx + 1) % allPhotos.length;
+  showPhoto();
+};
+
+lightbox.addEventListener('click', e => {
+  if (e.target === lightbox) {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('active')) return;
+  if (e.key === 'Escape') { lightbox.classList.remove('active'); document.body.style.overflow = ''; }
+  if (e.key === 'ArrowLeft') { currentIdx = (currentIdx - 1 + allPhotos.length) % allPhotos.length; showPhoto(); }
+  if (e.key === 'ArrowRight') { currentIdx = (currentIdx + 1) % allPhotos.length; showPhoto(); }
+});
+</script>
+</body>
+</html>
