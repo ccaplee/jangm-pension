@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>예약 관리 - 장령산계곡산장</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans KR',sans-serif; background:#f4f7f5; color:#2d3a2e; }
+.sidebar { position:fixed; left:0; top:0; bottom:0; width:240px; background:#1a3c27; color:#fff; padding:20px 0; z-index:100; }
+.sidebar .logo { padding:0 20px 20px; font-size:1.1rem; font-weight:600; border-bottom:1px solid rgba(255,255,255,0.1); }
+.sidebar nav { margin-top:20px; }
+.sidebar nav a { display:flex; align-items:center; gap:10px; padding:12px 20px; color:rgba(255,255,255,0.7); font-size:0.9rem; transition:all 0.2s; }
+.sidebar nav a:hover, .sidebar nav a.active { background:rgba(255,255,255,0.1); color:#fff; }
+.sidebar .user-info { position:absolute; bottom:0; left:0; right:0; padding:16px 20px; border-top:1px solid rgba(255,255,255,0.1); font-size:0.8rem; }
+.sidebar .user-info a { color:#8fdfb0; }
+.main { margin-left:240px; padding:30px; }
+.page-title { font-size:1.5rem; font-weight:600; margin-bottom:24px; }
+.card { background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 10px rgba(0,0,0,0.04); }
+.filters { display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap; }
+.filters a { padding:8px 16px; border-radius:20px; font-size:0.85rem; background:#f0f5f1; color:#2d3a2e; transition:all 0.2s; }
+.filters a:hover, .filters a.active { background:#2d6b4a; color:#fff; }
+table { width:100%; border-collapse:collapse; }
+th { text-align:left; font-size:0.8rem; font-weight:500; color:#6b8a70; padding:10px 12px; border-bottom:2px solid #e8f0ea; }
+td { padding:10px 12px; font-size:0.85rem; border-bottom:1px solid #f0f5f1; }
+.badge { display:inline-block; padding:3px 10px; border-radius:20px; font-size:0.75rem; font-weight:500; }
+.badge-pending { background:#fef3c7; color:#92400e; }
+.badge-confirmed { background:#dbeafe; color:#1e40af; }
+.badge-paid { background:#d1fae5; color:#065f46; }
+.badge-cancelled { background:#fee2e2; color:#991b1b; }
+.badge-checked_in { background:#e0e7ff; color:#3730a3; }
+.badge-checked_out { background:#f3f4f6; color:#374151; }
+.badge-refunded { background:#fce7f3; color:#9d174d; }
+select.status-select { padding:4px 8px; border:1px solid #ddd; border-radius:6px; font-size:0.8rem; font-family:inherit; }
+.pagination { display:flex; gap:8px; justify-content:center; margin-top:20px; }
+.pagination a { padding:6px 12px; border-radius:6px; background:#f0f5f1; font-size:0.85rem; }
+.pagination a.active { background:#2d6b4a; color:#fff; }
+@media(max-width:768px) {
+  .sidebar { width:100%; height:auto; position:relative; }
+  .sidebar nav { display:flex; overflow-x:auto; }
+  .sidebar nav a { white-space:nowrap; padding:10px 16px; }
+  .sidebar .user-info { position:relative; }
+  .main { margin-left:0; }
+}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo">🏔 장령산계곡산장</div>
+  <nav>
+    <a href="/admin">📊 대시보드</a>
+    <a href="/admin/reservations" class="active">📋 예약 관리</a>
+    <a href="/admin/rooms">🏠 객실 관리</a>
+    <a href="/admin/inquiries">💬 문의 관리</a>
+    <a href="/admin/gallery">🖼 갤러리 관리</a>
+    <a href="/" target="_blank">🌐 사이트 보기</a>
+  </nav>
+  <div class="user-info">
+    👤 <%= admin.name %><br><a href="/admin/logout">로그아웃</a>
+  </div>
+</aside>
+
+<main class="main">
+  <h1 class="page-title">예약 관리 (<%= pagination.total %>건)</h1>
+
+  <div class="card">
+    <div class="filters">
+      <a href="/admin/reservations" class="<%= !currentStatus ? 'active' : '' %>">전체</a>
+      <a href="/admin/reservations?status=pending" class="<%= currentStatus==='pending' ? 'active' : '' %>">대기중</a>
+      <a href="/admin/reservations?status=confirmed" class="<%= currentStatus==='confirmed' ? 'active' : '' %>">확정</a>
+      <a href="/admin/reservations?status=paid" class="<%= currentStatus==='paid' ? 'active' : '' %>">결제완료</a>
+      <a href="/admin/reservations?status=checked_in" class="<%= currentStatus==='checked_in' ? 'active' : '' %>">체크인</a>
+      <a href="/admin/reservations?status=cancelled" class="<%= currentStatus==='cancelled' ? 'active' : '' %>">취소</a>
+    </div>
+
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr><th>예약번호</th><th>객실</th><th>예약자</th><th>체크인</th><th>체크아웃</th><th>인원</th><th>금액</th><th>상태</th><th>변경</th></tr>
+      </thead>
+      <tbody>
+        <% reservations.forEach(r => { %>
+        <tr>
+          <td><strong><%= r.reservation_no %></strong></td>
+          <td><%= r.room_name %></td>
+          <td><%= r.guest_name %><br><small style="color:#888"><%= r.guest_phone %></small></td>
+          <td><%= new Date(r.check_in).toLocaleDateString('ko-KR') %></td>
+          <td><%= new Date(r.check_out).toLocaleDateString('ko-KR') %></td>
+          <td>성인 <%= r.num_adults %> / 아이 <%= r.num_children %></td>
+          <td><%= r.total_price.toLocaleString() %>원</td>
+          <td><span class="badge badge-<%= r.status %>"><%= r.status %></span></td>
+          <td>
+            <select class="status-select" onchange="changeStatus(<%= r.id %>, this.value)" data-current="<%= r.status %>">
+              <option value="">변경</option>
+              <option value="confirmed">확정</option>
+              <option value="paid">결제완료</option>
+              <option value="checked_in">체크인</option>
+              <option value="checked_out">체크아웃</option>
+              <option value="cancelled">취소</option>
+            </select>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    </div>
+
+    <% if (pagination.totalPages > 1) { %>
+    <div class="pagination">
+      <% for (let i = 1; i <= pagination.totalPages; i++) { %>
+        <a href="/admin/reservations?page=<%= i %><%= currentStatus ? '&status='+currentStatus : '' %>"
+           class="<%= i === pagination.page ? 'active' : '' %>"><%= i %></a>
+      <% } %>
+    </div>
+    <% } %>
+  </div>
+</main>
+
+<script>
+async function changeStatus(id, status) {
+  if (!status) return;
+  if (!confirm('예약 상태를 변경하시겠습니까?')) return;
+  try {
+    const res = await fetch(`/admin/reservations/${id}/status`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ status })
+    });
+    if (res.ok) location.reload();
+    else alert('상태 변경에 실패했습니다.');
+  } catch (e) { alert('오류가 발생했습니다.'); }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>온라인 예약 - 장령산계곡산장</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://js.tosspayments.com/v1/payment"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Noto Sans KR',sans-serif;background:#f4f7f5;color:#2d3a2e;line-height:1.7}
+a{text-decoration:none;color:inherit}
+.header{background:#1a3c27;color:#fff;padding:16px 0;text-align:center}
+.header a{color:#fff}
+.header .logo{font-size:1.2rem;font-weight:600}
+.header nav{margin-top:8px;font-size:0.85rem;display:flex;justify-content:center;gap:20px}
+.header nav a{opacity:0.8}
+.header nav a:hover{opacity:1}
+.container{max-width:900px;margin:0 auto;padding:30px 20px}
+h1{text-align:center;font-size:1.8rem;color:#1a3c27;margin-bottom:30px}
+
+/* Steps */
+.steps{display:flex;justify-content:center;gap:0;margin-bottom:40px}
+.step{display:flex;align-items:center;gap:8px;padding:10px 20px;font-size:0.85rem;color:#999;position:relative}
+.step.active{color:#2d6b4a;font-weight:600}
+.step .num{width:28px;height:28px;border-radius:50%;background:#ddd;color:#fff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;font-weight:600}
+.step.active .num{background:#2d6b4a}
+.step.done .num{background:#4a9d6e}
+.step-line{width:40px;height:2px;background:#ddd;align-self:center}
+
+/* Cards */
+.card{background:#fff;border-radius:12px;padding:24px;box-shadow:0 2px 10px rgba(0,0,0,0.05);margin-bottom:24px}
+.card h2{font-size:1.2rem;color:#1a3c27;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid #e8f0ea}
+
+/* Room Selection */
+.room-options{display:grid;gap:16px}
+.room-option{border:2px solid #e8f0ea;border-radius:12px;padding:20px;cursor:pointer;transition:all 0.2s;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center}
+.room-option:hover{border-color:#4a9d6e;background:#f8fcf9}
+.room-option.selected{border-color:#2d6b4a;background:#f0faf3}
+.room-option h3{font-size:1.1rem;color:#1a3c27;margin-bottom:4px}
+.room-option p{font-size:0.85rem;color:#6b8a70}
+.room-option .room-meta{display:flex;gap:12px;margin-top:8px;font-size:0.8rem;color:#888}
+.room-option .price-from{text-align:right;font-size:1.2rem;font-weight:700;color:#2d6b4a}
+.room-option .price-from small{display:block;font-weight:400;font-size:0.75rem;color:#999}
+
+/* Calendar */
+.calendar-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.cal-header h3{font-size:1rem}
+.cal-header button{background:none;border:1px solid #ddd;border-radius:6px;padding:4px 12px;cursor:pointer;font-family:inherit}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center}
+.cal-day-name{font-size:0.75rem;color:#999;padding:6px}
+.cal-day{padding:10px 4px;border-radius:8px;font-size:0.85rem;cursor:pointer;transition:all 0.15s}
+.cal-day:hover:not(.disabled):not(.booked){background:#e8f5e9}
+.cal-day.disabled{color:#ddd;cursor:default}
+.cal-day.booked{background:#fee2e2;color:#999;cursor:not-allowed;text-decoration:line-through}
+.cal-day.selected{background:#2d6b4a;color:#fff}
+.cal-day.in-range{background:#d1fae5;color:#1a3c27}
+.cal-day.today{font-weight:700;box-shadow:inset 0 -2px 0 #2d6b4a}
+.cal-day.weekend{color:#dc2626}
+.cal-legend{display:flex;gap:16px;margin-top:12px;font-size:0.75rem;color:#888;justify-content:center}
+.cal-legend span{display:flex;align-items:center;gap:4px}
+.cal-legend .dot{width:12px;height:12px;border-radius:3px}
+
+/* Form */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:0.85rem;font-weight:500;color:#2d3a2e;margin-bottom:6px}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:12px 16px;border:1px solid #dde8df;border-radius:8px;font-size:0.9rem;font-family:inherit}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#4a9d6e;box-shadow:0 0 0 3px rgba(74,157,110,0.1)}
+.form-group textarea{height:80px;resize:vertical}
+
+/* Price Summary */
+.price-summary{background:#f8fcf9;border-radius:10px;padding:20px}
+.price-row{display:flex;justify-content:space-between;padding:6px 0;font-size:0.9rem}
+.price-row.total{border-top:2px solid #2d6b4a;margin-top:10px;padding-top:12px;font-size:1.1rem;font-weight:700;color:#1a3c27}
+
+/* Buttons */
+.btn{display:inline-block;padding:14px 36px;border-radius:8px;font-weight:500;font-size:1rem;cursor:pointer;border:none;font-family:inherit;transition:all 0.2s}
+.btn-primary{background:#2d6b4a;color:#fff}
+.btn-primary:hover{background:#1a3c27}
+.btn-outline{background:#fff;color:#2d6b4a;border:2px solid #2d6b4a}
+.btn-outline:hover{background:#f0faf3}
+.btn-group{display:flex;justify-content:space-between;margin-top:24px}
+
+/* Hidden steps */
+.step-content{display:none}
+.step-content.active{display:block}
+
+@media(max-width:768px){
+  .calendar-wrapper{grid-template-columns:1fr}
+  .form-grid{grid-template-columns:1fr}
+  .room-option{grid-template-columns:1fr}
+  .room-option .price-from{text-align:left}
+  .steps{flex-wrap:wrap;gap:4px}
+  .step{padding:8px 12px;font-size:0.8rem}
+  .step-line{width:20px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <a href="/" class="logo">🏔 장령산계곡산장</a>
+  <nav>
+    <a href="/">홈</a>
+    <a href="/#rooms">객실</a>
+    <a href="/booking">온라인 예약</a>
+    <a href="/#reservation">문의</a>
+  </nav>
+</div>
+
+<div class="container">
+  <h1>온라인 예약</h1>
+
+  <div class="steps">
+    <div class="step active" id="step-ind-1"><span class="num">1</span>객실 선택</div>
+    <div class="step-line"></div>
+    <div class="step" id="step-ind-2"><span class="num">2</span>날짜 선택</div>
+    <div class="step-line"></div>
+    <div class="step" id="step-ind-3"><span class="num">3</span>정보 입력</div>
+    <div class="step-line"></div>
+    <div class="step" id="step-ind-4"><span class="num">4</span>결제</div>
+  </div>
+
+  <!-- STEP 1: 객실 선택 -->
+  <div class="step-content active" id="step-1">
+    <div class="card">
+      <h2>객실을 선택해주세요</h2>
+      <div class="room-options" id="roomOptions">
+        <!-- JS로 채워짐 -->
+      </div>
+    </div>
+    <div class="btn-group" style="justify-content:flex-end">
+      <button class="btn btn-primary" onclick="nextStep(2)" id="btnStep1Next" disabled>다음: 날짜 선택 →</button>
+    </div>
+  </div>
+
+  <!-- STEP 2: 날짜 선택 -->
+  <div class="step-content" id="step-2">
+    <div class="card">
+      <h2>체크인 / 체크아웃 날짜 선택</h2>
+      <p style="font-size:0.85rem;color:#6b8a70;margin-bottom:16px;">체크인 날짜를 먼저 클릭하고, 체크아웃 날짜를 클릭해주세요.</p>
+      <div class="calendar-wrapper">
+        <div id="calendar1"></div>
+        <div id="calendar2"></div>
+      </div>
+      <div class="cal-legend">
+        <span><span class="dot" style="background:#2d6b4a"></span> 선택</span>
+        <span><span class="dot" style="background:#d1fae5"></span> 숙박기간</span>
+        <span><span class="dot" style="background:#fee2e2"></span> 예약불가</span>
+      </div>
+      <div id="dateSelection" style="text-align:center;margin-top:16px;font-size:0.95rem;color:#2d6b4a;font-weight:500;"></div>
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-outline" onclick="prevStep(1)">← 이전</button>
+      <button class="btn btn-primary" onclick="nextStep(3)" id="btnStep2Next" disabled>다음: 정보 입력 →</button>
+    </div>
+  </div>
+
+  <!-- STEP 3: 정보 입력 -->
+  <div class="step-content" id="step-3">
+    <div class="card">
+      <h2>예약자 정보</h2>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>이름 *</label>
+          <input type="text" id="guestName" placeholder="홍길동" required>
+        </div>
+        <div class="form-group">
+          <label>연락처 *</label>
+          <input type="tel" id="guestPhone" placeholder="010-0000-0000" required>
+        </div>
+        <div class="form-group">
+          <label>이메일</label>
+          <input type="email" id="guestEmail" placeholder="example@email.com">
+        </div>
+        <div class="form-group">
+          <label>인원 (성인)</label>
+          <select id="numAdults">
+            <option value="2">2명</option>
+            <option value="3">3명</option>
+            <option value="4">4명</option>
+            <option value="5">5명</option>
+            <option value="6">6명</option>
+            <option value="8">8명</option>
+            <option value="10">10명</option>
+            <option value="15">15명</option>
+            <option value="20">20명</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>특별 요청사항</label>
+        <textarea id="specialRequests" placeholder="요청사항이 있으시면 적어주세요 (바베큐 세트 등)"></textarea>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>예약 요약 및 요금</h2>
+      <div class="price-summary" id="priceSummary">
+        <!-- JS로 채워짐 -->
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-outline" onclick="prevStep(2)">← 이전</button>
+      <button class="btn btn-primary" onclick="proceedToPayment()" id="btnPayment">결제하기 →</button>
+    </div>
+  </div>
+
+  <!-- STEP 4: 결제 -->
+  <div class="step-content" id="step-4">
+    <div class="card" style="text-align:center;padding:60px 24px;">
+      <div style="font-size:3rem;margin-bottom:16px;">💳</div>
+      <h2 style="border:none;padding:0;">결제 진행 중...</h2>
+      <p style="color:#6b8a70;">토스페이먼츠 결제창으로 이동합니다.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===== State =====
+let rooms = [];
+let selectedRoom = null;
+let checkIn = null;
+let checkOut = null;
+let bookedDates = new Set();
+let priceData = null;
+let currentMonth1 = new Date();
+let currentMonth2 = new Date();
+currentMonth2.setMonth(currentMonth2.getMonth() + 1);
+
+// ===== Init =====
+async function init() {
+  try {
+    const res = await fetch('/api/rooms');
+    rooms = await res.json();
+    renderRoomOptions();
+
+    // URL에서 객실 선택
+    const params = new URLSearchParams(location.search);
+    if (params.get('room')) {
+      const room = rooms.find(r => r.slug === params.get('room'));
+      if (room) selectRoom(room.id);
+    }
+  } catch (e) {
+    console.error('초기화 실패:', e);
+  }
+}
+
+// ===== Room Selection =====
+function renderRoomOptions() {
+  const container = document.getElementById('roomOptions');
+  container.innerHTML = rooms.map(r => `
+    <div class="room-option" data-id="${r.id}" onclick="selectRoom(${r.id})">
+      <div>
+        <h3>${r.name}</h3>
+        <p>${r.short_desc}</p>
+        <div class="room-meta">
+          <span>👤 기준 ${r.capacity_min}인 / 최대 ${r.capacity_max}인</span>
+          <span>📐 ${r.area_sqm}㎡</span>
+        </div>
+      </div>
+      <div class="price-from">
+        ${Number(r.price_weekday).toLocaleString()}원~
+        <small>/1박</small>
+      </div>
+    </div>
+  `).join('');
+}
+
+function selectRoom(id) {
+  selectedRoom = rooms.find(r => r.id === id);
+  document.querySelectorAll('.room-option').forEach(el => {
+    el.classList.toggle('selected', parseInt(el.dataset.id) === id);
+  });
+  document.getElementById('btnStep1Next').disabled = false;
+  checkIn = null; checkOut = null;
+}
+
+// ===== Calendar =====
+function renderCalendars() {
+  renderCalendar('calendar1', currentMonth1);
+  renderCalendar('calendar2', currentMonth2);
+  loadAvailability(currentMonth1);
+  loadAvailability(currentMonth2);
+}
+
+function renderCalendar(containerId, date) {
+  const year = date.getFullYear();
+  const month = date.getMonth();
+  const firstDay = new Date(year, month, 1).getDay();
+  const daysInMonth = new Date(year, month + 1, 0).getDate();
+  const today = new Date();
+  today.setHours(0,0,0,0);
+
+  const monthNames = ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'];
+
+  let html = `
+    <div class="cal-header">
+      <button onclick="changeMonth('${containerId}', -1)">‹</button>
+      <h3>${year}년 ${monthNames[month]}</h3>
+      <button onclick="changeMonth('${containerId}', 1)">›</button>
+    </div>
+    <div class="cal-grid">
+      <div class="cal-day-name" style="color:#dc2626">일</div>
+      <div class="cal-day-name">월</div>
+      <div class="cal-day-name">화</div>
+      <div class="cal-day-name">수</div>
+      <div class="cal-day-name">목</div>
+      <div class="cal-day-name">금</div>
+      <div class="cal-day-name" style="color:#2563eb">토</div>
+  `;
+
+  for (let i = 0; i < firstDay; i++) html += '<div class="cal-day disabled"></div>';
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateObj = new Date(year, month, d);
+    const dateStr = `${year}-${String(month+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    const isPast = dateObj < today;
+    const isBooked = bookedDates.has(dateStr);
+    const isToday = dateObj.getTime() === today.getTime();
+    const dayOfWeek = dateObj.getDay();
+    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+
+    let cls = 'cal-day';
+    if (isPast) cls += ' disabled';
+    else if (isBooked) cls += ' booked';
+    if (isToday) cls += ' today';
+    if (isWeekend && !isPast) cls += ' weekend';
+
+    if (checkIn && dateStr === formatDate(checkIn)) cls += ' selected';
+    if (checkOut && dateStr === formatDate(checkOut)) cls += ' selected';
+    if (checkIn && checkOut && dateObj > checkIn && dateObj < checkOut) cls += ' in-range';
+
+    const clickable = !isPast && !isBooked;
+    html += `<div class="${cls}" ${clickable ? `onclick="selectDate('${dateStr}')"` : ''}>${d}</div>`;
+  }
+
+  html += '</div>';
+  document.getElementById(containerId).innerHTML = html;
+}
+
+function changeMonth(containerId, delta) {
+  if (containerId === 'calendar1') {
+    currentMonth1.setMonth(currentMonth1.getMonth() + delta);
+    currentMonth2 = new Date(currentMonth1);
+    currentMonth2.setMonth(currentMonth2.getMonth() + 1);
+  } else {
+    currentMonth2.setMonth(currentMonth2.getMonth() + delta);
+    currentMonth1 = new Date(currentMonth2);
+    currentMonth1.setMonth(currentMonth1.getMonth() - 1);
+  }
+  renderCalendars();
+}
+
+async function loadAvailability(date) {
+  if (!selectedRoom) return;
+  try {
+    const res = await fetch(`/api/availability?room_id=${selectedRoom.id}&year=${date.getFullYear()}&month=${date.getMonth()+1}`);
+    const data = await res.json();
+    data.booked_dates.forEach(d => bookedDates.add(d));
+    renderCalendar('calendar1', currentMonth1);
+    renderCalendar('calendar2', currentMonth2);
+  } catch (e) {}
+}
+
+function selectDate(dateStr) {
+  const date = new Date(dateStr + 'T00:00:00');
+  if (!checkIn || (checkIn && checkOut)) {
+    checkIn = date;
+    checkOut = null;
+  } else {
+    if (date <= checkIn) {
+      checkIn = date;
+    } else {
+      // 선택 범위 내 예약된 날짜 확인
+      let hasBooked = false;
+      let cur = new Date(checkIn);
+      while (cur < date) {
+        if (bookedDates.has(formatDate(cur))) { hasBooked = true; break; }
+        cur.setDate(cur.getDate() + 1);
+      }
+      if (hasBooked) {
+        alert('선택하신 기간 중 이미 예약된 날짜가 있습니다.');
+        checkIn = date; checkOut = null;
+      } else {
+        checkOut = date;
+      }
+    }
+  }
+
+  renderCalendar('calendar1', currentMonth1);
+  renderCalendar('calendar2', currentMonth2);
+  updateDateSelection();
+  document.getElementById('btnStep2Next').disabled = !(checkIn && checkOut);
+}
+
+function updateDateSelection() {
+  const el = document.getElementById('dateSelection');
+  if (checkIn && checkOut) {
+    const nights = Math.round((checkOut - checkIn) / (1000*60*60*24));
+    el.innerHTML = `📅 ${formatDateKR(checkIn)} ~ ${formatDateKR(checkOut)} (${nights}박)`;
+  } else if (checkIn) {
+    el.innerHTML = `📅 체크인: ${formatDateKR(checkIn)} → 체크아웃 날짜를 선택해주세요`;
+  } else {
+    el.innerHTML = '';
+  }
+}
+
+// ===== Navigation =====
+function nextStep(step) {
+  if (step === 2 && !selectedRoom) return;
+  if (step === 3 && (!checkIn || !checkOut)) return;
+  if (step === 3) calculatePrice();
+
+  document.querySelectorAll('.step-content').forEach(el => el.classList.remove('active'));
+  document.getElementById(`step-${step}`).classList.add('active');
+
+  for (let i = 1; i <= 4; i++) {
+    const ind = document.getElementById(`step-ind-${i}`);
+    ind.classList.toggle('active', i === step);
+    ind.classList.toggle('done', i < step);
+  }
+
+  if (step === 2) renderCalendars();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function prevStep(step) {
+  nextStep(step);
+}
+
+// ===== Price Calculation =====
+async function calculatePrice() {
+  try {
+    const res = await fetch('/api/calculate-price', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        room_id: selectedRoom.id,
+        check_in: formatDate(checkIn),
+        check_out: formatDate(checkOut),
+        num_adults: parseInt(document.getElementById('numAdults').value),
+        num_children: 0
+      })
+    });
+    priceData = await res.json();
+    renderPriceSummary();
+  } catch (e) {
+    console.error('가격 계산 실패:', e);
+  }
+}
+
+function renderPriceSummary() {
+  if (!priceData || !selectedRoom) return;
+  const el = document.getElementById('priceSummary');
+  el.innerHTML = `
+    <div class="price-row"><span>객실</span><strong>${selectedRoom.name}</strong></div>
+    <div class="price-row"><span>기간</span><span>${formatDateKR(checkIn)} ~ ${formatDateKR(checkOut)} (${priceData.nights}박)</span></div>
+    <div class="price-row"><span>객실 요금</span><span>${priceData.room_price.toLocaleString()}원</span></div>
+    ${priceData.extra_person_fee > 0 ? `<div class="price-row"><span>추가 인원 요금</span><span>${priceData.extra_person_fee.toLocaleString()}원</span></div>` : ''}
+    <div class="price-row total"><span>총 결제 금액</span><span>${priceData.total_price.toLocaleString()}원</span></div>
+  `;
+}
+
+// ===== Payment =====
+async function proceedToPayment() {
+  const name = document.getElementById('guestName').value.trim();
+  const phone = document.getElementById('guestPhone').value.trim();
+  if (!name || !phone) {
+    alert('이름과 연락처를 입력해주세요.');
+    return;
+  }
+  if (!priceData) {
+    await calculatePrice();
+  }
+
+  // 1. 예약 생성
+  try {
+    const res = await fetch('/api/reservations', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        room_id: selectedRoom.id,
+        guest_name: name,
+        guest_phone: phone,
+        guest_email: document.getElementById('guestEmail').value.trim(),
+        check_in: formatDate(checkIn),
+        check_out: formatDate(checkOut),
+        num_adults: parseInt(document.getElementById('numAdults').value),
+        num_children: 0,
+        total_price: priceData.total_price,
+        special_requests: document.getElementById('specialRequests').value.trim()
+      })
+    });
+    const reservation = await res.json();
+    if (!res.ok) { alert(reservation.error); return; }
+
+    nextStep(4);
+
+    // 2. 토스페이먼츠 결제
+    const tossPayments = TossPayments(window.TOSS_CLIENT_KEY || 'test_ck_D5GePWvyJnrK0W0k6q8gLzN97Eoq');
+    tossPayments.requestPayment('카드', {
+      amount: priceData.total_price,
+      orderId: reservation.reservation_no,
+      orderName: `${selectedRoom.name} ${priceData.nights}박`,
+      customerName: name,
+      successUrl: `${location.origin}/payment/success`,
+      failUrl: `${location.origin}/payment/fail`
+    });
+  } catch (e) {
+    console.error('결제 진행 실패:', e);
+    alert('결제 처리 중 오류가 발생했습니다.');
+  }
+}
+
+// ===== Utils =====
+function formatDate(d) {
+  if (!d) return '';
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+}
+function formatDateKR(d) {
+  return `${d.getFullYear()}.${d.getMonth()+1}.${d.getDate()}`;
+}
+
+// ===== Start =====
+init();
+</script>
+</body>
+</html>

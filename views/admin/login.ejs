@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관리자 로그인 - 장령산계곡산장</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans KR',sans-serif; background:#f0f5f1; display:flex; align-items:center; justify-content:center; min-height:100vh; }
+.login-box { background:#fff; padding:40px; border-radius:16px; box-shadow:0 4px 20px rgba(0,0,0,0.08); width:100%; max-width:400px; }
+.login-box h1 { text-align:center; color:#1a3c27; font-size:1.5rem; margin-bottom:8px; }
+.login-box .subtitle { text-align:center; color:#6b8a70; font-size:0.85rem; margin-bottom:30px; }
+.form-group { margin-bottom:16px; }
+.form-group label { display:block; font-size:0.85rem; font-weight:500; color:#2d3a2e; margin-bottom:6px; }
+.form-group input { width:100%; padding:12px 16px; border:1px solid #dde8df; border-radius:8px; font-size:0.95rem; font-family:inherit; }
+.form-group input:focus { outline:none; border-color:#4a9d6e; box-shadow:0 0 0 3px rgba(74,157,110,0.1); }
+.btn { width:100%; padding:14px; background:#2d6b4a; color:#fff; border:none; border-radius:8px; font-size:1rem; font-weight:500; cursor:pointer; font-family:inherit; }
+.btn:hover { background:#1a3c27; }
+.error { background:#fef2f2; color:#dc2626; padding:10px 16px; border-radius:8px; font-size:0.85rem; margin-bottom:16px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="login-box">
+  <h1>🏔 장령산계곡산장</h1>
+  <p class="subtitle">관리자 로그인</p>
+  <% if (error) { %><div class="error"><%= error %></div><% } %>
+  <form method="POST" action="/admin/login">
+    <div class="form-group">
+      <label>아이디</label>
+      <input type="text" name="username" required autofocus>
+    </div>
+    <div class="form-group">
+      <label>비밀번호</label>
+      <input type="password" name="password" required>
+    </div>
+    <button type="submit" class="btn">로그인</button>
+  </form>
+</div>
+</body>
+</html>

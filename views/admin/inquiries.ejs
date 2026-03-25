@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>문의 관리 - 장령산계곡산장</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans KR',sans-serif; background:#f4f7f5; color:#2d3a2e; }
+.sidebar { position:fixed; left:0; top:0; bottom:0; width:240px; background:#1a3c27; color:#fff; padding:20px 0; z-index:100; }
+.sidebar .logo { padding:0 20px 20px; font-size:1.1rem; font-weight:600; border-bottom:1px solid rgba(255,255,255,0.1); }
+.sidebar nav { margin-top:20px; }
+.sidebar nav a { display:flex; align-items:center; gap:10px; padding:12px 20px; color:rgba(255,255,255,0.7); font-size:0.9rem; transition:all 0.2s; }
+.sidebar nav a:hover, .sidebar nav a.active { background:rgba(255,255,255,0.1); color:#fff; }
+.sidebar .user-info { position:absolute; bottom:0; left:0; right:0; padding:16px 20px; border-top:1px solid rgba(255,255,255,0.1); font-size:0.8rem; }
+.sidebar .user-info a { color:#8fdfb0; }
+.main { margin-left:240px; padding:30px; }
+.page-title { font-size:1.5rem; font-weight:600; margin-bottom:24px; }
+.card { background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 10px rgba(0,0,0,0.04); }
+table { width:100%; border-collapse:collapse; }
+th { text-align:left; font-size:0.8rem; font-weight:500; color:#6b8a70; padding:10px 12px; border-bottom:2px solid #e8f0ea; }
+td { padding:10px 12px; font-size:0.85rem; border-bottom:1px solid #f0f5f1; }
+.btn-read { padding:4px 12px; background:#e8f5e9; color:#2d6b4a; border:none; border-radius:6px; font-size:0.8rem; cursor:pointer; font-family:inherit; }
+.btn-read:hover { background:#c8e6c9; }
+.unread { background:#fef3c7; }
+@media(max-width:768px) {
+  .sidebar { width:100%; height:auto; position:relative; }
+  .sidebar nav { display:flex; overflow-x:auto; }
+  .sidebar nav a { white-space:nowrap; padding:10px 16px; }
+  .sidebar .user-info { position:relative; }
+  .main { margin-left:0; }
+}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo">🏔 장령산계곡산장</div>
+  <nav>
+    <a href="/admin">📊 대시보드</a>
+    <a href="/admin/reservations">📋 예약 관리</a>
+    <a href="/admin/rooms">🏠 객실 관리</a>
+    <a href="/admin/inquiries" class="active">💬 문의 관리</a>
+    <a href="/admin/gallery">🖼 갤러리 관리</a>
+    <a href="/" target="_blank">🌐 사이트 보기</a>
+  </nav>
+  <div class="user-info">
+    👤 <%= admin.name %><br><a href="/admin/logout">로그아웃</a>
+  </div>
+</aside>
+
+<main class="main">
+  <h1 class="page-title">문의 관리</h1>
+  <div class="card">
+    <div style="overflow-x:auto;">
+    <table>
+      <thead>
+        <tr><th>이름</th><th>연락처</th><th>희망일정</th><th>인원</th><th>희망객실</th><th>문의내용</th><th>접수일</th><th>상태</th></tr>
+      </thead>
+      <tbody>
+        <% inquiries.forEach(i => { %>
+        <tr class="<%= i.is_read ? '' : 'unread' %>">
+          <td><strong><%= i.name %></strong></td>
+          <td><%= i.phone %></td>
+          <td>
+            <% if (i.check_in) { %>
+              <%= new Date(i.check_in).toLocaleDateString('ko-KR') %>
+              <% if (i.check_out) { %> ~ <%= new Date(i.check_out).toLocaleDateString('ko-KR') %><% } %>
+            <% } else { %>-<% } %>
+          </td>
+          <td><%= i.num_guests || '-' %></td>
+          <td><%= i.room_preference || '-' %></td>
+          <td style="max-width:250px;"><%= i.message || '-' %></td>
+          <td><%= new Date(i.created_at).toLocaleDateString('ko-KR') %></td>
+          <td>
+            <% if (i.is_read) { %>
+              ✅ 확인
+            <% } else { %>
+              <button class="btn-read" onclick="markRead(<%= i.id %>)">확인 처리</button>
+            <% } %>
+          </td>
+        </tr>
+        <% }); %>
+        <% if (inquiries.length === 0) { %>
+        <tr><td colspan="8" style="text-align:center;color:#999;padding:30px;">문의가 없습니다.</td></tr>
+        <% } %>
+      </tbody>
+    </table>
+    </div>
+  </div>
+</main>
+<script>
+async function markRead(id) {
+  try {
+    const res = await fetch(`/admin/inquiries/${id}/read`, { method: 'POST' });
+    if (res.ok) location.reload();
+  } catch (e) { alert('처리 실패'); }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>객실 관리 - 장령산계곡산장</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Noto Sans KR',sans-serif; background:#f4f7f5; color:#2d3a2e; }
+.sidebar { position:fixed; left:0; top:0; bottom:0; width:240px; background:#1a3c27; color:#fff; padding:20px 0; z-index:100; }
+.sidebar .logo { padding:0 20px 20px; font-size:1.1rem; font-weight:600; border-bottom:1px solid rgba(255,255,255,0.1); }
+.sidebar nav { margin-top:20px; }
+.sidebar nav a { display:flex; align-items:center; gap:10px; padding:12px 20px; color:rgba(255,255,255,0.7); font-size:0.9rem; transition:all 0.2s; }
+.sidebar nav a:hover, .sidebar nav a.active { background:rgba(255,255,255,0.1); color:#fff; }
+.sidebar .user-info { position:absolute; bottom:0; left:0; right:0; padding:16px 20px; border-top:1px solid rgba(255,255,255,0.1); font-size:0.8rem; }
+.sidebar .user-info a { color:#8fdfb0; }
+.main { margin-left:240px; padding:30px; }
+.page-title { font-size:1.5rem; font-weight:600; margin-bottom:24px; }
+.room-card { background:#fff; border-radius:12px; padding:24px; box-shadow:0 2px 10px rgba(0,0,0,0.04); margin-bottom:20px; }
+.room-card h3 { font-size:1.2rem; color:#1a3c27; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid #e8f0ea; }
+.form-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
+.form-group { margin-bottom:12px; }
+.form-group label { display:block; font-size:0.8rem; font-weight:500; color:#6b8a70; margin-bottom:4px; }
+.form-group input, .form-group textarea, .form-group select { width:100%; padding:10px 12px; border:1px solid #dde8df; border-radius:8px; font-size:0.9rem; font-family:inherit; }
+.form-group textarea { height:80px; resize:vertical; }
+.btn-save { padding:10px 24px; background:#2d6b4a; color:#fff; border:none; border-radius:8px; font-size:0.9rem; cursor:pointer; font-family:inherit; }
+.btn-save:hover { background:#1a3c27; }
+.price-section h4 { font-size:0.9rem; color:#2d6b4a; margin:16px 0 12px; }
+@media(max-width:768px) {
+  .sidebar { width:100%; height:auto; position:relative; }
+  .sidebar nav { display:flex; overflow-x:auto; }
+  .sidebar nav a { white-space:nowrap; padding:10px 16px; }
+  .sidebar .user-info { position:relative; }
+  .main { margin-left:0; }
+  .form-grid { grid-template-columns:1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="logo">🏔 장령산계곡산장</div>
+  <nav>
+    <a href="/admin">📊 대시보드</a>
+    <a href="/admin/reservations">📋 예약 관리</a>
+    <a href="/admin/rooms" class="active">🏠 객실 관리</a>
+    <a href="/admin/inquiries">💬 문의 관리</a>
+    <a href="/admin/gallery">🖼 갤러리 관리</a>
+    <a href="/" target="_blank">🌐 사이트 보기</a>
+  </nav>
+  <div class="user-info">
+    👤 <%= admin.name %><br><a href="/admin/logout">로그아웃</a>
+  </div>
+</aside>
+
+<main class="main">
+  <h1 class="page-title">객실 관리</h1>
+
+  <% rooms.forEach(room => { %>
+  <div class="room-card">
+    <h3><%= room.name %> <small style="color:#999;font-weight:400;">(/<%= room.slug %>)</small></h3>
+    <form method="POST" action="/admin/rooms/<%= room.id %>">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>객실명</label>
+          <input type="text" name="name" value="<%= room.name %>" required>
+        </div>
+        <div class="form-group">
+          <label>기준 인원</label>
+          <input type="number" name="capacity_min" value="<%= room.capacity_min %>">
+        </div>
+        <div class="form-group">
+          <label>최대 인원</label>
+          <input type="number" name="capacity_max" value="<%= room.capacity_max %>">
+        </div>
+        <div class="form-group">
+          <label>면적(㎡)</label>
+          <input type="number" step="0.1" name="area_sqm" value="<%= room.area_sqm %>">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>짧은 설명</label>
+        <input type="text" name="short_desc" value="<%= room.short_desc || '' %>">
+      </div>
+      <div class="form-group">
+        <label>상세 설명</label>
+        <textarea name="description"><%= room.description || '' %></textarea>
+      </div>
+
+      <div class="price-section">
+        <h4>💰 요금 설정</h4>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>비수기 주중</label>
+            <input type="number" name="price_weekday" value="<%= room.price_weekday %>">
+          </div>
+          <div class="form-group">
+            <label>비수기 주말(금,토)</label>
+            <input type="number" name="price_weekend" value="<%= room.price_weekend %>">
+          </div>
+          <div class="form-group">
+            <label>성수기 주중</label>
+            <input type="number" name="price_peak_weekday" value="<%= room.price_peak_weekday %>">
+          </div>
+          <div class="form-group">
+            <label>성수기 주말</label>
+            <input type="number" name="price_peak_weekend" value="<%= room.price_peak_weekend %>">
+          </div>
+          <div class="form-group">
+            <label>추가 인원당 요금</label>
+            <input type="number" name="extra_person_fee" value="<%= room.extra_person_fee %>">
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group" style="margin-top:12px;">
+        <label>
+          <input type="checkbox" name="is_active" value="1" <%= room.is_active ? 'checked' : '' %>>
+          활성화 (체크 해제 시 사이트에 표시되지 않음)
+        </label>
+      </div>
+
+      <button type="submit" class="btn-save">저장</button>
+    </form>
+  </div>
+  <% }); %>
+</main>
+</body>
+</html>

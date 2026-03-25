@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[시안 A] 장령산계곡산장 - 모던 럭셔리</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Noto Sans KR',sans-serif;color:#1a1a1a;background:#0a0a0a;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;justify-content:space-between;align-items:center;transition:all 0.4s}
+.nav.scrolled{background:rgba(10,10,10,0.95);backdrop-filter:blur(10px);padding:14px 40px}
+.nav .logo{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#fff;font-weight:600;letter-spacing:1px}
+.nav-links{display:flex;gap:28px}
+.nav-links a{color:rgba(255,255,255,0.8);font-size:0.85rem;font-weight:300;letter-spacing:1px;transition:color 0.3s}
+.nav-links a:hover{color:#c9a96e}
+.nav .cta-btn{padding:10px 24px;border:1px solid #c9a96e;color:#c9a96e;border-radius:4px;font-size:0.8rem;letter-spacing:1px;transition:all 0.3s}
+.nav .cta-btn:hover{background:#c9a96e;color:#0a0a0a}
+
+/* HERO - Full screen with video-like overlay */
+.hero{height:100vh;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=1920&q=80') center/cover;filter:brightness(0.4)}
+.hero-content{position:relative;z-index:2;text-align:center;color:#fff;max-width:800px;padding:0 20px}
+.hero-tag{display:inline-block;padding:8px 24px;border:1px solid rgba(201,169,110,0.5);color:#c9a96e;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;margin-bottom:30px}
+.hero h1{font-family:'Cormorant Garamond',serif;font-size:4.5rem;font-weight:400;line-height:1.15;margin-bottom:20px;letter-spacing:-1px}
+.hero h1 em{font-style:italic;color:#c9a96e}
+.hero p{font-size:1rem;font-weight:300;opacity:0.8;line-height:1.9;margin-bottom:40px}
+.hero-btns{display:flex;gap:16px;justify-content:center}
+.btn-gold{padding:16px 40px;background:#c9a96e;color:#0a0a0a;font-size:0.85rem;font-weight:500;letter-spacing:1px;border:none;cursor:pointer;transition:all 0.3s}
+.btn-gold:hover{background:#dfc08a;transform:translateY(-2px)}
+.btn-ghost{padding:16px 40px;border:1px solid rgba(255,255,255,0.3);color:#fff;font-size:0.85rem;letter-spacing:1px;transition:all 0.3s;background:transparent}
+.btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,0.05)}
+
+/* SECTION COMMON */
+.section{padding:100px 0}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+.section-header{text-align:center;margin-bottom:60px}
+.section-header .tag{color:#c9a96e;font-size:0.7rem;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px}
+.section-header h2{font-family:'Cormorant Garamond',serif;font-size:3rem;color:#fff;font-weight:400}
+.section-header .line{width:50px;height:1px;background:#c9a96e;margin:20px auto 0}
+
+/* ABOUT */
+.about{background:#0f0f0f}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.about-img{position:relative;overflow:hidden}
+.about-img img{width:100%;height:500px;object-fit:cover;border-radius:2px}
+.about-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(transparent,rgba(15,15,15,0.6))}
+.about-text .tag{color:#c9a96e;font-size:0.7rem;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+.about-text h3{font-family:'Cormorant Garamond',serif;font-size:2.4rem;color:#fff;font-weight:400;margin-bottom:20px;line-height:1.3}
+.about-text p{color:rgba(255,255,255,0.6);font-weight:300;line-height:1.9;margin-bottom:16px;font-size:0.95rem}
+.about-features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
+.about-feature{display:flex;align-items:center;gap:10px;color:rgba(255,255,255,0.7);font-size:0.85rem}
+.about-feature span{color:#c9a96e;font-size:1.2rem}
+
+/* ROOMS */
+.rooms{background:#0a0a0a}
+.rooms-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.room-card{position:relative;overflow:hidden;border-radius:2px;cursor:pointer;group:true}
+.room-card img{width:100%;height:380px;object-fit:cover;transition:transform 0.6s;filter:brightness(0.8)}
+.room-card:hover img{transform:scale(1.05);filter:brightness(0.6)}
+.room-overlay{position:absolute;bottom:0;left:0;right:0;padding:30px;background:linear-gradient(transparent,rgba(0,0,0,0.8));transition:all 0.4s}
+.room-card:hover .room-overlay{padding-bottom:40px}
+.room-overlay .room-tag{color:#c9a96e;font-size:0.7rem;letter-spacing:2px;text-transform:uppercase}
+.room-overlay h3{font-family:'Cormorant Garamond',serif;font-size:1.8rem;color:#fff;font-weight:400;margin:6px 0}
+.room-overlay .room-meta{color:rgba(255,255,255,0.6);font-size:0.8rem;display:flex;gap:16px}
+.room-overlay .room-price{color:#c9a96e;font-size:1.3rem;font-weight:600;margin-top:10px}
+.room-overlay .room-price small{font-weight:300;font-size:0.75rem;color:rgba(255,255,255,0.5)}
+
+/* GALLERY */
+.gallery{background:#0f0f0f}
+.gallery-mosaic{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:300px 300px;gap:8px}
+.gallery-mosaic .gi{overflow:hidden;position:relative;cursor:pointer}
+.gallery-mosaic .gi img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
+.gallery-mosaic .gi:hover img{transform:scale(1.1)}
+.gallery-mosaic .gi:first-child{grid-column:span 2;grid-row:span 2}
+.gallery-mosaic .gi::after{content:'';position:absolute;inset:0;background:rgba(0,0,0,0);transition:background 0.3s}
+.gallery-mosaic .gi:hover::after{background:rgba(0,0,0,0.2)}
+
+/* ATTRACTIONS */
+.attractions{background:#0a0a0a}
+.attr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.attr-card{background:#151515;border-radius:2px;overflow:hidden;transition:transform 0.3s}
+.attr-card:hover{transform:translateY(-4px)}
+.attr-card img{width:100%;height:200px;object-fit:cover;filter:brightness(0.7)}
+.attr-card .attr-info{padding:24px}
+.attr-card h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:#fff;margin-bottom:8px}
+.attr-card p{color:rgba(255,255,255,0.5);font-size:0.85rem;line-height:1.7;font-weight:300}
+.attr-card .dist{color:#c9a96e;font-size:0.75rem;margin-top:10px}
+
+/* CONTACT / RESERVATION */
+.contact{background:linear-gradient(135deg,#0f0f0f,#1a1510)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+.contact-info h3{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:#fff;font-weight:400;margin-bottom:20px}
+.contact-info p{color:rgba(255,255,255,0.6);font-weight:300;line-height:1.9;margin-bottom:24px}
+.contact-details{display:flex;flex-direction:column;gap:16px}
+.contact-item{display:flex;align-items:center;gap:14px}
+.contact-item .ci-icon{width:44px;height:44px;border:1px solid rgba(201,169,110,0.3);display:flex;align-items:center;justify-content:center;font-size:1.1rem;border-radius:2px;flex-shrink:0}
+.contact-item .ci-text{color:rgba(255,255,255,0.7);font-size:0.9rem}
+.contact-item .ci-text strong{display:block;color:#fff;font-weight:500;margin-bottom:2px}
+.contact-form{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);padding:36px;border-radius:2px}
+.contact-form h3{color:#fff;font-size:1.1rem;font-weight:500;margin-bottom:20px}
+.fg{margin-bottom:16px}
+.fg label{display:block;color:rgba(255,255,255,0.5);font-size:0.8rem;margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#fff;font-size:0.9rem;font-family:inherit;border-radius:2px;transition:border-color 0.3s}
+.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:#c9a96e}
+.fg textarea{height:80px;resize:vertical}
+.fg select option{background:#1a1a1a}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.submit-btn{width:100%;padding:14px;background:#c9a96e;color:#0a0a0a;font-size:0.9rem;font-weight:500;border:none;cursor:pointer;letter-spacing:1px;font-family:inherit;transition:background 0.3s}
+.submit-btn:hover{background:#dfc08a}
+
+/* MAP */
+.map-section{background:#0a0a0a;padding:0}
+.map-section iframe{width:100%;height:400px;border:none;filter:grayscale(0.5)brightness(0.8)}
+
+/* FOOTER */
+.footer{background:#050505;color:rgba(255,255,255,0.4);padding:40px 0;text-align:center;font-size:0.8rem}
+.footer a{color:#c9a96e}
+
+/* FLOATING */
+.floating{position:fixed;bottom:24px;right:24px;z-index:90;display:flex;flex-direction:column;gap:10px}
+.float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 20px rgba(0,0,0,0.4);border:none;cursor:pointer;transition:transform 0.3s}
+.float-btn:hover{transform:scale(1.1)}
+.fb-phone{background:#c9a96e;color:#0a0a0a}
+.fb-cafe{background:#03C75A;color:#fff}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links,.nav .cta-btn{display:none}
+  .hero h1{font-size:2.6rem}
+  .about-grid{grid-template-columns:1fr;gap:30px}
+  .about-img img{height:300px}
+  .rooms-grid{grid-template-columns:1fr}
+  .room-card img{height:280px}
+  .gallery-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px 200px}
+  .gallery-mosaic .gi:first-child{grid-column:span 2;grid-row:span 1}
+  .attr-grid{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  .section{padding:60px 0}
+  .section-header h2{font-size:2.2rem}
+  .fr{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="#" class="logo">JANGM</a>
+  <div class="nav-links">
+    <a href="#about">소개</a>
+    <a href="#rooms">객실</a>
+    <a href="#gallery">갤러리</a>
+    <a href="#attractions">주변관광</a>
+    <a href="#contact">예약문의</a>
+  </div>
+  <a href="#contact" class="cta-btn">RESERVATION</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-tag">충북 옥천 · 장령산 계곡</div>
+    <h1>자연 속에서 찾는<br><em>고요한 쉼</em></h1>
+    <p>울창한 숲과 맑은 계곡이 만나는 곳,<br>장령산계곡산장에서 특별한 휴식을 경험하세요.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">예약하기</a>
+      <a href="#rooms" class="btn-ghost">객실 보기</a>
+    </div>
+  </div>
+</section>
+
+<section class="about section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=800&q=80" alt="산장 전경">
+      </div>
+      <div class="about-text">
+        <div class="tag">About Us</div>
+        <h3>장령산 자락,<br>계곡이 흐르는 산장</h3>
+        <p>충북 옥천 장령산 자락에 위치한 장령산계곡산장은 피톤치드 가득한 숲과 맑은 계곡물이 어우러진 자연 속 힐링 공간입니다.</p>
+        <p>여름 계곡 물놀이부터 가을 단풍, 겨울 설경까지 사계절의 아름다움을 느끼실 수 있습니다.</p>
+        <div class="about-features">
+          <div class="about-feature"><span>🏞</span> 청정 계곡</div>
+          <div class="about-feature"><span>🌲</span> 피톤치드 숲</div>
+          <div class="about-feature"><span>🔥</span> 개별 바베큐</div>
+          <div class="about-feature"><span>📶</span> 전 객실 WiFi</div>
+          <div class="about-feature"><span>🅿</span> 무료 주차</div>
+          <div class="about-feature"><span>🏠</span> 독채 운영</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="rooms section" id="rooms">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag">Rooms</div>
+      <h2>객실 안내</h2>
+      <div class="line"></div>
+    </div>
+    <div class="rooms-grid">
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=600&q=80" alt="계곡뷰 A동">
+        <div class="room-overlay">
+          <div class="room-tag">Valley View</div>
+          <h3>계곡뷰 A동</h3>
+          <div class="room-meta"><span>기준 2인 / 최대 4인</span><span>33㎡</span></div>
+          <div class="room-price">120,000원~ <small>/1박</small></div>
+        </div>
+      </div>
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?w=600&q=80" alt="숲속 B동">
+        <div class="room-overlay">
+          <div class="room-tag">Forest</div>
+          <h3>숲속 B동</h3>
+          <div class="room-meta"><span>기준 4인 / 최대 6인</span><span>49㎡</span></div>
+          <div class="room-price">170,000원~ <small>/1박</small></div>
+        </div>
+      </div>
+      <div class="room-card">
+        <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?w=600&q=80" alt="단체동 C">
+        <div class="room-overlay">
+          <div class="room-tag">Group</div>
+          <h3>단체동 C</h3>
+          <div class="room-meta"><span>기준 8인 / 최대 20인</span><span>82㎡</span></div>
+          <div class="room-price">300,000원~ <small>/1박</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery section" id="gallery">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag">Gallery</div>
+      <h2>포토 갤러리</h2>
+      <div class="line"></div>
+    </div>
+    <div class="gallery-mosaic">
+      <div class="gi"><img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=900&q=80" alt="계곡 전경"></div>
+      <div class="gi"><img src="https://images.unsplash.com/photo-1618767689160-da3fb810aad7?w=500&q=80" alt="바베큐"></div>
+      <div class="gi"><img src="https://images.unsplash.com/photo-1510798831971-661eb04b3739?w=500&q=80" alt="외관"></div>
+      <div class="gi"><img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=500&q=80" alt="숲"></div>
+      <div class="gi"><img src="https://images.unsplash.com/photo-1540979388789-6cee28a1cdc9?w=500&q=80" alt="야경"></div>
+      <div class="gi"><img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=500&q=80" alt="캠핑"></div>
+      <div class="gi"><img src="https://images.unsplash.com/photo-1432889490240-84df33d47091?w=500&q=80" alt="계곡물"></div>
+    </div>
+  </div>
+</section>
+
+<section class="attractions section" id="attractions">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag">Nearby</div>
+      <h2>주변 관광지</h2>
+      <div class="line"></div>
+    </div>
+    <div class="attr-grid">
+      <div class="attr-card">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=500&q=80" alt="장령산자연휴양림">
+        <div class="attr-info">
+          <h3>장령산자연휴양림</h3>
+          <p>피톤치드 1위의 울창한 숲, 3.1km 치유의 숲 산책로와 숲속동굴 체험</p>
+          <div class="dist">🚗 차량 5분</div>
+        </div>
+      </div>
+      <div class="attr-card">
+        <img src="https://images.unsplash.com/photo-1533577116850-9cc66cad8a9b?w=500&q=80" alt="숲속동굴">
+        <div class="attr-info">
+          <h3>숲속동굴</h3>
+          <p>구 동국광산을 활용한 100m 동굴 체험, 8개 테마 구간 무료 입장</p>
+          <div class="dist">🚗 차량 5분</div>
+        </div>
+      </div>
+      <div class="attr-card">
+        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&q=80" alt="금천계곡">
+        <div class="attr-info">
+          <h3>금천계곡</h3>
+          <p>5km 이상 이어지는 맑은 물길, 여름 물놀이의 명소</p>
+          <div class="dist">🚶 도보 5분</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact section" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="tag">Reservation</div>
+      <h2>예약 문의</h2>
+      <div class="line"></div>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>편안한 휴식을<br>준비해드립니다</h3>
+        <p>전화 또는 아래 폼을 통해 예약하세요.<br>빠른 예약은 전화를 추천드립니다.</p>
+        <div class="contact-details">
+          <div class="contact-item"><div class="ci-icon">📞</div><div class="ci-text"><strong>전화</strong>043-733-9615</div></div>
+          <div class="contact-item"><div class="ci-icon">⏰</div><div class="ci-text"><strong>입실 / 퇴실</strong>15:00 입실 · 11:00 퇴실</div></div>
+          <div class="contact-item"><div class="ci-icon">📍</div><div class="ci-text"><strong>주소</strong>충북 옥천군 군서면 장령산로 315-27</div></div>
+          <div class="contact-item"><div class="ci-icon">🔥</div><div class="ci-text"><strong>바베큐</strong>숯+그릴 세트 20,000원</div></div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <h3>문의하기</h3>
+        <form onsubmit="event.preventDefault();alert('문의가 접수되었습니다!');">
+          <div class="fr">
+            <div class="fg"><label>이름</label><input type="text" placeholder="홍길동" required></div>
+            <div class="fg"><label>연락처</label><input type="tel" placeholder="010-0000-0000" required></div>
+          </div>
+          <div class="fr">
+            <div class="fg"><label>체크인</label><input type="date"></div>
+            <div class="fg"><label>체크아웃</label><input type="date"></div>
+          </div>
+          <div class="fr">
+            <div class="fg"><label>인원</label><select><option>2명</option><option>3~4명</option><option>5~6명</option><option>7~10명</option><option>10명 이상</option></select></div>
+            <div class="fg"><label>객실</label><select><option>선택</option><option>계곡뷰 A동</option><option>숲속 B동</option><option>단체동 C</option></select></div>
+          </div>
+          <div class="fg"><label>문의내용</label><textarea placeholder="궁금하신 점을 적어주세요"></textarea></div>
+          <button class="submit-btn" type="submit">문의하기</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="map-section">
+  <iframe src="https://map.kakao.com/?q=%EC%B6%A9%EB%B6%81+%EC%98%A5%EC%B2%9C%EA%B5%B0+%EA%B5%B0%EC%84%9C%EB%A9%B4+%EC%9E%A5%EB%A0%B9%EC%82%B0%EB%A1%9C+315-27" loading="lazy"></iframe>
+</div>
+
+<footer class="footer">
+  <p>&copy; 2026 장령산계곡산장 · 충북 옥천군 군서면 장령산로 315-27 · 043-733-9615 · <a href="https://cafe.naver.com/jrmountain" target="_blank">네이버 카페</a></p>
+</footer>
+
+<div class="floating">
+  <a href="tel:043-733-9615" class="float-btn fb-phone">📞</a>
+  <a href="https://cafe.naver.com/jrmountain" target="_blank" class="float-btn fb-cafe">N</a>
+</div>
+
+<script>
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>50)});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href'))?.scrollIntoView({behavior:'smooth'})})});
+</script>
+</body>
+</html>
