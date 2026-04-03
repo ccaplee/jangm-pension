@@ -1,705 +1,2393 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="장령산계곡산장 - 충북 옥천의 따뜻한 우드 캐빈, 청정 계곡과 숲 속에서의 힐링 휴가">
-<meta name="keywords" content="펜션,산장,옥천,장령산,계곡,바베큐,힐링,휴가">
-<title>장령산계곡산장 - 충북 옥천의 따뜻한 우드 캐빈</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Noto Sans KR',sans-serif;color:#3d2b1f;background:#faf6f0}
-a{text-decoration:none;color:inherit}
-img{max-width:100%;display:block}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="장령산계곡산장 - 충북 옥천의 따뜻하고 정겨운 우드 캐빈, 청정 계곡과 숲 속에서의 힐링 휴가">
+  <meta name="keywords" content="펜션,산장,옥천,장령산,계곡,바베큐,힐링,휴가,우드캐빈,자연휴양">
+  <meta name="og:title" content="장령산계곡산장 - 충북 옥천의 따뜻한 우드 캐빈">
+  <meta name="og:description" content="정겨운 느낌의 자연휴양형 펜션에서 가족과 함께 힐링하세요">
+  <meta name="og:type" content="website">
+  <title>장령산계곡산장 - 정겨운 산장 펜션</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700&family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-:root{
-  --wood:#5c3a1e;--wood-light:#8b6914;--cream:#faf6f0;--warm:#f5ede0;
-  --brown:#3d2b1f;--accent:#c17817;--text:#4a3728;--text-light:#8a7560;
-}
+  <style>
+    /* ===== RESET & BASE ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-/* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:transparent;padding:18px 40px;display:flex;justify-content:space-between;align-items:center;transition:all 0.4s}
-.nav.scrolled{background:rgba(250,246,240,0.97);box-shadow:0 2px 20px rgba(0,0,0,0.06)}
-.nav .logo{font-family:'Nanum Myeongjo',serif;font-size:1.4rem;color:#fff;font-weight:700}
-.nav.scrolled .logo{color:var(--wood)}
-.nav-links{display:flex;gap:28px}
-.nav-links a{color:rgba(255,255,255,0.9);font-size:0.85rem;font-weight:400;transition:color 0.3s}
-.nav.scrolled .nav-links a{color:var(--text)}
-.nav-links a:hover{color:var(--accent)}
-.nav .book-btn{padding:10px 24px;background:var(--accent);color:#fff;border-radius:30px;font-size:0.85rem;font-weight:500;transition:all 0.3s;border:none;cursor:pointer}
-.nav .book-btn:hover{background:#d4891f;transform:translateY(-1px)}
-.nav-toggle{display:none;background:none;border:none;color:rgba(255,255,255,0.9);font-size:1.3rem;cursor:pointer;transition:color 0.3s}
-.nav.scrolled .nav-toggle{color:var(--text)}
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
 
-/* HERO - Split style */
-.hero{height:100vh;display:grid;grid-template-columns:1fr 1fr;overflow:hidden}
-.hero-left{background:var(--wood);display:flex;align-items:center;justify-content:center;padding:60px;position:relative}
-.hero-left::after{content:'';position:absolute;top:0;right:0;bottom:0;width:60px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 800'%3E%3Cpath d='M0,0 C30,200 10,400 40,600 C20,700 30,750 0,800 Z' fill='%235c3a1e'/%3E%3C/svg%3E") right/cover;z-index:2}
-.hero-text{position:relative;z-index:3;color:#fff;max-width:500px}
-.hero-text .location{display:inline-flex;align-items:center;gap:6px;color:var(--accent);font-size:0.8rem;letter-spacing:2px;margin-bottom:24px;text-transform:uppercase}
-.hero-text h1{font-family:'Nanum Myeongjo',serif;font-size:3.2rem;font-weight:700;line-height:1.3;margin-bottom:20px}
-.hero-text h1 span{color:var(--accent)}
-.hero-text p{font-size:0.95rem;font-weight:300;opacity:0.8;line-height:1.9;margin-bottom:32px}
-.hero-btns{display:flex;gap:14px}
-.btn-warm{padding:14px 34px;background:var(--accent);color:#fff;border-radius:30px;font-size:0.9rem;font-weight:500;border:none;cursor:pointer;transition:all 0.3s}
-.btn-warm:hover{background:#d4891f}
-.btn-outline{padding:14px 34px;border:1.5px solid rgba(255,255,255,0.4);color:#fff;border-radius:30px;font-size:0.9rem;background:transparent;transition:all 0.3s;cursor:pointer}
-.btn-outline:hover{border-color:#fff}
-.hero-right{position:relative}
-.hero-right img{width:100%;height:100%;object-fit:cover}
-.hero-right::before{content:'';position:absolute;left:0;top:0;bottom:0;width:60px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 800'%3E%3Cpath d='M60,0 C30,200 50,400 20,600 C40,700 30,750 60,800 Z' fill='%235c3a1e'/%3E%3C/svg%3E") left/cover;z-index:2}
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      color: #4a3728;
+      background: #faf6f0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* SECTION */
-.section{padding:90px 0}
-.container{max-width:1200px;margin:0 auto;padding:0 20px}
-.section-header{text-align:center;margin-bottom:50px}
-.section-header .tag{font-family:'Nanum Myeongjo',serif;color:var(--accent);font-size:0.85rem;letter-spacing:2px;margin-bottom:8px}
-.section-header h2{font-family:'Nanum Myeongjo',serif;font-size:2.4rem;color:var(--wood);font-weight:700}
-.section-header .deco{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:16px}
-.section-header .deco .line{width:40px;height:1px;background:var(--accent)}
-.section-header .deco .dot{width:6px;height:6px;background:var(--accent);border-radius:50%}
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-/* FEATURES BAR */
-.features{background:var(--warm);padding:40px 0;border-top:3px solid var(--accent)}
-.features-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
-.feat{padding:16px}
-.feat .feat-icon{font-size:2.2rem;margin-bottom:8px}
-.feat h4{font-family:'Nanum Myeongjo',serif;font-size:1rem;color:var(--wood);margin-bottom:4px}
-.feat p{font-size:0.8rem;color:var(--text-light)}
+    img {
+      max-width: 100%;
+      display: block;
+      height: auto;
+    }
 
-/* ABOUT */
-.about{background:var(--cream)}
-.about-flex{display:flex;gap:50px;align-items:center}
-.about-imgs{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.about-imgs img{border-radius:12px;height:240px;object-fit:cover;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
-.about-imgs img:first-child{grid-column:span 2;height:280px}
-.about-content{flex:1}
-.about-content h3{font-family:'Nanum Myeongjo',serif;font-size:1.8rem;color:var(--wood);margin-bottom:16px;line-height:1.4}
-.about-content p{color:var(--text-light);line-height:1.9;font-weight:300;margin-bottom:14px;font-size:0.95rem}
-.about-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.about-tags span{padding:8px 18px;background:var(--warm);border-radius:30px;font-size:0.8rem;color:var(--wood)}
+    button, input, select, textarea {
+      font-family: inherit;
+    }
 
-/* ROOMS */
-.rooms{background:var(--warm)}
-.rooms-scroll{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.room-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,0.06);transition:all 0.3s}
-.room-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(0,0,0,0.12)}
-.room-card img{width:100%;height:250px;object-fit:cover}
-.room-body{padding:24px}
-.room-body h3{font-family:'Nanum Myeongjo',serif;font-size:1.3rem;color:var(--wood);margin-bottom:6px}
-.room-body .room-desc{font-size:0.85rem;color:var(--text-light);margin-bottom:14px;line-height:1.6}
-.room-body .room-info{display:flex;gap:14px;font-size:0.8rem;color:var(--text-light);margin-bottom:16px;flex-wrap:wrap}
-.room-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:16px;border-top:1px solid #f0ebe3}
-.room-bottom .price{font-family:'Nanum Myeongjo',serif;font-size:1.4rem;color:var(--accent);font-weight:700}
-.room-bottom .price small{font-size:0.75rem;font-weight:400;color:var(--text-light)}
-.room-bottom .book{padding:10px 22px;background:var(--accent);color:#fff;border-radius:30px;font-size:0.8rem;transition:all 0.3s;border:none;cursor:pointer}
-.room-bottom .book:hover{background:#d4891f}
-.room-note{text-align:center;margin-top:20px;font-size:0.8rem;color:var(--text-light)}
+    /* ===== CSS VARIABLES ===== */
+    :root {
+      --wood-deep: #3D2B1F;
+      --wood-main: #5c3a1e;
+      --amber-gold: #C17817;
+      --cream-warm: #FAF6F0;
+      --text-primary: #4a3728;
+      --text-secondary: #8a7560;
+      --forest-green: #4A7C59;
+      --accent-light: #E8DCC8;
+      --white: #FFFFFF;
+      --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+      --shadow-md: 0 4px 16px rgba(0,0,0,0.12);
+      --shadow-lg: 0 12px 32px rgba(0,0,0,0.15);
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
 
-/* MOUNTAIN INFO */
-.mountain{background:var(--cream)}
-.mountain-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
-.mountain-imgs{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.mountain-imgs img{border-radius:12px;height:220px;object-fit:cover;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
-.mountain-imgs img:first-child{grid-column:span 2;height:280px}
-.mountain-content h3{font-family:'Nanum Myeongjo',serif;font-size:1.8rem;color:var(--wood);margin-bottom:16px;line-height:1.4}
-.mountain-content p{color:var(--text-light);line-height:1.9;font-weight:300;margin-bottom:14px;font-size:0.95rem}
-.mountain-highlights{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}
-.highlight{background:var(--warm);padding:12px 16px;border-radius:8px;font-size:0.9rem;color:var(--wood)}
-.highlight .label{font-weight:600;display:block;font-size:0.8rem;color:var(--accent);margin-bottom:4px}
+    /* ===== HEADER / NAV ===== */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 0.75rem 2rem;
+      background: rgba(255, 255, 255, 0);
+      transition: all 0.4s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: none;
+    }
 
-/* GALLERY */
-.gallery{background:var(--cream)}
-.g-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:10px}
-.g-item{border-radius:12px;overflow:hidden;position:relative;cursor:pointer}
-.g-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
-.g-item:hover img{transform:scale(1.08)}
-.g-item:nth-child(1){grid-column:span 2;grid-row:span 2}
-.g-item::after{content:'';position:absolute;inset:0;background:rgba(92,58,30,0);transition:background 0.3s}
-.g-item:hover::after{background:rgba(92,58,30,0.15)}
+    .navbar.scrolled {
+      background: rgba(250, 246, 240, 0.98);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+      backdrop-filter: blur(10px);
+      padding: 0.5rem 2rem;
+    }
 
-/* ATTRACTIONS */
-.attractions{background:var(--warm)}
-.attr-list{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.attr-item{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,0.04);transition:transform 0.3s}
-.attr-item:hover{transform:translateY(-4px)}
-.attr-item img{width:100%;height:180px;object-fit:cover}
-.attr-item .attr-body{padding:20px}
-.attr-item h3{font-family:'Nanum Myeongjo',serif;font-size:1.1rem;color:var(--wood);margin-bottom:6px}
-.attr-item p{font-size:0.8rem;color:var(--text-light);line-height:1.6}
-.attr-item .dist{margin-top:10px;color:var(--accent);font-size:0.75rem;font-weight:500}
+    .navbar .logo {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.95);
+      letter-spacing: 0.5px;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
 
-/* CONTACT */
-.contact{background:var(--cream)}
-.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px}
-.contact-left{background:var(--wood);color:#fff;border-radius:16px;padding:40px;position:relative;overflow:hidden}
-.contact-left::before{content:'';position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:rgba(193,120,23,0.15);border-radius:50%}
-.contact-left h3{font-family:'Nanum Myeongjo',serif;font-size:1.6rem;margin-bottom:16px;position:relative}
-.contact-left>p{font-weight:300;opacity:0.8;line-height:1.8;margin-bottom:24px;position:relative}
-.ci{display:flex;align-items:center;gap:14px;margin-bottom:16px;position:relative}
-.ci .icon{width:42px;height:42px;background:rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
-.ci .text{font-size:0.9rem;font-weight:300}
-.ci .text strong{display:block;font-weight:500;margin-bottom:2px}
-.ci a{color:#fff}
-.contact-right{background:#fff;border-radius:16px;padding:36px;box-shadow:0 4px 20px rgba(0,0,0,0.06)}
-.contact-right h3{font-family:'Nanum Myeongjo',serif;font-size:1.2rem;color:var(--wood);margin-bottom:20px}
-.fg{margin-bottom:14px}
-.fg label{display:block;font-size:0.8rem;color:var(--text-light);margin-bottom:4px}
-.fg input,.fg select,.fg textarea{width:100%;padding:12px 14px;border:1.5px solid #e8e0d4;border-radius:10px;font-size:0.9rem;font-family:inherit;background:#faf8f4;transition:border 0.3s}
-.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:var(--accent)}
-.fg textarea{height:80px;resize:vertical}
-.fr{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.sub-btn{width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:10px;font-size:0.95rem;font-weight:500;cursor:pointer;font-family:inherit;transition:background 0.3s}
-.sub-btn:hover{background:#d4891f}
-.form-status{margin-top:10px;padding:12px;border-radius:8px;font-size:0.9rem;text-align:center;display:none}
-.form-status.success{background:#e8f5e9;color:#2e7d32;display:block}
-.form-status.error{background:#ffebee;color:#c62828;display:block}
+    .navbar.scrolled .logo {
+      color: var(--wood-deep);
+    }
 
-/* MAP */
-.map-wrap{border-radius:16px;overflow:hidden;margin:0 auto;max-width:1200px;box-shadow:0 4px 20px rgba(0,0,0,0.08)}
-.map-wrap iframe{width:100%;height:380px;border:none}
+    .navbar-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
 
-/* FOOTER */
-.footer{background:var(--wood);color:rgba(255,255,255,0.5);padding:36px 0;text-align:center;font-size:0.8rem}
-.footer a{color:var(--accent);transition:color 0.3s}
-.footer a:hover{color:#fff}
+    .navbar-links a {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.85);
+      font-weight: 400;
+      transition: color 0.3s ease;
+      position: relative;
+      padding: 0.25rem 0;
+    }
 
-/* FLOATING */
-.floating{position:fixed;bottom:24px;right:24px;z-index:90;display:flex;flex-direction:column;gap:10px}
-.float-btn{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;box-shadow:0 4px 16px rgba(0,0,0,0.2);border:none;cursor:pointer;transition:transform 0.3s;text-decoration:none}
-.float-btn:hover{transform:scale(1.1)}
-.fb-phone{background:var(--accent);color:#fff}
-.fb-cafe{background:#03C75A;color:#fff}
+    .navbar-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--amber-gold);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s ease;
+    }
 
-/* SCROLL ANIMATIONS */
-@keyframes fadeInUp{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1;transform:translateY(0)}
-}
-.fade-in-up{animation:fadeInUp 0.6s ease-out}
+    .navbar-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
 
-/* RESPONSIVE */
-@media(max-width:768px){
-  .nav{padding:14px 20px}
-  .nav .logo{font-size:1.1rem}
-  .nav-links{display:none}
-  .nav-toggle{display:block}
-  .nav.menu-open .nav-links{display:flex;position:absolute;top:100%;left:0;right:0;background:rgba(250,246,240,0.98);flex-direction:column;padding:20px;gap:0}
-  .nav.menu-open .nav-links a{padding:12px 0;border-bottom:1px solid #e8e0d4}
+    .navbar.scrolled .navbar-links a {
+      color: var(--text-primary);
+    }
 
-  .hero{grid-template-columns:1fr;height:auto}
-  .hero-left{padding:100px 30px 60px;min-height:70vh}
-  .hero-left::after{display:none}
-  .hero-right{display:none}
-  .hero-text h1{font-size:2.2rem}
+    .navbar.scrolled .navbar-links a:hover {
+      color: var(--amber-gold);
+    }
 
-  .features-grid{grid-template-columns:1fr 1fr}
+    .navbar-cta {
+      padding: 0.6rem 1.8rem;
+      background: var(--amber-gold);
+      color: #fff;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(193, 120, 23, 0.3);
+    }
 
-  .about-flex{flex-direction:column;gap:30px}
-  .about-imgs{grid-template-columns:1fr 1fr}
-  .about-imgs img:first-child{height:200px}
-  .about-imgs img{height:150px}
+    .navbar-cta:hover {
+      background: #a86a13;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(193, 120, 23, 0.4);
+    }
 
-  .mountain-grid{grid-template-columns:1fr;gap:30px}
-  .mountain-imgs{grid-template-columns:1fr 1fr}
-  .mountain-imgs img:first-child{height:200px}
+    .navbar-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: rgba(255, 255, 255, 0.95);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
 
-  .rooms-scroll{grid-template-columns:1fr}
+    .navbar.scrolled .navbar-toggle {
+      color: var(--text-primary);
+    }
 
-  .g-grid{grid-template-columns:1fr 1fr;grid-auto-rows:160px}
-  .g-item:nth-child(1){grid-column:span 2;grid-row:span 1}
+    /* ===== HERO SECTION ===== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: linear-gradient(135deg, #3D2B1F 0%, #5c3a1e 100%);
+    }
 
-  .attr-list{grid-template-columns:1fr}
+    .hero-carousel {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
 
-  .contact-wrap{grid-template-columns:1fr}
+    .hero-slide {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      animation: heroFadeInOut 8s ease-in-out infinite;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-  .section{padding:60px 0}
-  .fr{grid-template-columns:1fr}
+    .hero-slide:nth-child(2) {
+      animation-delay: 4s;
+    }
 
-  .floating{bottom:16px;right:16px}
-  .float-btn{width:48px;height:48px;font-size:1rem}
-}
+    .hero-slide:nth-child(3) {
+      animation-delay: 8s;
+    }
 
-@media(max-width:480px){
-  .hero-text h1{font-size:1.8rem}
-  .hero-text p{font-size:0.85rem}
-  .hero-btns{flex-direction:column;gap:10px}
-  .btn-warm,.btn-outline{padding:12px 24px;font-size:0.85rem}
+    @keyframes heroFadeInOut {
+      0%, 12.5% { opacity: 1; }
+      25%, 100% { opacity: 0; }
+    }
 
-  .section-header h2{font-size:1.8rem}
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(61, 43, 31, 0.7) 0%, rgba(92, 58, 30, 0.5) 100%);
+      z-index: 1;
+    }
 
-  .about-content h3,.mountain-content h3{font-size:1.4rem}
+    .hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      color: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      animation: heroScale 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
 
-  .contact-left{padding:24px}
-  .contact-left h3{font-size:1.3rem}
-}
-</style>
+    @keyframes heroScale {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .hero-content .subtitle {
+      font-size: 0.95rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--amber-gold);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    .hero-content h1 {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: clamp(2.2rem, 6vw, 4.5rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content .tagline {
+      font-size: 1.1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      margin-bottom: 2.5rem;
+      opacity: 0.9;
+      color: rgba(255, 255, 255, 0.95);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1.2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2.2rem;
+      border: none;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--amber-gold);
+      color: #fff;
+      box-shadow: 0 6px 20px rgba(193, 120, 23, 0.4);
+    }
+
+    .btn-primary:hover {
+      background: #a86a13;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(193, 120, 23, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: #fff;
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.85rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    .scroll-hint i {
+      display: block;
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ===== SECTION BASE ===== */
+    .section {
+      padding: 80px 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section.alt-bg {
+      background: var(--cream-warm);
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+      animation: fadeInUp 0.8s ease 0.2s both;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .section-header .label {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 0.9rem;
+      color: var(--amber-gold);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+      display: block;
+      font-weight: 500;
+    }
+
+    .section-header h2 {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: var(--wood-deep);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 1.2rem;
+    }
+
+    .section-header p {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 300;
+    }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .divider span {
+      width: 40px;
+      height: 1px;
+      background: var(--amber-gold);
+    }
+
+    .divider .dot {
+      width: 6px;
+      height: 6px;
+      background: var(--amber-gold);
+      border-radius: 50%;
+    }
+
+    /* ===== INTRO SECTION ===== */
+    .intro {
+      position: relative;
+      padding: 100px 2rem;
+      background: linear-gradient(135deg, rgba(250, 246, 240, 0.6) 0%, rgba(232, 220, 200, 0.4) 100%);
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .intro-text h2 {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 2.8rem;
+      color: var(--wood-deep);
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .intro-text .subtitle {
+      font-size: 1.1rem;
+      color: var(--amber-gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      letter-spacing: 1px;
+    }
+
+    .intro-text p {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .intro-features {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .intro-feature {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .intro-feature .icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--amber-gold) 0%, #d4891f 100%);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .intro-feature h4 {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.1rem;
+      color: var(--wood-deep);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .intro-feature p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin: 0;
+    }
+
+    .intro-images {
+      position: relative;
+      height: 500px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .intro-image {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+      animation: fadeInUp 0.8s ease 0.3s both;
+    }
+
+    .intro-image:nth-child(1) {
+      grid-column: span 2;
+      height: 300px;
+    }
+
+    .intro-image:nth-child(2) {
+      height: 200px;
+    }
+
+    .intro-image:nth-child(3) {
+      height: 200px;
+    }
+
+    .intro-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .intro-image:hover img {
+      transform: scale(1.05);
+    }
+
+    .intro-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 0%, rgba(61, 43, 31, 0.1) 100%);
+      pointer-events: none;
+    }
+
+    /* ===== ROOMS SECTION ===== */
+    .rooms-section {
+      background: var(--cream-warm);
+      padding: 100px 2rem;
+    }
+
+    .rooms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+      gap: 30px;
+      max-width: 1280px;
+      margin: 0 auto;
+      margin-top: 3rem;
+    }
+
+    .room-card {
+      background: #fff;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .room-card:nth-child(1) { animation-delay: 0.2s; }
+    .room-card:nth-child(2) { animation-delay: 0.3s; }
+    .room-card:nth-child(3) { animation-delay: 0.4s; }
+    .room-card:nth-child(4) { animation-delay: 0.5s; }
+    .room-card:nth-child(5) { animation-delay: 0.6s; }
+    .room-card:nth-child(6) { animation-delay: 0.7s; }
+
+    .room-card:hover {
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .room-image {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #E8DCC8 0%, #D9CBC4 100%);
+    }
+
+    .room-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .room-card:hover .room-image img {
+      transform: scale(1.08);
+    }
+
+    .room-badge {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.2rem;
+      background: var(--amber-gold);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      z-index: 5;
+    }
+
+    .room-content {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .room-header {
+      margin-bottom: 1rem;
+    }
+
+    .room-name {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.5rem;
+      color: var(--wood-deep);
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .room-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    .room-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.2rem 0;
+      padding: 1.2rem 0;
+      border-top: 1px solid #e8dcc8;
+      border-bottom: 1px solid #e8dcc8;
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+    }
+
+    .room-meta span {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .room-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .room-price {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .room-price .amount {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.8rem;
+      color: var(--amber-gold);
+      font-weight: 700;
+    }
+
+    .room-price .unit {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .room-button {
+      padding: 0.75rem 1.5rem;
+      background: var(--amber-gold);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(193, 120, 23, 0.3);
+    }
+
+    .room-button:hover {
+      background: #a86a13;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(193, 120, 23, 0.4);
+    }
+
+    /* ===== GALLERY SECTION ===== */
+    .gallery-section {
+      background: #faf6f0;
+      padding: 100px 2rem;
+    }
+
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 2rem 0 3rem;
+    }
+
+    .filter-btn {
+      padding: 0.7rem 1.5rem;
+      border: 2px solid var(--amber-gold);
+      background: transparent;
+      color: var(--amber-gold);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .filter-btn.active {
+      background: var(--amber-gold);
+      color: #fff;
+    }
+
+    .filter-btn:hover {
+      background: var(--amber-gold);
+      color: #fff;
+    }
+
+    .masonry-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 1;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      animation: fadeInUp 0.6s ease both;
+    }
+
+    .gallery-item:nth-child(n+1) { animation-delay: calc(0.05s * var(--item-index, 1)); }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(61, 43, 31, 0) 0%, rgba(61, 43, 31, 0.3) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 2;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 3;
+    }
+
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+
+    .gallery-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--amber-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.5rem;
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-icon {
+      transform: scale(1);
+    }
+
+    .gallery-pagination {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .load-more-btn {
+      padding: 1rem 2.5rem;
+      background: var(--amber-gold);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(193, 120, 23, 0.3);
+    }
+
+    .load-more-btn:hover {
+      background: #a86a13;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(193, 120, 23, 0.4);
+    }
+
+    .load-more-btn.hidden {
+      display: none;
+    }
+
+    /* ===== ATTRACTIONS SECTION ===== */
+    .attractions-section {
+      background: var(--cream-warm);
+      padding: 100px 2rem;
+    }
+
+    .attractions-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1280px;
+      margin: 0 auto;
+      margin-top: 3rem;
+    }
+
+    .attraction-card {
+      background: #fff;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      transition: var(--transition);
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .attraction-card:nth-child(1) { animation-delay: 0.2s; }
+    .attraction-card:nth-child(2) { animation-delay: 0.3s; }
+    .attraction-card:nth-child(3) { animation-delay: 0.4s; }
+    .attraction-card:nth-child(4) { animation-delay: 0.5s; }
+
+    .attraction-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .attraction-image {
+      position: relative;
+      height: 250px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #E8DCC8 0%, #D9CBC4 100%);
+    }
+
+    .attraction-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .attraction-card:hover .attraction-image img {
+      transform: scale(1.08);
+    }
+
+    .attraction-content {
+      padding: 2rem;
+    }
+
+    .attraction-name {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.4rem;
+      color: var(--wood-deep);
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    .attraction-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.2rem;
+      font-weight: 300;
+    }
+
+    .attraction-distance {
+      font-size: 0.85rem;
+      color: var(--amber-gold);
+      font-weight: 500;
+    }
+
+    /* ===== AMENITIES SECTION ===== */
+    .amenities-section {
+      background: linear-gradient(135deg, rgba(74, 124, 89, 0.05) 0%, rgba(193, 120, 23, 0.05) 100%);
+      padding: 100px 2rem;
+    }
+
+    .amenities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      max-width: 1280px;
+      margin: 0 auto;
+      margin-top: 3rem;
+    }
+
+    .amenity-item {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .amenity-item:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .amenity-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .amenity-name {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.1rem;
+      color: var(--wood-deep);
+      font-weight: 600;
+    }
+
+    /* ===== CONTACT/BOOKING SECTION ===== */
+    .booking-section {
+      background: #faf6f0;
+      padding: 100px 2rem;
+    }
+
+    .booking-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .booking-form-wrap, .inquiry-form-wrap {
+      background: #fff;
+      padding: 3rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .booking-form-wrap { animation-delay: 0.2s; }
+    .inquiry-form-wrap { animation-delay: 0.3s; }
+
+    .form-title {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.6rem;
+      color: var(--wood-deep);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .form-title i {
+      color: var(--amber-gold);
+      font-size: 1.8rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      font-weight: 500;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 2px solid #e8dcc8;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      background: #faf8f4;
+      color: var(--text-primary);
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--amber-gold);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(193, 120, 23, 0.1);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 1rem;
+      background: var(--amber-gold);
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 12px rgba(193, 120, 23, 0.3);
+    }
+
+    .form-submit:hover {
+      background: #a86a13;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(193, 120, 23, 0.4);
+    }
+
+    .form-message {
+      padding: 1rem;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      display: none;
+      animation: slideDown 0.3s ease;
+    }
+
+    .form-message.show {
+      display: block;
+    }
+
+    .form-message.success {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #a5d6a7;
+    }
+
+    .form-message.error {
+      background: #fbe9e7;
+      color: #c62828;
+      border: 1px solid #ef9a9a;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .form-message.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+
+    .form-message.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+
+    .form-message.show {
+      display: block;
+    }
+
+    /* ===== INFO SECTION ===== */
+    .info-section {
+      background: var(--wood-deep);
+      color: #fff;
+      padding: 80px 2rem;
+      margin-top: 80px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .info-block h3 {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      color: var(--amber-gold);
+    }
+
+    .info-block p, .info-block a {
+      font-size: 0.9rem;
+      opacity: 0.85;
+      line-height: 1.8;
+      margin-bottom: 0.8rem;
+    }
+
+    .info-block a {
+      color: var(--amber-gold);
+      transition: color 0.3s ease;
+    }
+
+    .info-block a:hover {
+      color: #fff;
+    }
+
+    .socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .socials a {
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      margin: 0;
+    }
+
+    .socials a:hover {
+      background: var(--amber-gold);
+      color: #fff;
+    }
+
+    /* ===== FOOTER ===== */
+    .footer {
+      background: rgba(0, 0, 0, 0.3);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* ===== FLOATING BUTTONS ===== */
+    .floating-buttons {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      z-index: 999;
+    }
+
+    .float-btn {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--amber-gold);
+      color: #fff;
+      border: none;
+      box-shadow: 0 4px 16px rgba(193, 120, 23, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.3rem;
+      transition: var(--transition);
+    }
+
+    .float-btn:hover {
+      transform: scale(1.1) translateY(-5px);
+      box-shadow: 0 8px 24px rgba(193, 120, 23, 0.6);
+    }
+
+    /* ===== MODAL ===== */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-content {
+      background: #fff;
+      border-radius: 20px;
+      padding: 3rem;
+      max-width: 600px;
+      width: 100%;
+      position: relative;
+      animation: slideUp 0.3s ease;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      font-size: 1.8rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--text-primary);
+    }
+
+    .modal-title {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 2rem;
+      color: var(--wood-deep);
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 2001;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .lightbox.show {
+      display: flex;
+    }
+
+    .lightbox-image {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+      animation: zoomIn 0.3s ease;
+    }
+
+    @keyframes zoomIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 2rem;
+      right: 2rem;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .lightbox-close:hover {
+      color: var(--amber-gold);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      .navbar-links {
+        gap: 1rem;
+      }
+
+      .navbar-links a {
+        font-size: 0.8rem;
+      }
+
+      .navbar-links a::after {
+        display: none;
+      }
+
+      .navbar-toggle {
+        display: block;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .intro-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .intro-images {
+        height: 300px;
+      }
+
+      .intro-image:nth-child(1) {
+        grid-column: span 2;
+        height: 200px;
+      }
+
+      .intro-image:nth-child(2),
+      .intro-image:nth-child(3) {
+        height: 100px;
+      }
+
+      .rooms-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .masonry-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .amenities-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .attractions-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .floating-buttons {
+        bottom: 20px;
+        right: 20px;
+        gap: 0.8rem;
+      }
+
+      .float-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+      }
+
+      .modal-content {
+        padding: 2rem;
+      }
+
+      .section {
+        padding: 60px 1.5rem;
+      }
+
+      .intro {
+        padding: 60px 1.5rem;
+      }
+
+      .section-header h2 {
+        font-size: 2rem;
+      }
+
+      .intro-text h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .navbar {
+        padding: 0.5rem 1rem;
+      }
+
+      .navbar .logo {
+        font-size: 1.2rem;
+      }
+
+      .navbar-links {
+        gap: 0.5rem;
+      }
+
+      .hero-content h1 {
+        font-size: 1.8rem;
+      }
+
+      .hero-content .tagline {
+        font-size: 0.95rem;
+      }
+
+      .room-price .amount {
+        font-size: 1.4rem;
+      }
+
+      .masonry-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .amenities-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .booking-form-wrap, .inquiry-form-wrap {
+        padding: 2rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .divider {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+    }
+
+    /* ===== LOADING STATE ===== */
+    .skeleton {
+      background: linear-gradient(90deg, #e0d5c8 25%, #d9ccc1 50%, #e0d5c8 75%);
+      background-size: 200% 100%;
+      animation: loading 1.5s infinite;
+    }
+
+    @keyframes loading {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ===== ACCESSIBILITY ===== */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border-width: 0;
+    }
+
+    *:focus-visible {
+      outline: 3px solid var(--amber-gold);
+      outline-offset: 2px;
+    }
+
+    /* ===== UTILITY ===== */
+    .hidden { display: none !important; }
+    .mt-1 { margin-top: 0.5rem; }
+    .mt-2 { margin-top: 1rem; }
+    .mt-3 { margin-top: 1.5rem; }
+    .mb-1 { margin-bottom: 0.5rem; }
+    .mb-2 { margin-bottom: 1rem; }
+    .mb-3 { margin-bottom: 1.5rem; }
+
+  </style>
 </head>
+
 <body>
+  <!-- Navigation -->
+  <nav class="navbar" id="navbar">
+    <div class="logo">
+      <i class="fas fa-mountain"></i>
+      장령산계곡산장
+    </div>
+    <div class="navbar-links" id="navLinks">
+      <a href="#about">산장 소개</a>
+      <a href="#rooms">객실</a>
+      <a href="#gallery">갤러리</a>
+      <a href="#attractions">주변관광</a>
+      <a href="#contact">예약/문의</a>
+    </div>
+    <button class="navbar-cta" onclick="document.getElementById('bookingModal').classList.add('show')">예약하기</button>
+    <button class="navbar-toggle" id="navToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
 
-<nav class="nav" id="nav">
-  <a href="/" class="logo">장령산계곡산장</a>
-  <div class="nav-links">
-    <a href="#about">소개</a>
-    <a href="#mountain">장령산</a>
-    <a href="#rooms">객실</a>
-    <a href="#gallery">갤러리</a>
-    <a href="#attractions">주변관광</a>
-    <a href="#contact">예약</a>
-  </div>
-  <button class="nav-toggle" id="navToggle">☰</button>
-  <button class="book-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">예약하기</button>
-</nav>
-
-<!-- HERO SECTION -->
-<section class="hero">
-  <div class="hero-left">
-    <div class="hero-text">
-      <div class="location">📍 충북 옥천 · 장령산</div>
-      <h1>계곡이 흐르는<br><span>자연 속 산장</span></h1>
-      <p>맑은 물소리와 새소리가 들리는 장령산 자락,<br>가족과 함께 잊지 못할 추억을 만드세요.</p>
-      <div class="hero-btns">
-        <button class="btn-warm" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">예약하기</button>
-        <button class="btn-outline" onclick="document.getElementById('rooms').scrollIntoView({behavior:'smooth'})">객실 보기</button>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-carousel">
+      <div class="hero-slide" style="background-image: url('/uploads/gallery/preview_003_7a57c106.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('/uploads/gallery/preview_004_7bd111cd.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('/uploads/gallery/preview_005_d6fd9db1.jpg')"></div>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="subtitle">충북 옥천 · 자연휴양</div>
+      <h1>정겨운 산장에서<br>만나는 자연</h1>
+      <p class="tagline">도시의 소음에서 벗어나<br>가족과 함께 누리는 따뜻하고 편안한 시간</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="document.getElementById('bookingModal').classList.add('show')">
+          <i class="fas fa-calendar-alt"></i> 예약하기
+        </button>
+        <button class="btn btn-secondary" onclick="document.getElementById('hero').scrollIntoView({behavior: 'smooth'}); setTimeout(() => document.getElementById('about').scrollIntoView({behavior: 'smooth'}), 500)">
+          <i class="fas fa-arrow-down"></i> 더 알아보기
+        </button>
       </div>
     </div>
-  </div>
-  <div class="hero-right">
-    <img src="/uploads/gallery/preview_069_c64b857f.jpg" alt="장령산계곡산장 전경">
-  </div>
-</section>
+    <div class="scroll-hint">
+      <i class="fas fa-chevron-down"></i>
+      <div>스크롤하여 알아보기</div>
+    </div>
+  </section>
 
-<!-- FEATURES BAR -->
-<div class="features">
-  <div class="container">
-    <div class="features-grid">
-      <div class="feat"><div class="feat-icon">🏞️</div><h4>맑은 계곡</h4><p>청정 자연 계곡</p></div>
-      <div class="feat"><div class="feat-icon">🔥</div><h4>바베큐장</h4><p>개별 시설 완비</p></div>
-      <div class="feat"><div class="feat-icon">📶</div><h4>무료 WiFi</h4><p>이용 가능</p></div>
-      <div class="feat"><div class="feat-icon">🅿️</div><h4>무료 주차</h4><p>넓은 주차 공간</p></div>
-    </div>
-  </div>
-</div>
+  <!-- Intro Section -->
+  <section class="intro" id="about">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <div class="subtitle">JANGRYEONGSAN VALLEY LODGE</div>
+        <h2>피톤치드 1위 산장에서<br>누리는 진정한 휴식</h2>
+        <p>충북 옥천의 대표 산림욕 명소 장령산 자락에 위치한 산장입니다. 깨끗한 공기와 맑은 계곡수가 흐르는 자연 속에서 가족, 연인, 친구들과 함께 잊을 수 없는 추억을 만들어보세요.</p>
+        <p>SBS 아름다운 충북 촬영지로 널리 알려진 이곳은 도시에서 벗어나 시골 할머니댁에 온 듯한 따뜻하고 정겨운 분위기를 간직하고 있습니다.</p>
 
-<!-- ABOUT SECTION -->
-<section class="about section" id="about">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">· 소개 ·</div>
-      <h2>장령산계곡산장을 소개합니다</h2>
-      <div class="deco"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
-    </div>
-    <div class="about-flex">
-      <div class="about-imgs">
-        <img src="/uploads/gallery/preview_063_c0e16719.jpg" alt="산장 전경">
-        <img src="/uploads/gallery/preview_026_0ff0b5a6.jpg" alt="장령산 풍경">
-        <img src="/uploads/gallery/preview_030_c684363b.jpg" alt="금천계곡">
-      </div>
-      <div class="about-content">
-        <h3>피톤치드 가득한 숲,<br>맑은 계곡이 흐르는 곳</h3>
-        <p>충북 옥천 장령산 자락에 위치한 장령산계곡산장은 사계절 아름다운 자연을 품고 있습니다.</p>
-        <p>봄의 벚꽃, 여름의 시원한 계곡 물놀이, 가을의 단풍, 겨울의 고요한 설경 — 언제 오셔도 특별한 힐링을 경험하실 수 있습니다.</p>
-        <p>SBS "아름다운 충북" 프로그램에도 소개된 금천계곡에서는 징게미와 돌고기 낚시도 즐길 수 있습니다.</p>
-        <div class="about-tags">
-          <span>🌲 피톤치드 숲</span>
-          <span>💧 청정 계곡</span>
-          <span>🍖 바베큐</span>
-          <span>🏠 독채형</span>
-          <span>👨‍👩‍👧‍👦 가족 추천</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ROOMS SECTION -->
-<section class="rooms section" id="rooms">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">· 객실 ·</div>
-      <h2>객실 안내</h2>
-      <div class="deco"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
-    </div>
-    <div class="rooms-scroll" id="roomsContainer">
-      <div class="room-card">
-        <a href="/gallery.html#본관-내부"><img src="/uploads/gallery/preview_003_7a57c106.jpg" alt="본관"></a>
-        <div class="room-body">
-          <h3>본관</h3>
-          <p class="room-desc">가족모임, 단체에 딱! 넓은 거실과 다양한 시설</p>
-          <div class="room-info"><span>👤 8~20인</span><span>📐 82㎡</span><span>🎤 게임기</span></div>
-          <div class="room-bottom">
-            <div class="price">300,000원~ <small>/1박</small></div>
-            <a href="/gallery.html#본관-내부" class="book" style="margin-right:6px">사진보기</a>
-            <button class="book" onclick="scrollToContact()">예약</button>
+        <div class="intro-features">
+          <div class="intro-feature">
+            <div class="icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <div>
+              <h4>피톤치드 1위</h4>
+              <p>청정한 산림욕</p>
+            </div>
+          </div>
+          <div class="intro-feature">
+            <div class="icon">
+              <i class="fas fa-water"></i>
+            </div>
+            <div>
+              <h4>맑은 계곡</h4>
+              <p>여름 물놀이</p>
+            </div>
+          </div>
+          <div class="intro-feature">
+            <div class="icon">
+              <i class="fas fa-heart"></i>
+            </div>
+            <div>
+              <h4>정겨운 분위기</h4>
+              <p>따뜻한 감성</p>
+            </div>
+          </div>
+          <div class="intro-feature">
+            <div class="icon">
+              <i class="fas fa-utensils"></i>
+            </div>
+            <div>
+              <h4>바베큐 시설</h4>
+              <p>즐거운 야외 식사</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="room-card">
-        <a href="/gallery.html#벚꽃동-1층-내부"><img src="/uploads/gallery/preview_137_58c19c16.jpg" alt="벚꽃동 1층"></a>
-        <div class="room-body">
-          <h3>벚꽃동 1층</h3>
-          <p class="room-desc">벚꽃 시즌 아름다운 계곡과 자연을 바라보는 객실</p>
-          <div class="room-info"><span>👤 2~4인</span><span>📐 33㎡</span><span>🍳 주방</span></div>
-          <div class="room-bottom">
-            <div class="price">100,000원~ <small>/1박</small></div>
-            <a href="/gallery.html#벚꽃동-1층-내부" class="book" style="margin-right:6px">사진보기</a>
-            <button class="book" onclick="scrollToContact()">예약</button>
-          </div>
-        </div>
-      </div>
-      <div class="room-card">
-        <a href="/gallery.html#벚꽃동-2층-내부"><img src="/uploads/gallery/preview_111_5ee7f4d5.jpg" alt="벚꽃동 2층"></a>
-        <div class="room-body">
-          <h3>벚꽃동 2층</h3>
-          <p class="room-desc">숲 속의 고급스러운 공간, 테라스에서 바베큐</p>
-          <div class="room-info"><span>👤 4~6인</span><span>📐 49㎡</span><span>🍳 주방</span></div>
-          <div class="room-bottom">
-            <div class="price">100,000원~ <small>/1박</small></div>
-            <a href="/gallery.html#벚꽃동-2층-내부" class="book" style="margin-right:6px">사진보기</a>
-            <button class="book" onclick="scrollToContact()">예약</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <p class="room-note">※ 비수기 주중 기준이며, 시즌에 따라 변동됩니다. 추가 편의시설: 족구장, 게임기</p>
-  </div>
-</section>
 
-<!-- MOUNTAIN INFO SECTION -->
-<section class="mountain section" id="mountain">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">· 자연 ·</div>
-      <h2>장령산 치유의 숲</h2>
-      <div class="deco"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
-    </div>
-    <div class="mountain-grid">
-      <div class="mountain-imgs">
-        <img src="/uploads/gallery/preview_028_d6e0e039.jpg" alt="장령산 풍경">
-        <img src="/uploads/gallery/preview_036_bd1b84f6.jpg" alt="장령산 산책로">
-        <img src="/uploads/gallery/preview_044_6cb3ea23.jpg" alt="자연 속 힐링">
-      </div>
-      <div class="mountain-content">
-        <h3>피톤치드 1위<br>장령산 자연휴양림</h3>
-        <p>장령산 자락의 깊고 울창한 숲에서 발생하는 피톤치드는 학계에서도 인정받은 천연 치유 성분입니다.</p>
-        <p>우리 펜션 바로 근처에는 "장령산 치유의 숲" 산책로와 "숲속동굴" 체험 시설이 있어, 가족과 함께 즐거운 자연 체험을 할 수 있습니다.</p>
-        <p>월류봉 근처의 금천계곡에서는 여름 물놀이와 낚시 명소로 유명하며, 도보로도 접근 가능한 거리입니다.</p>
-        <div class="mountain-highlights">
-          <div class="highlight">
-            <span class="label">🚗 차량 5분</span>
-            장령산자연휴양림
-          </div>
-          <div class="highlight">
-            <span class="label">🚗 차량 5분</span>
-            숲속동굴 (무료 입장)
-          </div>
-          <div class="highlight">
-            <span class="label">🚶 도보 5분</span>
-            금천계곡 (낚시명소)
-          </div>
-          <div class="highlight">
-            <span class="label">🎯 접근성</span>
-            옥천IC에서 가까움
-          </div>
+      <div class="intro-images">
+        <div class="intro-image">
+          <img src="/uploads/gallery/preview_006_8e0c05f8.jpg" alt="장령산계곡산장 전경">
+        </div>
+        <div class="intro-image">
+          <img src="/uploads/gallery/preview_007_e810e2b7.jpg" alt="산장 내부">
+        </div>
+        <div class="intro-image">
+          <img src="/uploads/gallery/preview_008_d796055d.jpg" alt="계곡 풍경">
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- GALLERY SECTION -->
-<section class="gallery section" id="gallery">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">· 갤러리 ·</div>
-      <h2>포토 갤러리</h2>
-      <div class="deco"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
-    </div>
-    <div class="g-grid" id="galleryContainer">
-      <div class="g-item"><img src="/uploads/gallery/preview_064_74254e1d.jpg" alt="계곡산장 전경"></div>
-      <div class="g-item"><img src="/uploads/gallery/preview_156_c75be26c.jpg" alt="바베큐장"></div>
-      <div class="g-item"><img src="/uploads/gallery/preview_163_e2cdd3c2.jpg" alt="벚꽃동 외부"></div>
-      <div class="g-item"><img src="/uploads/gallery/preview_116_8e749cf1.jpg" alt="벚꽃동 2층 내부"></div>
-      <div class="g-item"><img src="/uploads/gallery/preview_140_1129be62.jpg" alt="벚꽃동 1층 내부"></div>
-      <div class="g-item"><img src="/uploads/gallery/preview_032_95fcda23.jpg" alt="장령산 자연"></div>
-    </div>
-    <p style="text-align:center;margin-top:24px"><a href="/gallery.html" style="display:inline-block;padding:12px 36px;background:var(--accent);color:#fff;border-radius:30px;font-size:0.9rem;transition:background 0.3s">사진 더보기 (156장) →</a></p>
-  </div>
-</section>
+  <!-- Rooms Section -->
+  <section class="rooms-section" id="rooms">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">객실 안내</span>
+        <h2>편안함이 묻어나는 객실</h2>
+        <p>자연과 가장 가까운 거리에서, 가장 편한 숙박을 경험하세요</p>
+        <div class="divider">
+          <span></span>
+          <div class="dot"></div>
+          <span></span>
+        </div>
+      </div>
 
-<!-- ATTRACTIONS SECTION -->
-<section class="attractions section" id="attractions">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">· 주변관광 ·</div>
-      <h2>주변 관광지</h2>
-      <div class="deco"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
-    </div>
-    <div class="attr-list">
-      <div class="attr-item">
-        <img src="/uploads/gallery/attraction_forest.jpg" alt="장령산자연휴양림" onerror="this.src='/uploads/gallery/preview_040_9fed423f.jpg'">
-        <div class="attr-body">
-          <h3>장령산자연휴양림</h3>
-          <p>피톤치드 1위의 울창한 숲, 치유의 숲 산책로와 숲속동굴 체험</p>
-          <div class="dist">🚗 차량 5분</div>
-        </div>
-      </div>
-      <div class="attr-item">
-        <img src="/uploads/gallery/attraction_cave.jpg" alt="숲속동굴" onerror="this.src='/uploads/gallery/preview_046_84da093b.jpg'">
-        <div class="attr-body">
-          <h3>숲속동굴</h3>
-          <p>폐광을 활용한 100m 동굴, 8개 테마 구간 무료 입장, 신비로운 자연 체험</p>
-          <div class="dist">🚗 차량 5분</div>
-        </div>
-      </div>
-      <div class="attr-item">
-        <img src="/uploads/gallery/preview_050_194238ba.jpg" alt="금천계곡">
-        <div class="attr-body">
-          <h3>금천계곡 & 월류봉</h3>
-          <p>5km 이상 맑은 물길이 이어지는 여름 물놀이 명소, 징게미·돌고기 낚시 천국</p>
-          <div class="dist">🚶 도보 5분</div>
-        </div>
+      <div class="rooms-grid" id="roomsGrid">
+        <!-- 동적 생성 -->
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- CONTACT/BOOKING SECTION -->
-<section class="contact section" id="contact">
-  <div class="container">
-    <div class="section-header">
-      <div class="tag">· 예약 ·</div>
-      <h2>예약 문의</h2>
-      <div class="deco"><div class="line"></div><div class="dot"></div><div class="line"></div></div>
-    </div>
-    <div class="contact-wrap">
-      <div class="contact-left">
-        <h3>예약 안내</h3>
-        <p>전화 또는 문의 폼으로 예약하세요.<br>빠른 예약은 전화를 추천드립니다.</p>
-        <div style="text-align:center;margin:20px 0 24px;padding:20px;background:rgba(255,255,255,0.1);border-radius:12px;border:1.5px solid rgba(193,120,23,0.4)">
-          <div style="font-size:0.8rem;color:var(--accent);margin-bottom:6px">지금 바로 전화 예약</div>
-          <a href="tel:010-4717-7233" style="font-family:'Nanum Myeongjo',serif;font-size:2.2rem;font-weight:700;color:#fff;letter-spacing:2px">010-4717-7233</a>
-          <div style="font-size:0.75rem;color:rgba(255,255,255,0.6);margin-top:6px">주인장 직통</div>
-        </div>
-        <div class="ci">
-          <div class="icon">📞</div>
-          <div class="text">
-            <strong>대표전화</strong>
-            <a href="tel:010-4717-7233">010-4717-7233</a>
-          </div>
-        </div>
-        <div class="ci">
-          <div class="icon">⏰</div>
-          <div class="text"><strong>입실/퇴실</strong>15:00 입실 · 11:00 퇴실</div>
-        </div>
-        <div class="ci">
-          <div class="icon">📍</div>
-          <div class="text"><strong>주소</strong>충북 옥천군 군서면 장령산로 315-27</div>
-        </div>
-        <div class="ci">
-          <div class="icon">🔥</div>
-          <div class="text"><strong>바베큐</strong>숯+그릴 세트 20,000원</div>
+  <!-- Gallery Section -->
+  <section class="gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">갤러리</span>
+        <h2>산장의 풍경을 담다</h2>
+        <p>계절마다 달라지는 아름다운 순간들</p>
+        <div class="divider">
+          <span></span>
+          <div class="dot"></div>
+          <span></span>
         </div>
       </div>
-      <div class="contact-right">
-        <h3>문의하기</h3>
-        <form id="inquiryForm" onsubmit="handleInquirySubmit(event)">
-          <div class="fr">
-            <div class="fg">
-              <label>이름</label>
+
+      <div class="gallery-filters">
+        <button class="filter-btn active" data-filter="all">전체</button>
+        <button class="filter-btn" data-filter="exterior">외부</button>
+        <button class="filter-btn" data-filter="interior">내부</button>
+        <button class="filter-btn" data-filter="valley">계곡</button>
+        <button class="filter-btn" data-filter="bbq">바베큐</button>
+        <button class="filter-btn" data-filter="scenery">풍경</button>
+      </div>
+
+      <div class="masonry-grid" id="galleryGrid">
+        <!-- 동적 생성 -->
+      </div>
+
+      <div class="gallery-pagination">
+        <button class="load-more-btn" id="loadMoreBtn">더 보기</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Attractions Section -->
+  <section class="attractions-section" id="attractions">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">주변 관광지</span>
+        <h2>경험할 것들이 가득</h2>
+        <p>장령산 주변의 매력적인 관광지들을 둘러보세요</p>
+        <div class="divider">
+          <span></span>
+          <div class="dot"></div>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="attractions-grid" id="attractionsGrid">
+        <!-- 동적 생성 -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Amenities Section -->
+  <section class="amenities-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">편의 시설</span>
+        <h2>편하고 안락한 환경</h2>
+        <p>모든 것이 준비되어 있습니다</p>
+        <div class="divider">
+          <span></span>
+          <div class="dot"></div>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="amenities-grid" id="amenitiesGrid">
+        <div class="amenity-item">
+          <span class="amenity-icon">📶</span>
+          <div class="amenity-name">무선 인터넷</div>
+        </div>
+        <div class="amenity-item">
+          <span class="amenity-icon">🅿️</span>
+          <div class="amenity-name">넓은 주차장</div>
+        </div>
+        <div class="amenity-item">
+          <span class="amenity-icon">🔥</span>
+          <div class="amenity-name">바베큐 시설</div>
+        </div>
+        <div class="amenity-item">
+          <span class="amenity-icon">⚽</span>
+          <div class="amenity-name">족구장</div>
+        </div>
+        <div class="amenity-item">
+          <span class="amenity-icon">🕹️</span>
+          <div class="amenity-name">게임기</div>
+        </div>
+        <div class="amenity-item">
+          <span class="amenity-icon">💧</span>
+          <div class="amenity-name">맑은 계곡</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Booking Section -->
+  <section class="booking-section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <span class="label">예약 및 문의</span>
+        <h2>편하게 연락주세요</h2>
+        <p>따뜻한 산장에서 잊지 못할 추억을 만들어보세요</p>
+        <div class="divider">
+          <span></span>
+          <div class="dot"></div>
+          <span></span>
+        </div>
+      </div>
+
+      <div class="booking-grid">
+        <div class="booking-form-wrap">
+          <h3 class="form-title">
+            <i class="fas fa-calendar-check"></i> 온라인 예약
+          </h3>
+          <form id="bookingForm">
+            <div class="form-message" id="bookingMessage"></div>
+
+            <div class="form-group">
+              <label>선호하는 객실 (선택)</label>
+              <select id="bookingRoom" name="room">
+                <option value="">-- 선택하세요 --</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>성명 *</label>
               <input type="text" name="name" required>
             </div>
-            <div class="fg">
-              <label>연락처</label>
+
+            <div class="form-group">
+              <label>전화번호 *</label>
               <input type="tel" name="phone" required>
             </div>
-          </div>
-          <div class="fr">
-            <div class="fg">
-              <label>체크인</label>
-              <input type="date" name="check_in">
+
+            <div class="form-group">
+              <label>이메일</label>
+              <input type="email" name="email">
             </div>
-            <div class="fg">
-              <label>체크아웃</label>
-              <input type="date" name="check_out">
+
+            <div class="form-group">
+              <label>체크인 *</label>
+              <input type="date" name="checkIn" required>
             </div>
-          </div>
-          <div class="fr">
-            <div class="fg">
-              <label>인원</label>
-              <select name="num_guests">
-                <option value="">선택</option>
-                <option value="2">2명</option>
-                <option value="3">3~4명</option>
-                <option value="5">5~6명</option>
-                <option value="7">7~10명</option>
-                <option value="10">10명 이상</option>
-              </select>
+
+            <div class="form-group">
+              <label>체크아웃 *</label>
+              <input type="date" name="checkOut" required>
             </div>
-            <div class="fg">
-              <label>선호 객실</label>
-              <select name="room_preference">
-                <option value="">선택</option>
-                <option value="벚꽃동 1층">벚꽃동 1층</option>
-                <option value="벚꽃동 2층">벚꽃동 2층</option>
-                <option value="본관">본관</option>
-              </select>
+
+            <div class="form-group">
+              <label>성인 인원 *</label>
+              <input type="number" name="adults" min="1" value="2" required>
             </div>
-          </div>
-          <div class="fg">
-            <label>이메일 (선택)</label>
-            <input type="email" name="email">
-          </div>
-          <div class="fg">
-            <label>문의내용</label>
-            <textarea name="message" placeholder="궁금한 점을 적어주세요"></textarea>
-          </div>
-          <button class="sub-btn" type="submit">문의하기</button>
-          <div class="form-status" id="formStatus"></div>
-        </form>
+
+            <div class="form-group">
+              <label>아동 인원</label>
+              <input type="number" name="children" min="0" value="0">
+            </div>
+
+            <div class="form-group">
+              <label>특별 요청사항</label>
+              <textarea name="requests" placeholder="편의사항을 입력해주세요..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">예약 신청</button>
+          </form>
+        </div>
+
+        <div class="inquiry-form-wrap">
+          <h3 class="form-title">
+            <i class="fas fa-comments"></i> 문의하기
+          </h3>
+          <form id="inquiryForm">
+            <div class="form-message" id="inquiryMessage"></div>
+
+            <div class="form-group">
+              <label>성명 *</label>
+              <input type="text" name="name" required>
+            </div>
+
+            <div class="form-group">
+              <label>전화번호 *</label>
+              <input type="tel" name="phone" required>
+            </div>
+
+            <div class="form-group">
+              <label>이메일 *</label>
+              <input type="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+              <label>문의 내용 *</label>
+              <textarea name="message" required placeholder="궁금한 점을 자유롭게 입력해주세요..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">문의 전송</button>
+          </form>
+        </div>
       </div>
     </div>
-    <div class="map-wrap" style="margin-top:40px;">
-      <iframe src="https://www.google.com/maps?q=%EC%B6%A9%EB%B6%81+%EC%98%A5%EC%B2%9C%EA%B5%B0+%EA%B5%B0%EC%84%9C%EB%A9%B4+%EC%9E%A5%EB%A0%B9%EC%82%B0%EB%A1%9C+315-27&t=m&z=14&output=embed&hl=ko" loading="lazy" title="장령산계곡산장 위치 지도" style="border:0;" allowfullscreen referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <p style="text-align:center;margin-top:12px">
-        <a href="https://map.naver.com/v5/search/%EC%B6%A9%EB%B6%81%20%EC%98%A5%EC%B2%9C%EA%B5%B0%20%EA%B5%B0%EC%84%9C%EB%A9%B4%20%EC%9E%A5%EB%A0%B9%EC%82%B0%EB%A1%9C%20315-27" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">📍 네이버 지도에서 크게 보기 →</a>
-        &nbsp;&nbsp;
-        <a href="https://www.google.com/maps/search/%EC%B6%A9%EB%B6%81+%EC%98%A5%EC%B2%9C%EA%B5%B0+%EA%B5%B0%EC%84%9C%EB%A9%B4+%EC%9E%A5%EB%A0%B9%EC%82%B0%EB%A1%9C+315-27" target="_blank" rel="noopener" style="color:var(--accent);font-size:0.85rem">📍 구글 지도에서 크게 보기 →</a>
-      </p>
+  </section>
+
+  <!-- Info Section -->
+  <section class="info-section">
+    <div class="container">
+      <div class="info-grid">
+        <div class="info-block">
+          <h3>
+            <i class="fas fa-map-marker-alt"></i> 위치
+          </h3>
+          <p>충북 옥천군 군서면 장령산로 315-27</p>
+          <p>이용 시간: 15:00 ~ 11:00</p>
+        </div>
+
+        <div class="info-block">
+          <h3>
+            <i class="fas fa-phone"></i> 연락처
+          </h3>
+          <p>
+            <a href="tel:01047177233">010-4717-7233</a>
+          </p>
+          <p>신속한 답변을 위해 전화로 문의주세요</p>
+        </div>
+
+        <div class="info-block">
+          <h3>
+            <i class="fas fa-star"></i> 특징
+          </h3>
+          <p>피톤치드 1위 장령산</p>
+          <p>SBS 아름다운 충북 촬영지</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 장령산계곡산장. 모든 권리 보유.</p>
+  </footer>
+
+  <!-- Floating Buttons -->
+  <div class="floating-buttons">
+    <a href="tel:01047177233" class="float-btn" title="전화 문의">
+      <i class="fas fa-phone"></i>
+    </a>
+    <button class="float-btn" onclick="document.getElementById('bookingModal').classList.add('show')" title="예약하기">
+      <i class="fas fa-calendar-alt"></i>
+    </button>
+  </div>
+
+  <!-- Booking Modal -->
+  <div class="modal" id="bookingModal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="document.getElementById('bookingModal').classList.remove('show')">
+        <i class="fas fa-times"></i>
+      </button>
+      <h2 class="modal-title">온라인 예약</h2>
+      <form id="modalBookingForm">
+        <div class="form-message" id="modalMessage"></div>
+
+        <div class="form-group">
+          <label>객실 선택 *</label>
+          <select name="room" required>
+            <option value="">-- 선택하세요 --</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>체크인 *</label>
+          <input type="date" name="checkIn" required>
+        </div>
+
+        <div class="form-group">
+          <label>체크아웃 *</label>
+          <input type="date" name="checkOut" required>
+        </div>
+
+        <div class="form-group">
+          <label>성인 인원 *</label>
+          <input type="number" name="adults" min="1" value="2" required>
+        </div>
+
+        <div class="form-group">
+          <label>아동 인원</label>
+          <input type="number" name="children" min="0" value="0">
+        </div>
+
+        <div class="form-group">
+          <label>성명 *</label>
+          <input type="text" name="name" required>
+        </div>
+
+        <div class="form-group">
+          <label>전화번호 *</label>
+          <input type="tel" name="phone" required>
+        </div>
+
+        <div class="form-group">
+          <label>이메일</label>
+          <input type="email" name="email">
+        </div>
+
+        <button type="submit" class="form-submit">예약 신청</button>
+      </form>
     </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer class="footer">
-  <p>&copy; 2026 장령산계곡산장 · 010-4717-7233 · <a href="https://cafe.naver.com/jrmountain" target="_blank" rel="noopener">네이버 카페</a></p>
-</footer>
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="this.classList.remove('show')">
+    <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('show')">
+      <i class="fas fa-times"></i>
+    </button>
+    <img id="lightboxImage" class="lightbox-image" src="" alt="">
+  </div>
 
-<!-- FLOATING BUTTONS -->
-<div class="floating">
-  <a href="tel:010-4717-7233" class="float-btn fb-phone" title="전화걸기">📞</a>
-  <a href="https://cafe.naver.com/jrmountain" target="_blank" rel="noopener" class="float-btn fb-cafe" title="네이버 카페">N</a>
-</div>
+  <script>
+    // ===== CONFIG =====
+    const API_BASE = '/api';
+    const IMAGES_PER_PAGE = 12;
 
-<script>
-// ===== NAVIGATION =====
-const nav = document.getElementById('nav');
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.querySelector('.nav-links');
+    // ===== STATE =====
+    let roomsData = [];
+    let galleryData = [];
+    let currentGalleryFilter = 'all';
+    let galleryDisplayCount = IMAGES_PER_PAGE;
 
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', scrollY > 50);
-});
-
-navToggle.addEventListener('click', () => {
-  nav.classList.toggle('menu-open');
-});
-
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    nav.classList.remove('menu-open');
-  });
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    e.preventDefault();
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth' });
-      nav.classList.remove('menu-open');
-    }
-  });
-});
-
-// ===== HELPER FUNCTIONS =====
-function scrollToContact() {
-  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-}
-
-// ===== FORM SUBMISSION =====
-async function handleInquirySubmit(event) {
-  event.preventDefault();
-  const form = event.target;
-  const formData = new FormData(form);
-  const statusDiv = document.getElementById('formStatus');
-
-  try {
-    const response = await fetch('/api/inquiries', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(Object.fromEntries(formData))
+    // ===== NAVBAR SCROLL BEHAVIOR =====
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
     });
 
-    const result = await response.json();
-
-    if (response.ok) {
-      statusDiv.className = 'form-status success';
-      statusDiv.textContent = '문의가 접수되었습니다. 빠른 시일 내에 연락드리겠습니다.';
-      form.reset();
-      setTimeout(() => statusDiv.style.display = 'none', 5000);
-    } else {
-      statusDiv.className = 'form-status error';
-      statusDiv.textContent = result.error || '오류가 발생했습니다. 다시 시도해주세요.';
+    // ===== LOAD ROOMS =====
+    async function loadRooms() {
+      try {
+        const response = await fetch(`${API_BASE}/rooms`);
+        roomsData = await response.json();
+        renderRooms();
+        populateRoomSelects();
+      } catch (error) {
+        console.error('객실 로드 실패:', error);
+        // Fallback
+        roomsData = [
+          {
+            id: 1,
+            name: '본관',
+            slug: 'main',
+            description: '대가족과 단체를 위한 넉넉한 공간. 거실과 게임기가 구비되어 있어 온 가족이 함께 즐길 수 있습니다.',
+            short_desc: '8~20인, 거실+게임기',
+            capacity_min: 8,
+            capacity_max: 20,
+            area_sqm: 82,
+            price_weekday: 300000,
+            price_weekend: 300000,
+            thumbnail: '/uploads/gallery/preview_003_7a57c106.jpg'
+          },
+          {
+            id: 2,
+            name: '벚꽃동 1층',
+            slug: 'cherry-1f',
+            description: '연인이나 소규모 가족을 위한 아늑한 공간. 개별 주방에서 자유롭게 요리를 즐길 수 있습니다.',
+            short_desc: '2~4인, 개별 주방',
+            capacity_min: 2,
+            capacity_max: 4,
+            area_sqm: 33,
+            price_weekday: 100000,
+            price_weekend: 100000,
+            thumbnail: '/uploads/gallery/preview_137_fb84d0b2.jpg'
+          },
+          {
+            id: 3,
+            name: '벚꽃동 2층',
+            slug: 'cherry-2f',
+            description: '테라스에서 바베큐를 즐기며 계곡의 정취를 느낄 수 있는 객실. 친구 모임이나 소가족에게 추천합니다.',
+            short_desc: '4~6인, 테라스 바베큐',
+            capacity_min: 4,
+            capacity_max: 6,
+            area_sqm: 49,
+            price_weekday: 100000,
+            price_weekend: 100000,
+            thumbnail: '/uploads/gallery/preview_111_59927ec7.jpg'
+          }
+        ];
+        renderRooms();
+        populateRoomSelects();
+      }
     }
-  } catch (error) {
-    console.error('Error:', error);
-    statusDiv.className = 'form-status error';
-    statusDiv.textContent = '네트워크 오류가 발생했습니다. 전화로 문의해주세요.';
-  }
-}
 
-// ===== LOAD ROOMS FROM API =====
-async function loadRooms() {
-  try {
-    const response = await fetch('/api/rooms');
-    if (response.ok) {
-      const rooms = await response.json();
+    function renderRooms() {
+      const grid = document.getElementById('roomsGrid');
+      grid.innerHTML = roomsData.map((room, idx) => `
+        <div class="room-card" style="animation-delay: ${idx * 0.1}s">
+          <div class="room-image">
+            <img src="${room.thumbnail || '/uploads/gallery/preview_009_bff02242.jpg'}" alt="${room.name}" onerror="this.src='https://picsum.photos/400/300?random=${room.id}'">
+            <div class="room-badge">추천</div>
+          </div>
+          <div class="room-content">
+            <div class="room-header">
+              <h3 class="room-name">${room.name}</h3>
+              <p class="room-desc">${room.description}</p>
+            </div>
+            <div class="room-meta">
+              <span><i class="fas fa-user-friends"></i> 최대 ${room.capacity_max}명</span>
+              <span><i class="fas fa-ruler"></i> ${room.area_sqm || 40}㎡</span>
+            </div>
+            <div class="room-footer">
+              <div class="room-price">
+                <div class="amount">₩${(room.price_weekday || 80000).toLocaleString()}</div>
+                <div class="unit">평일 기준</div>
+              </div>
+              <button class="room-button" onclick="viewRoom('${room.slug}')">상세보기</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
     }
-  } catch (error) {
-    console.log('Using fallback room data');
-  }
-}
 
-// ===== LOAD GALLERY FROM API =====
-async function loadGallery() {
-  try {
-    const response = await fetch('/api/gallery');
-    if (response.ok) {
-      const images = await response.json();
+    function populateRoomSelects() {
+      const options = roomsData.map(r => `<option value="${r.id}">${r.name}</option>`).join('');
+      document.querySelectorAll('select[name="room"]').forEach(select => {
+        select.innerHTML = '<option value="">-- 선택하세요 --</option>' + options;
+      });
     }
-  } catch (error) {
-    console.log('Using fallback gallery data');
-  }
-}
 
-// ===== SCROLL ANIMATIONS =====
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in-up');
-      observer.unobserve(entry.target);
+    // ===== LOAD GALLERY =====
+    async function loadGallery() {
+      try {
+        const response = await fetch(`${API_BASE}/gallery`);
+        galleryData = await response.json();
+        renderGallery();
+      } catch (error) {
+        console.error('갤러리 로드 실패:', error);
+        // Fallback
+        galleryData = [
+          { id: 1, title: '산장 전경', file_path: '/uploads/gallery/preview_003_7a57c106.jpg', category: 'exterior' },
+          { id: 2, title: '내부 모습', file_path: '/uploads/gallery/preview_008_d796055d.jpg', category: 'interior' },
+          { id: 3, title: '계곡 풍경', file_path: '/uploads/gallery/preview_006_8e0c05f8.jpg', category: 'valley' },
+          { id: 4, title: '바베큐', file_path: '/uploads/gallery/preview_009_bff02242.jpg', category: 'bbq' },
+          { id: 5, title: '풍경', file_path: '/uploads/gallery/preview_012_2d9bc46d.jpg', category: 'scenery' },
+        ];
+        renderGallery();
+      }
     }
-  });
-}, observerOptions);
 
-document.querySelectorAll('.section, .room-card, .attr-item').forEach(el => {
-  observer.observe(el);
-});
+    function renderGallery() {
+      const grid = document.getElementById('galleryGrid');
+      const filtered = currentGalleryFilter === 'all' ? galleryData : galleryData.filter(g => g.category === currentGalleryFilter);
+      const displayed = filtered.slice(0, galleryDisplayCount);
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadRooms();
-  loadGallery();
-});
-</script>
+      grid.innerHTML = displayed.map((item, idx) => `
+        <div class="gallery-item" style="--item-index: ${idx}">
+          <img src="${item.file_path || `/uploads/gallery/${item.id}.jpg`}" alt="${item.title}" onerror="this.src='https://picsum.photos/300/300?random=${item.id}'">
+          <div class="gallery-overlay">
+            <div class="gallery-icon" onclick="openLightbox('${item.file_path || `/uploads/gallery/${item.id}.jpg`}')">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      const loadBtn = document.getElementById('loadMoreBtn');
+      loadBtn.classList.toggle('hidden', displayed.length >= filtered.length);
+    }
+
+    // ===== GALLERY FILTERS =====
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        e.target.classList.add('active');
+        currentGalleryFilter = e.target.dataset.filter;
+        galleryDisplayCount = IMAGES_PER_PAGE;
+        renderGallery();
+      });
+    });
+
+    document.getElementById('loadMoreBtn').addEventListener('click', () => {
+      galleryDisplayCount += IMAGES_PER_PAGE;
+      renderGallery();
+    });
+
+    // ===== LIGHTBOX =====
+    function openLightbox(src) {
+      document.getElementById('lightbox').classList.add('show');
+      document.getElementById('lightboxImage').src = src;
+    }
+
+    // ===== ATTRACTIONS =====
+    const attractions = [
+      {
+        name: '장령산자연휴양림',
+        desc: '피톤치드 1위 장령산 자락의 자연휴양림. 산책로, 쉼터, 피크닉 시설이 완비되어 가족 활동에 최적입니다.',
+        distance: '산장에서 차량 5분',
+        image: '/uploads/gallery/preview_001_c8016ce8.png'
+      },
+      {
+        name: '숲속동굴',
+        desc: '폐광을 활용한 독특한 동굴 체험 공간. 무료 입장으로 가족과 함께 신비로운 탐험을 즐겨보세요.',
+        distance: '산장에서 차량 5분 (무료 입장)',
+        image: '/uploads/gallery/preview_002_01f96b53.png'
+      },
+      {
+        name: '금천계곡',
+        desc: '맑은 계곡 물에서 여름철 물놀이와 피크닉을 즐길 수 있는 옥천의 숨은 명소입니다.',
+        distance: '산장에서 도보 5분',
+        image: '/uploads/gallery/preview_013_067e263b.jpg'
+      },
+      {
+        name: '월류봉',
+        desc: '봉우리에서 바라보는 수려한 경치가 일품. 등산 초보자도 쉽게 오를 수 있는 산책 코스입니다.',
+        distance: '산장에서 도보 5분',
+        image: '/uploads/gallery/preview_014_4ccc857f.jpg'
+      }
+    ];
+
+    function renderAttractions() {
+      const grid = document.getElementById('attractionsGrid');
+      grid.innerHTML = attractions.map((attr, idx) => `
+        <div class="attraction-card" style="animation-delay: ${idx * 0.1}s">
+          <div class="attraction-image">
+            <img src="${attr.image}" alt="${attr.name}" onerror="this.src='https://picsum.photos/400/300?random=${idx}'">
+          </div>
+          <div class="attraction-content">
+            <h3 class="attraction-name">${attr.name}</h3>
+            <p class="attraction-desc">${attr.desc}</p>
+            <div class="attraction-distance">
+              <i class="fas fa-location-dot"></i> ${attr.distance}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ===== FORM SUBMISSIONS =====
+    document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const messageEl = document.getElementById('bookingMessage');
+
+      try {
+        const response = await fetch(`${API_BASE}/reservations`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            room_id: formData.get('room'),
+            guest_name: formData.get('name'),
+            guest_phone: formData.get('phone'),
+            guest_email: formData.get('email') || '',
+            check_in: formData.get('checkIn'),
+            check_out: formData.get('checkOut'),
+            num_adults: parseInt(formData.get('adults')),
+            num_children: parseInt(formData.get('children')),
+            special_requests: formData.get('requests') || '',
+            total_price: 0
+          })
+        });
+
+        if (response.ok) {
+          messageEl.className = 'form-message success show';
+          messageEl.textContent = '예약이 완료되었습니다! 곧 연락드리겠습니다.';
+          e.target.reset();
+          setTimeout(() => messageEl.classList.remove('show'), 3000);
+        } else {
+          throw new Error('예약 실패');
+        }
+      } catch (error) {
+        messageEl.className = 'form-message error show';
+        messageEl.textContent = '예약 중 오류가 발생했습니다. 전화로 문의해주세요.';
+      }
+    });
+
+    document.getElementById('inquiryForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const messageEl = document.getElementById('inquiryMessage');
+
+      try {
+        const response = await fetch(`${API_BASE}/inquiries`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: formData.get('name'),
+            phone: formData.get('phone'),
+            email: formData.get('email'),
+            message: formData.get('message')
+          })
+        });
+
+        if (response.ok) {
+          messageEl.className = 'form-message success show';
+          messageEl.textContent = '문의가 접수되었습니다. 감사합니다!';
+          e.target.reset();
+          setTimeout(() => messageEl.classList.remove('show'), 3000);
+        } else {
+          throw new Error('문의 전송 실패');
+        }
+      } catch (error) {
+        messageEl.className = 'form-message error show';
+        messageEl.textContent = '문의 전송 중 오류가 발생했습니다. 전화로 문의해주세요.';
+      }
+    });
+
+    document.getElementById('modalBookingForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const messageEl = document.getElementById('modalMessage');
+
+      try {
+        const response = await fetch(`${API_BASE}/reservations`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            room_id: formData.get('room'),
+            guest_name: formData.get('name'),
+            guest_phone: formData.get('phone'),
+            guest_email: formData.get('email') || '',
+            check_in: formData.get('checkIn'),
+            check_out: formData.get('checkOut'),
+            num_adults: parseInt(formData.get('adults')),
+            num_children: parseInt(formData.get('children')),
+            total_price: 0
+          })
+        });
+
+        if (response.ok) {
+          messageEl.className = 'form-message success show';
+          messageEl.textContent = '예약이 완료되었습니다! 곧 연락드리겠습니다.';
+          e.target.reset();
+          setTimeout(() => {
+            messageEl.classList.remove('show');
+            document.getElementById('bookingModal').classList.remove('show');
+          }, 2000);
+        } else {
+          throw new Error('예약 실패');
+        }
+      } catch (error) {
+        messageEl.className = 'form-message error show';
+        messageEl.textContent = '예약 중 오류가 발생했습니다. 전화로 문의해주세요.';
+      }
+    });
+
+    // ===== UTILITIES =====
+    function viewRoom(slug) {
+      // 상세 페이지 또는 모달 처리
+      alert(`${slug} 객실 상세 정보`);
+    }
+
+    // Close modal on click outside
+    document.getElementById('bookingModal').addEventListener('click', (e) => {
+      if (e.target.id === 'bookingModal') {
+        e.target.classList.remove('show');
+      }
+    });
+
+    document.getElementById('lightbox').addEventListener('click', (e) => {
+      if (e.target.id === 'lightbox') {
+        e.target.classList.remove('show');
+      }
+    });
+
+    // ===== INIT =====
+    document.addEventListener('DOMContentLoaded', () => {
+      loadRooms();
+      loadGallery();
+      renderAttractions();
+    });
+
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href !== '#' && document.querySelector(href)) {
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // ===== SEO: JSON-LD =====
+    const schema = {
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "장령산계곡산장",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "충북 옥천군 군서면 장령산로 315-27",
+        "addressLocality": "옥천",
+        "addressRegion": "충북",
+        "postalCode": "29137",
+        "addressCountry": "KR"
+      },
+      "telephone": "+82-10-4717-7233",
+      "description": "충북 옥천의 정겨운 자연휴양형 펜션",
+      "url": "https://jangm.co.kr"
+    };
+
+    const scriptTag = document.createElement('script');
+    scriptTag.type = 'application/ld+json';
+    scriptTag.textContent = JSON.stringify(schema);
+    document.head.appendChild(scriptTag);
+  </script>
 </body>
+
 </html>
