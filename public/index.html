@@ -2377,7 +2377,7 @@
         name: '숲속동굴',
         desc: '폐광을 활용한 독특한 동굴 체험 공간. 무료 입장으로 가족과 함께 신비로운 탐험을 즐겨보세요.',
         distance: '산장에서 차량 5분 (무료 입장)',
-        image: 'https://images.unsplash.com/photo-1504700610630-ac6aeef834d2?w=600&h=400&fit=crop',
+        image: 'https://images.unsplash.com/photo-1510525009512-ad7fc13eefab?w=600&h=400&fit=crop',
         detail: '옛 광산을 리모델링하여 만든 독특한 체험 공간입니다. 동굴 내부는 여름에도 시원하고 겨울에도 따뜻한 자연 냉난방을 자랑합니다. 동굴 속에는 LED 조명 예술 작품과 광물 전시관이 있어 아이들의 교육 체험 장소로도 인기가 높습니다. 무료 입장이라 부담 없이 방문하기 좋습니다.',
         details: [
           { icon: 'fa-clock', label: '운영시간', value: '10:00 ~ 17:00' },
@@ -2417,7 +2417,7 @@
     function renderAttractions() {
       const grid = document.getElementById('attractionsGrid');
       grid.innerHTML = attractions.map((attr, idx) => `
-        <div class="attraction-card" style="animation-delay: ${idx * 0.1}s" onclick="openAttractionModal(${idx})">
+        <div class="attraction-card" style="animation-delay: ${idx * 0.1}s" data-attr-idx="${idx}">
           <div class="attraction-image">
             <img src="${attr.image}" alt="${attr.name}" onerror="this.src='https://picsum.photos/400/300?random=${idx}'">
           </div>
@@ -2434,6 +2434,15 @@
         </div>
       `).join('');
     }
+
+    // Event delegation for attraction card clicks
+    document.getElementById('attractionsGrid').addEventListener('click', function(e) {
+      const card = e.target.closest('.attraction-card');
+      if (card) {
+        const idx = parseInt(card.getAttribute('data-attr-idx'));
+        if (!isNaN(idx)) openAttractionModal(idx);
+      }
+    });
 
     function openAttractionModal(idx) {
       const attr = attractions[idx];
