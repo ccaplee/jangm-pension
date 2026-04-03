@@ -883,6 +883,7 @@
       box-shadow: var(--shadow-md);
       transition: var(--transition);
       animation: fadeInUp 0.8s ease both;
+      cursor: pointer;
     }
 
     .attraction-card:nth-child(1) { animation-delay: 0.2s; }
@@ -931,6 +932,21 @@
       line-height: 1.7;
       margin-bottom: 1.2rem;
       font-weight: 300;
+    }
+
+    .attraction-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: var(--amber-gold);
+      font-weight: 500;
+      margin-top: 0.8rem;
+      transition: gap 0.3s ease;
+    }
+
+    .attraction-card:hover .attraction-more {
+      gap: 0.8rem;
     }
 
     .attraction-distance {
@@ -1357,6 +1373,155 @@
 
     .lightbox-close:hover {
       color: var(--amber-gold);
+    }
+
+    /* ===== ATTRACTION DETAIL MODAL ===== */
+    .attraction-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(6px);
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+    }
+
+    .attraction-modal.show {
+      display: flex;
+    }
+
+    .attraction-modal-content {
+      background: #fff;
+      border-radius: 20px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      animation: modalSlideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    @keyframes modalSlideUp {
+      from { opacity: 0; transform: translateY(40px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .attraction-modal-image {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .attraction-modal-body {
+      padding: 2.5rem;
+    }
+
+    .attraction-modal-body h2 {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.8rem;
+      color: var(--wood-deep);
+      margin-bottom: 0.8rem;
+    }
+
+    .attraction-modal-distance {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: linear-gradient(135deg, rgba(193, 120, 23, 0.1), rgba(74, 124, 89, 0.1));
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--amber-gold);
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+    }
+
+    .attraction-modal-desc {
+      font-size: 1rem;
+      line-height: 1.9;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    .attraction-modal-details {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .attraction-detail-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      padding: 1rem;
+      background: #faf8f4;
+      border-radius: 12px;
+    }
+
+    .attraction-detail-item i {
+      color: var(--forest-green);
+      font-size: 1.2rem;
+      margin-top: 2px;
+    }
+
+    .attraction-detail-item .detail-label {
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.2rem;
+    }
+
+    .attraction-detail-item .detail-value {
+      font-size: 0.95rem;
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .attraction-modal-close {
+      position: absolute;
+      top: 1.5rem;
+      right: 1.5rem;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      transition: var(--transition);
+      z-index: 10;
+    }
+
+    .attraction-modal-close:hover {
+      background: #fff;
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .attraction-modal-content {
+        max-height: 85vh;
+        margin: 1rem;
+      }
+
+      .attraction-modal-image {
+        height: 200px;
+      }
+
+      .attraction-modal-body {
+        padding: 1.5rem;
+      }
+
+      .attraction-modal-details {
+        grid-template-columns: 1fr;
+      }
     }
 
     /* ===== RESPONSIVE ===== */
@@ -1991,6 +2156,25 @@
     </div>
   </div>
 
+  <!-- Attraction Detail Modal -->
+  <div class="attraction-modal" id="attractionModal">
+    <button class="attraction-modal-close" onclick="closeAttractionModal()">
+      <i class="fas fa-times"></i>
+    </button>
+    <div class="attraction-modal-content">
+      <img class="attraction-modal-image" id="attrModalImage" src="" alt="">
+      <div class="attraction-modal-body">
+        <h2 id="attrModalName"></h2>
+        <div class="attraction-modal-distance" id="attrModalDistance">
+          <i class="fas fa-location-dot"></i>
+          <span></span>
+        </div>
+        <p class="attraction-modal-desc" id="attrModalDesc"></p>
+        <div class="attraction-modal-details" id="attrModalDetails"></div>
+      </div>
+    </div>
+  </div>
+
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" onclick="this.classList.remove('show')">
     <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('show')">
@@ -2180,32 +2364,60 @@
         name: '장령산자연휴양림',
         desc: '피톤치드 1위 장령산 자락의 자연휴양림. 산책로, 쉼터, 피크닉 시설이 완비되어 가족 활동에 최적입니다.',
         distance: '산장에서 차량 5분',
-        image: '/uploads/gallery/preview_001_c8016ce8.png'
+        image: '/uploads/gallery/preview_001_c8016ce8.png',
+        detail: '전국 피톤치드 농도 1위를 기록한 장령산에 위치한 자연휴양림입니다. 울창한 숲 사이로 잘 정비된 산책로가 이어져 있어 남녀노소 누구나 편안하게 산림욕을 즐길 수 있습니다. 숲 해설사와 함께하는 프로그램도 운영되며, 피크닉 테이블과 쉼터가 곳곳에 마련되어 있어 도시락을 싸가시면 좋습니다.',
+        details: [
+          { icon: 'fa-clock', label: '운영시간', value: '09:00 ~ 18:00' },
+          { icon: 'fa-won-sign', label: '입장료', value: '성인 1,000원' },
+          { icon: 'fa-tree', label: '추천활동', value: '산림욕, 트레킹' },
+          { icon: 'fa-calendar', label: '추천시기', value: '봄~가을 (4~10월)' }
+        ]
       },
       {
         name: '숲속동굴',
         desc: '폐광을 활용한 독특한 동굴 체험 공간. 무료 입장으로 가족과 함께 신비로운 탐험을 즐겨보세요.',
         distance: '산장에서 차량 5분 (무료 입장)',
-        image: '/uploads/gallery/preview_002_01f96b53.png'
+        image: '/uploads/gallery/preview_002_01f96b53.png',
+        detail: '옛 광산을 리모델링하여 만든 독특한 체험 공간입니다. 동굴 내부는 여름에도 시원하고 겨울에도 따뜻한 자연 냉난방을 자랑합니다. 동굴 속에는 LED 조명 예술 작품과 광물 전시관이 있어 아이들의 교육 체험 장소로도 인기가 높습니다. 무료 입장이라 부담 없이 방문하기 좋습니다.',
+        details: [
+          { icon: 'fa-clock', label: '운영시간', value: '10:00 ~ 17:00' },
+          { icon: 'fa-won-sign', label: '입장료', value: '무료' },
+          { icon: 'fa-temperature-low', label: '동굴 온도', value: '연중 15~17°C' },
+          { icon: 'fa-child', label: '추천대상', value: '가족, 어린이' }
+        ]
       },
       {
         name: '금천계곡',
         desc: '맑은 계곡 물에서 여름철 물놀이와 피크닉을 즐길 수 있는 옥천의 숨은 명소입니다.',
         distance: '산장에서 도보 5분',
-        image: '/uploads/gallery/preview_013_067e263b.jpg'
+        image: '/uploads/gallery/preview_013_067e263b.jpg',
+        detail: '산장 바로 옆을 흐르는 맑은 계곡으로, 도보 5분이면 닿을 수 있는 최고의 물놀이 장소입니다. 수심이 얕은 구간이 많아 어린 아이들도 안전하게 물놀이를 즐길 수 있고, 바위에 앉아 발을 담그며 자연을 만끽하기에도 좋습니다. 여름 성수기에는 많은 가족이 찾는 인기 명소입니다.',
+        details: [
+          { icon: 'fa-water', label: '수심', value: '얕음 (30~80cm)' },
+          { icon: 'fa-won-sign', label: '이용료', value: '무료' },
+          { icon: 'fa-umbrella-beach', label: '추천활동', value: '물놀이, 피크닉' },
+          { icon: 'fa-calendar', label: '추천시기', value: '여름 (6~8월)' }
+        ]
       },
       {
         name: '월류봉',
         desc: '봉우리에서 바라보는 수려한 경치가 일품. 등산 초보자도 쉽게 오를 수 있는 산책 코스입니다.',
         distance: '산장에서 도보 5분',
-        image: '/uploads/gallery/preview_014_4ccc857f.jpg'
+        image: '/uploads/gallery/preview_014_4ccc857f.jpg',
+        detail: '옥천 8경 중 하나로 꼽히는 월류봉은 금강이 산을 휘감아 돌아가는 절경으로 유명합니다. 정상까지의 등산로가 잘 정비되어 있어 초보자도 약 30분이면 올라갈 수 있으며, 정상에서 내려다보는 금강의 S자 곡류와 주변 산세의 파노라마가 장관입니다. 일출과 일몰 시간대가 특히 아름답습니다.',
+        details: [
+          { icon: 'fa-mountain', label: '높이', value: '약 400m' },
+          { icon: 'fa-person-hiking', label: '소요시간', value: '왕복 약 1시간' },
+          { icon: 'fa-eye', label: '추천활동', value: '트레킹, 일출감상' },
+          { icon: 'fa-star', label: '특징', value: '옥천 8경, 금강 조망' }
+        ]
       }
     ];
 
     function renderAttractions() {
       const grid = document.getElementById('attractionsGrid');
       grid.innerHTML = attractions.map((attr, idx) => `
-        <div class="attraction-card" style="animation-delay: ${idx * 0.1}s">
+        <div class="attraction-card" style="animation-delay: ${idx * 0.1}s" onclick="openAttractionModal(${idx})">
           <div class="attraction-image">
             <img src="${attr.image}" alt="${attr.name}" onerror="this.src='https://picsum.photos/400/300?random=${idx}'">
           </div>
@@ -2215,10 +2427,48 @@
             <div class="attraction-distance">
               <i class="fas fa-location-dot"></i> ${attr.distance}
             </div>
+            <div class="attraction-more">
+              자세히 보기 <i class="fas fa-arrow-right"></i>
+            </div>
           </div>
         </div>
       `).join('');
     }
+
+    function openAttractionModal(idx) {
+      const attr = attractions[idx];
+      document.getElementById('attrModalImage').src = attr.image;
+      document.getElementById('attrModalImage').alt = attr.name;
+      document.getElementById('attrModalName').textContent = attr.name;
+      document.getElementById('attrModalDistance').querySelector('span').textContent = attr.distance;
+      document.getElementById('attrModalDesc').textContent = attr.detail;
+      document.getElementById('attrModalDetails').innerHTML = attr.details.map(d => `
+        <div class="attraction-detail-item">
+          <i class="fas ${d.icon}"></i>
+          <div>
+            <div class="detail-label">${d.label}</div>
+            <div class="detail-value">${d.value}</div>
+          </div>
+        </div>
+      `).join('');
+      document.getElementById('attractionModal').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeAttractionModal() {
+      document.getElementById('attractionModal').classList.remove('show');
+      document.body.style.overflow = 'auto';
+    }
+
+    document.getElementById('attractionModal').addEventListener('click', (e) => {
+      if (e.target.id === 'attractionModal') closeAttractionModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.getElementById('attractionModal').classList.contains('show')) {
+        closeAttractionModal();
+      }
+    });
 
     // ===== FORM SUBMISSIONS =====
     document.getElementById('bookingForm').addEventListener('submit', async (e) => {
