@@ -883,7 +883,6 @@
       box-shadow: var(--shadow-md);
       transition: var(--transition);
       animation: fadeInUp 0.8s ease both;
-      cursor: pointer;
     }
 
     .attraction-card:nth-child(1) { animation-delay: 0.2s; }
@@ -934,21 +933,6 @@
       font-weight: 300;
     }
 
-    .attraction-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-size: 0.85rem;
-      color: var(--amber-gold);
-      font-weight: 500;
-      margin-top: 0.8rem;
-      transition: gap 0.3s ease;
-    }
-
-    .attraction-card:hover .attraction-more {
-      gap: 0.8rem;
-    }
-
     .attraction-distance {
       font-size: 0.85rem;
       color: var(--amber-gold);
@@ -972,8 +956,8 @@
 
     .amenity-item {
       text-align: center;
-      padding: 2rem;
-      border-radius: 16px;
+      padding: 1.2rem 1rem;
+      border-radius: 12px;
       background: #fff;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
@@ -981,19 +965,19 @@
     }
 
     .amenity-item:hover {
-      transform: translateY(-8px);
+      transform: translateY(-4px);
       box-shadow: var(--shadow-md);
     }
 
     .amenity-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
       display: block;
     }
 
     .amenity-name {
       font-family: 'Nanum Myeongjo', serif;
-      font-size: 1.1rem;
+      font-size: 0.9rem;
       color: var(--wood-deep);
       font-weight: 600;
     }
@@ -1375,187 +1359,14 @@
       color: var(--amber-gold);
     }
 
-    /* ===== ATTRACTION DETAIL MODAL ===== */
-    .attraction-modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 3000;
-      background: rgba(0, 0, 0, 0.7);
-      backdrop-filter: blur(6px);
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-    }
-
-    .attraction-modal.show {
-      display: flex;
-    }
-
-    .attraction-modal-content {
-      background: #fff;
-      border-radius: 20px;
-      max-width: 700px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      animation: modalSlideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    @keyframes modalSlideUp {
-      from { opacity: 0; transform: translateY(40px) scale(0.95); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .attraction-modal-image {
-      width: 100%;
-      height: 300px;
-      object-fit: cover;
-      border-radius: 20px 20px 0 0;
-    }
-
-    .attraction-modal-body {
-      padding: 2.5rem;
-    }
-
-    .attraction-modal-body h2 {
-      font-family: 'Nanum Myeongjo', serif;
-      font-size: 1.8rem;
-      color: var(--wood-deep);
-      margin-bottom: 0.8rem;
-    }
-
-    .attraction-modal-distance {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, rgba(193, 120, 23, 0.1), rgba(74, 124, 89, 0.1));
-      padding: 0.5rem 1rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      color: var(--amber-gold);
-      font-weight: 500;
-      margin-bottom: 1.5rem;
-    }
-
-    .attraction-modal-desc {
-      font-size: 1rem;
-      line-height: 1.9;
-      color: var(--text-primary);
-      margin-bottom: 1.5rem;
-    }
-
-    .attraction-modal-details {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-      margin-bottom: 2rem;
-    }
-
-    .attraction-detail-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.8rem;
-      padding: 1rem;
-      background: #faf8f4;
-      border-radius: 12px;
-    }
-
-    .attraction-detail-item i {
-      color: var(--forest-green);
-      font-size: 1.2rem;
-      margin-top: 2px;
-    }
-
-    .attraction-detail-item .detail-label {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.2rem;
-    }
-
-    .attraction-detail-item .detail-value {
-      font-size: 0.95rem;
-      color: var(--text-primary);
-      font-weight: 500;
-    }
-
-    .attraction-modal-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 1.5rem;
-      width: 40px;
-      height: 40px;
-      background: rgba(255, 255, 255, 0.9);
-      border: none;
-      border-radius: 50%;
-      font-size: 1.2rem;
-      color: var(--text-primary);
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      transition: var(--transition);
-      z-index: 10;
-    }
-
-    .attraction-modal-close:hover {
-      background: #fff;
-      transform: scale(1.1);
-    }
-
-    @media (max-width: 768px) {
-      .attraction-modal-content {
-        max-height: 85vh;
-        margin: 1rem;
-      }
-
-      .attraction-modal-image {
-        height: 200px;
-      }
-
-      .attraction-modal-body {
-        padding: 1.5rem;
-      }
-
-      .attraction-modal-details {
-        grid-template-columns: 1fr;
-      }
-    }
-
     /* ===== RESPONSIVE ===== */
     @media (max-width: 768px) {
       .navbar-links {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(255, 255, 255, 0.98);
-        flex-direction: column;
-        padding: 1.5rem;
-        gap: 0;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        border-bottom: 3px solid var(--amber-gold);
-        z-index: 999;
-      }
-
-      .navbar-links.active {
-        display: flex;
+        gap: 1rem;
       }
 
       .navbar-links a {
-        font-size: 1rem;
-        color: var(--text-primary) !important;
-        padding: 0.8rem 0;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-        width: 100%;
-        text-align: center;
-      }
-
-      .navbar-links a:last-child {
-        border-bottom: none;
+        font-size: 0.8rem;
       }
 
       .navbar-links a::after {
@@ -1564,14 +1375,6 @@
 
       .navbar-toggle {
         display: block;
-      }
-
-      .navbar-cta {
-        display: none;
-      }
-
-      .navbar {
-        position: relative;
       }
 
       .hero-actions {
@@ -1670,6 +1473,10 @@
         font-size: 1.2rem;
       }
 
+      .navbar-links {
+        gap: 0.5rem;
+      }
+
       .hero-content h1 {
         font-size: 1.8rem;
       }
@@ -1758,9 +1565,9 @@
       <a href="#rooms">객실</a>
       <a href="#gallery">갤러리</a>
       <a href="#attractions">주변관광</a>
-      <a href="#contact">예약/문의</a>
+      <a href="#contact">문의/예약</a>
     </div>
-    <button class="navbar-cta" onclick="document.getElementById('bookingModal').classList.add('show')">예약하기</button>
+    <button class="navbar-cta" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">문의하기</button>
     <button class="navbar-toggle" id="navToggle">
       <i class="fas fa-bars"></i>
     </button>
@@ -1779,8 +1586,8 @@
       <h1>정겨운 산장에서<br>만나는 자연</h1>
       <p class="tagline">도시의 소음에서 벗어나<br>가족과 함께 누리는 따뜻하고 편안한 시간</p>
       <div class="hero-actions">
-        <button class="btn btn-primary" onclick="document.getElementById('bookingModal').classList.add('show')">
-          <i class="fas fa-calendar-alt"></i> 예약하기
+        <button class="btn btn-primary" onclick="openKakaoChat()">
+          <i class="fas fa-comment"></i> 카톡 문의하기
         </button>
         <button class="btn btn-secondary" onclick="document.getElementById('hero').scrollIntoView({behavior: 'smooth'}); setTimeout(() => document.getElementById('about').scrollIntoView({behavior: 'smooth'}), 500)">
           <i class="fas fa-arrow-down"></i> 더 알아보기
@@ -1892,10 +1699,12 @@
 
       <div class="gallery-filters">
         <button class="filter-btn active" data-filter="all">전체</button>
-        <button class="filter-btn" data-filter="exterior">외부</button>
-        <button class="filter-btn" data-filter="interior">내부</button>
+        <button class="filter-btn" data-filter="main-exterior">본관외부</button>
+        <button class="filter-btn" data-filter="main-interior">본관내부</button>
+        <button class="filter-btn" data-filter="cherry-exterior">벚꽃동 외부</button>
+        <button class="filter-btn" data-filter="cherry-interior">벚꽃동 내부</button>
+        <button class="filter-btn" data-filter="bbq">바베큐장</button>
         <button class="filter-btn" data-filter="valley">계곡</button>
-        <button class="filter-btn" data-filter="bbq">바베큐</button>
         <button class="filter-btn" data-filter="scenery">풍경</button>
       </div>
 
@@ -1961,10 +1770,6 @@
           <div class="amenity-name">족구장</div>
         </div>
         <div class="amenity-item">
-          <span class="amenity-icon">🕹️</span>
-          <div class="amenity-name">게임기</div>
-        </div>
-        <div class="amenity-item">
           <span class="amenity-icon">💧</span>
           <div class="amenity-name">맑은 계곡</div>
         </div>
@@ -1986,94 +1791,50 @@
         </div>
       </div>
 
-      <div class="booking-grid">
-        <div class="booking-form-wrap">
-          <h3 class="form-title">
-            <i class="fas fa-calendar-check"></i> 온라인 예약
+      <div class="booking-grid" style="grid-template-columns: 1fr; max-width: 700px; margin: 0 auto;">
+        <div class="booking-form-wrap" style="text-align: center;">
+          <h3 class="form-title" style="justify-content: center;">
+            <i class="fas fa-comments"></i> 카카오톡 문의 / 예약
           </h3>
-          <form id="bookingForm">
-            <div class="form-message" id="bookingMessage"></div>
+          <p style="color: var(--text-secondary); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
+            카카오톡으로 편하게 문의 및 예약해주세요.<br>
+            아래 버튼을 누르시면 메시지가 자동으로 작성되며,<br>
+            내용을 수정하신 후 전송하시면 됩니다.
+          </p>
 
+          <div style="margin-bottom: 2rem;">
             <div class="form-group">
-              <label>선호하는 객실 (선택)</label>
-              <select id="bookingRoom" name="room">
-                <option value="">-- 선택하세요 --</option>
+              <label style="text-align: left;">객실 선택</label>
+              <select id="kakaoRoom" style="width: 100%; padding: 0.9rem 1rem; border: 2px solid #e8dcc8; border-radius: 10px; font-size: 0.9rem; background: #faf8f4; color: var(--text-primary);">
+                <option value="본관 (30만원)">본관 (30만원)</option>
+                <option value="벚꽃동 1층 (12만원)">벚꽃동 1층 (12만원)</option>
+                <option value="벚꽃동 2층 (12만원)">벚꽃동 2층 (12만원)</option>
               </select>
             </div>
-
             <div class="form-group">
-              <label>성명 *</label>
-              <input type="text" name="name" required>
+              <label style="text-align: left;">체크인 날짜</label>
+              <input type="date" id="kakaoCheckin" style="width: 100%; padding: 0.9rem 1rem; border: 2px solid #e8dcc8; border-radius: 10px; font-size: 0.9rem; background: #faf8f4; color: var(--text-primary);">
             </div>
-
             <div class="form-group">
-              <label>전화번호 *</label>
-              <input type="tel" name="phone" required>
+              <label style="text-align: left;">체크아웃 날짜</label>
+              <input type="date" id="kakaoCheckout" style="width: 100%; padding: 0.9rem 1rem; border: 2px solid #e8dcc8; border-radius: 10px; font-size: 0.9rem; background: #faf8f4; color: var(--text-primary);">
             </div>
-
             <div class="form-group">
-              <label>이메일</label>
-              <input type="email" name="email">
+              <label style="text-align: left;">인원</label>
+              <input type="number" id="kakaoGuests" min="1" value="2" style="width: 100%; padding: 0.9rem 1rem; border: 2px solid #e8dcc8; border-radius: 10px; font-size: 0.9rem; background: #faf8f4; color: var(--text-primary);">
             </div>
+          </div>
 
-            <div class="form-group">
-              <label>체크인 *</label>
-              <input type="date" name="checkIn" required>
-            </div>
+          <button class="form-submit" onclick="openKakaoChat()" style="max-width: 400px; display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem; font-size: 1.05rem;">
+            <i class="fas fa-comment"></i> 카카오톡으로 문의하기
+          </button>
 
-            <div class="form-group">
-              <label>체크아웃 *</label>
-              <input type="date" name="checkOut" required>
-            </div>
-
-            <div class="form-group">
-              <label>성인 인원 *</label>
-              <input type="number" name="adults" min="1" value="2" required>
-            </div>
-
-            <div class="form-group">
-              <label>아동 인원</label>
-              <input type="number" name="children" min="0" value="0">
-            </div>
-
-            <div class="form-group">
-              <label>특별 요청사항</label>
-              <textarea name="requests" placeholder="편의사항을 입력해주세요..."></textarea>
-            </div>
-
-            <button type="submit" class="form-submit">예약 신청</button>
-          </form>
-        </div>
-
-        <div class="inquiry-form-wrap">
-          <h3 class="form-title">
-            <i class="fas fa-comments"></i> 문의하기
-          </h3>
-          <form id="inquiryForm">
-            <div class="form-message" id="inquiryMessage"></div>
-
-            <div class="form-group">
-              <label>성명 *</label>
-              <input type="text" name="name" required>
-            </div>
-
-            <div class="form-group">
-              <label>전화번호 *</label>
-              <input type="tel" name="phone" required>
-            </div>
-
-            <div class="form-group">
-              <label>이메일 *</label>
-              <input type="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-              <label>문의 내용 *</label>
-              <textarea name="message" required placeholder="궁금한 점을 자유롭게 입력해주세요..."></textarea>
-            </div>
-
-            <button type="submit" class="form-submit">문의 전송</button>
-          </form>
+          <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e8dcc8;">
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">
+              <i class="fas fa-phone" style="color: var(--amber-gold);"></i>
+              전화 문의: <a href="tel:01047177233" style="color: var(--amber-gold); font-weight: 600;">010-4717-7233</a>
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -2112,9 +1873,45 @@
     </div>
   </section>
 
+  <!-- Admin Panel (hidden by default) -->
+  <div id="adminPanel" style="display: none; background: #fff; padding: 2rem; margin: 0 2rem; border-radius: 20px; box-shadow: var(--shadow-lg); max-width: 800px; margin: 0 auto 2rem;">
+    <h3 style="font-family: 'Nanum Myeongjo', serif; font-size: 1.4rem; color: var(--wood-deep); margin-bottom: 1.5rem;">
+      <i class="fas fa-cog" style="color: var(--amber-gold);"></i> 갤러리 관리
+    </h3>
+
+    <div style="background: #f8f4ee; padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
+      <h4 style="font-size: 0.95rem; color: var(--wood-deep); margin-bottom: 1rem;">사진 추가</h4>
+      <div style="display: flex; gap: 0.8rem; flex-wrap: wrap; align-items: end;">
+        <div style="flex: 1; min-width: 150px;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.3rem;">사진 파일</label>
+          <input type="file" id="adminFileInput" accept="image/*" style="width: 100%; padding: 0.4rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem;">
+        </div>
+        <div style="min-width: 120px;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.3rem;">카테고리</label>
+          <select id="adminCategory" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem;">
+            <option value="main-exterior">본관외부</option>
+            <option value="main-interior">본관내부</option>
+            <option value="cherry-exterior">벚꽃동 외부</option>
+            <option value="cherry-interior">벚꽃동 내부</option>
+            <option value="bbq">바베큐장</option>
+            <option value="valley">계곡</option>
+            <option value="scenery">풍경</option>
+          </select>
+        </div>
+        <div style="min-width: 120px;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.3rem;">제목</label>
+          <input type="text" id="adminTitle" placeholder="사진 제목" style="width: 100%; padding: 0.5rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem;">
+        </div>
+        <button onclick="addGalleryItem()" style="padding: 0.5rem 1.2rem; background: var(--amber-gold); color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 0.85rem; white-space: nowrap;">추가</button>
+      </div>
+    </div>
+
+    <div id="adminGalleryList"></div>
+  </div>
+
   <!-- Footer -->
   <footer class="footer">
-    <p>&copy; 2026 장령산계곡산장. 모든 권리 보유.</p>
+    <p>&copy; 2026 장령산계곡산장. 모든 권리 보유. <button id="adminToggle" onclick="toggleAdmin()" style="background: none; border: none; color: rgba(255,255,255,0.3); cursor: pointer; font-size: 0.75rem; padding: 0.2rem 0.5rem;">관리자</button></p>
   </footer>
 
   <!-- Floating Buttons -->
@@ -2122,86 +1919,12 @@
     <a href="tel:01047177233" class="float-btn" title="전화 문의">
       <i class="fas fa-phone"></i>
     </a>
-    <button class="float-btn" onclick="document.getElementById('bookingModal').classList.add('show')" title="예약하기">
-      <i class="fas fa-calendar-alt"></i>
+    <button class="float-btn" onclick="openKakaoChat()" title="카톡 문의">
+      <i class="fas fa-comment"></i>
     </button>
   </div>
 
-  <!-- Booking Modal -->
-  <div class="modal" id="bookingModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="document.getElementById('bookingModal').classList.remove('show')">
-        <i class="fas fa-times"></i>
-      </button>
-      <h2 class="modal-title">온라인 예약</h2>
-      <form id="modalBookingForm">
-        <div class="form-message" id="modalMessage"></div>
-
-        <div class="form-group">
-          <label>객실 선택 *</label>
-          <select name="room" required>
-            <option value="">-- 선택하세요 --</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>체크인 *</label>
-          <input type="date" name="checkIn" required>
-        </div>
-
-        <div class="form-group">
-          <label>체크아웃 *</label>
-          <input type="date" name="checkOut" required>
-        </div>
-
-        <div class="form-group">
-          <label>성인 인원 *</label>
-          <input type="number" name="adults" min="1" value="2" required>
-        </div>
-
-        <div class="form-group">
-          <label>아동 인원</label>
-          <input type="number" name="children" min="0" value="0">
-        </div>
-
-        <div class="form-group">
-          <label>성명 *</label>
-          <input type="text" name="name" required>
-        </div>
-
-        <div class="form-group">
-          <label>전화번호 *</label>
-          <input type="tel" name="phone" required>
-        </div>
-
-        <div class="form-group">
-          <label>이메일</label>
-          <input type="email" name="email">
-        </div>
-
-        <button type="submit" class="form-submit">예약 신청</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Attraction Detail Modal -->
-  <div class="attraction-modal" id="attractionModal">
-    <button class="attraction-modal-close" id="attrModalCloseBtn">
-      <i class="fas fa-times"></i>
-    </button>
-    <div class="attraction-modal-content">
-      <img class="attraction-modal-image" id="attrModalImage" src="" alt="">
-      <div class="attraction-modal-body">
-        <h2 id="attrModalName"></h2>
-        <div class="attraction-modal-distance" id="attrModalDistance">
-          <i class="fas fa-location-dot"></i>
-          <span></span>
-        </div>
-        <p class="attraction-modal-desc" id="attrModalDesc"></p>
-        <div class="attraction-modal-details" id="attrModalDetails"></div>
-      </div>
-    </div>
-  </div>
+  <!-- Booking Modal removed - using KakaoTalk instead -->
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" onclick="this.classList.remove('show')">
@@ -2221,32 +1944,6 @@
     let galleryData = [];
     let currentGalleryFilter = 'all';
     let galleryDisplayCount = IMAGES_PER_PAGE;
-
-    // ===== MOBILE MENU TOGGLE =====
-    const navToggle = document.getElementById('navToggle');
-    const navLinks = document.getElementById('navLinks');
-
-    navToggle.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
-      const icon = navToggle.querySelector('i');
-      if (navLinks.classList.contains('active')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-      } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-      }
-    });
-
-    // Close mobile menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        const icon = navToggle.querySelector('i');
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
-      });
-    });
 
     // ===== NAVBAR SCROLL BEHAVIOR =====
     const navbar = document.getElementById('navbar');
@@ -2273,8 +1970,8 @@
             id: 1,
             name: '본관',
             slug: 'main',
-            description: '대가족과 단체를 위한 넉넉한 공간. 거실과 게임기가 구비되어 있어 온 가족이 함께 즐길 수 있습니다.',
-            short_desc: '8~20인, 거실+게임기',
+            description: '대가족과 단체를 위한 넉넉한 공간. 넓은 거실에서 온 가족이 함께 편안하게 쉴 수 있습니다.',
+            short_desc: '8~20인, 넓은 거실',
             capacity_min: 8,
             capacity_max: 20,
             area_sqm: 82,
@@ -2291,8 +1988,8 @@
             capacity_min: 2,
             capacity_max: 4,
             area_sqm: 33,
-            price_weekday: 100000,
-            price_weekend: 100000,
+            price_weekday: 120000,
+            price_weekend: 120000,
             thumbnail: '/uploads/gallery/preview_137_fb84d0b2.jpg'
           },
           {
@@ -2304,8 +2001,8 @@
             capacity_min: 4,
             capacity_max: 6,
             area_sqm: 49,
-            price_weekday: 100000,
-            price_weekend: 100000,
+            price_weekday: 120000,
+            price_weekend: 120000,
             thumbnail: '/uploads/gallery/preview_111_59927ec7.jpg'
           }
         ];
@@ -2360,11 +2057,13 @@
         console.error('갤러리 로드 실패:', error);
         // Fallback
         galleryData = [
-          { id: 1, title: '산장 전경', file_path: '/uploads/gallery/preview_003_7a57c106.jpg', category: 'exterior' },
-          { id: 2, title: '내부 모습', file_path: '/uploads/gallery/preview_008_d796055d.jpg', category: 'interior' },
-          { id: 3, title: '계곡 풍경', file_path: '/uploads/gallery/preview_006_8e0c05f8.jpg', category: 'valley' },
-          { id: 4, title: '바베큐', file_path: '/uploads/gallery/preview_009_bff02242.jpg', category: 'bbq' },
-          { id: 5, title: '풍경', file_path: '/uploads/gallery/preview_012_2d9bc46d.jpg', category: 'scenery' },
+          { id: 1, title: '본관 외부', file_path: '/uploads/gallery/preview_003_7a57c106.jpg', category: 'main-exterior' },
+          { id: 2, title: '본관 내부', file_path: '/uploads/gallery/preview_008_d796055d.jpg', category: 'main-interior' },
+          { id: 3, title: '벚꽃동 외부', file_path: '/uploads/gallery/preview_137_fb84d0b2.jpg', category: 'cherry-exterior' },
+          { id: 4, title: '벚꽃동 내부', file_path: '/uploads/gallery/preview_111_59927ec7.jpg', category: 'cherry-interior' },
+          { id: 5, title: '바베큐장', file_path: '/uploads/gallery/preview_009_bff02242.jpg', category: 'bbq' },
+          { id: 6, title: '계곡', file_path: '/uploads/gallery/preview_006_8e0c05f8.jpg', category: 'valley' },
+          { id: 7, title: '풍경', file_path: '/uploads/gallery/preview_012_2d9bc46d.jpg', category: 'scenery' },
         ];
         renderGallery();
       }
@@ -2418,60 +2117,32 @@
         name: '장령산자연휴양림',
         desc: '피톤치드 1위 장령산 자락의 자연휴양림. 산책로, 쉼터, 피크닉 시설이 완비되어 가족 활동에 최적입니다.',
         distance: '산장에서 차량 5분',
-        image: '/uploads/gallery/attraction_forest.jpg',
-        detail: '전국 피톤치드 농도 1위를 기록한 장령산에 위치한 자연휴양림입니다. 울창한 숲 사이로 잘 정비된 산책로가 이어져 있어 남녀노소 누구나 편안하게 산림욕을 즐길 수 있습니다. 숲 해설사와 함께하는 프로그램도 운영되며, 피크닉 테이블과 쉼터가 곳곳에 마련되어 있어 도시락을 싸가시면 좋습니다.',
-        details: [
-          { icon: 'fa-clock', label: '운영시간', value: '09:00 ~ 18:00' },
-          { icon: 'fa-won-sign', label: '입장료', value: '성인 1,000원' },
-          { icon: 'fa-tree', label: '추천활동', value: '산림욕, 트레킹' },
-          { icon: 'fa-calendar', label: '추천시기', value: '봄~가을 (4~10월)' }
-        ]
+        image: '/uploads/gallery/preview_001_c8016ce8.png'
       },
       {
         name: '숲속동굴',
         desc: '폐광을 활용한 독특한 동굴 체험 공간. 무료 입장으로 가족과 함께 신비로운 탐험을 즐겨보세요.',
         distance: '산장에서 차량 5분 (무료 입장)',
-        image: '/uploads/gallery/attraction_cctoday1.jpg',
-        detail: '옛 광산을 리모델링하여 만든 독특한 체험 공간입니다. 동굴 내부는 여름에도 시원하고 겨울에도 따뜻한 자연 냉난방을 자랑합니다. 동굴 속에는 LED 조명 예술 작품과 광물 전시관이 있어 아이들의 교육 체험 장소로도 인기가 높습니다. 무료 입장이라 부담 없이 방문하기 좋습니다.',
-        details: [
-          { icon: 'fa-clock', label: '운영시간', value: '10:00 ~ 17:00' },
-          { icon: 'fa-won-sign', label: '입장료', value: '무료' },
-          { icon: 'fa-temperature-low', label: '동굴 온도', value: '연중 15~17°C' },
-          { icon: 'fa-child', label: '추천대상', value: '가족, 어린이' }
-        ]
+        image: '/uploads/gallery/preview_002_01f96b53.png'
       },
       {
         name: '금천계곡',
         desc: '맑은 계곡 물에서 여름철 물놀이와 피크닉을 즐길 수 있는 옥천의 숨은 명소입니다.',
         distance: '산장에서 도보 5분',
-        image: '/uploads/gallery/attraction_okcheon_scenic.jpg',
-        detail: '산장 바로 옆을 흐르는 맑은 계곡으로, 도보 5분이면 닿을 수 있는 최고의 물놀이 장소입니다. 수심이 얕은 구간이 많아 어린 아이들도 안전하게 물놀이를 즐길 수 있고, 바위에 앉아 발을 담그며 자연을 만끽하기에도 좋습니다. 여름 성수기에는 많은 가족이 찾는 인기 명소입니다.',
-        details: [
-          { icon: 'fa-water', label: '수심', value: '얕음 (30~80cm)' },
-          { icon: 'fa-won-sign', label: '이용료', value: '무료' },
-          { icon: 'fa-umbrella-beach', label: '추천활동', value: '물놀이, 피크닉' },
-          { icon: 'fa-calendar', label: '추천시기', value: '여름 (6~8월)' }
-        ]
+        image: '/uploads/gallery/preview_013_067e263b.jpg'
       },
       {
         name: '월류봉',
         desc: '봉우리에서 바라보는 수려한 경치가 일품. 등산 초보자도 쉽게 오를 수 있는 산책 코스입니다.',
         distance: '산장에서 도보 5분',
-        image: '/uploads/gallery/attraction_river.jpg',
-        detail: '옥천 8경 중 하나로 꼽히는 월류봉은 금강이 산을 휘감아 돌아가는 절경으로 유명합니다. 정상까지의 등산로가 잘 정비되어 있어 초보자도 약 30분이면 올라갈 수 있으며, 정상에서 내려다보는 금강의 S자 곡류와 주변 산세의 파노라마가 장관입니다. 일출과 일몰 시간대가 특히 아름답습니다.',
-        details: [
-          { icon: 'fa-mountain', label: '높이', value: '약 400m' },
-          { icon: 'fa-person-hiking', label: '소요시간', value: '왕복 약 1시간' },
-          { icon: 'fa-eye', label: '추천활동', value: '트레킹, 일출감상' },
-          { icon: 'fa-star', label: '특징', value: '옥천 8경, 금강 조망' }
-        ]
+        image: '/uploads/gallery/preview_014_4ccc857f.jpg'
       }
     ];
 
     function renderAttractions() {
       const grid = document.getElementById('attractionsGrid');
       grid.innerHTML = attractions.map((attr, idx) => `
-        <div class="attraction-card" style="animation-delay: ${idx * 0.1}s" data-attr-idx="${idx}">
+        <div class="attraction-card" style="animation-delay: ${idx * 0.1}s">
           <div class="attraction-image">
             <img src="${attr.image}" alt="${attr.name}" onerror="this.src='https://picsum.photos/400/300?random=${idx}'">
           </div>
@@ -2481,185 +2152,45 @@
             <div class="attraction-distance">
               <i class="fas fa-location-dot"></i> ${attr.distance}
             </div>
-            <div class="attraction-more">
-              자세히 보기 <i class="fas fa-arrow-right"></i>
-            </div>
           </div>
         </div>
       `).join('');
     }
 
-    // Event delegation for attraction card clicks
-    document.getElementById('attractionsGrid').addEventListener('click', function(e) {
-      const card = e.target.closest('.attraction-card');
-      if (card) {
-        const idx = parseInt(card.getAttribute('data-attr-idx'));
-        if (!isNaN(idx)) openAttractionModal(idx);
-      }
-    });
+    // ===== KAKAO CHAT =====
+    function openKakaoChat() {
+      const roomSelect = document.getElementById('kakaoRoom');
+      const checkin = document.getElementById('kakaoCheckin');
+      const checkout = document.getElementById('kakaoCheckout');
+      const guests = document.getElementById('kakaoGuests');
 
-    function openAttractionModal(idx) {
-      const attr = attractions[idx];
-      document.getElementById('attrModalImage').src = attr.image;
-      document.getElementById('attrModalImage').alt = attr.name;
-      document.getElementById('attrModalName').textContent = attr.name;
-      document.getElementById('attrModalDistance').querySelector('span').textContent = attr.distance;
-      document.getElementById('attrModalDesc').textContent = attr.detail;
-      document.getElementById('attrModalDetails').innerHTML = attr.details.map(d => `
-        <div class="attraction-detail-item">
-          <i class="fas ${d.icon}"></i>
-          <div>
-            <div class="detail-label">${d.label}</div>
-            <div class="detail-value">${d.value}</div>
-          </div>
-        </div>
-      `).join('');
-      document.getElementById('attractionModal').classList.add('show');
-      document.body.style.overflow = 'hidden';
+      const room = roomSelect ? roomSelect.value : '';
+      const checkinDate = checkin ? checkin.value : '';
+      const checkoutDate = checkout ? checkout.value : '';
+      const guestCount = guests ? guests.value : '2';
+
+      let message = '안녕하세요, 장령산계곡산장 예약 문의드립니다.\n\n';
+      message += `객실: ${room || '미선택'}\n`;
+      message += `체크인: ${checkinDate || '미정'}\n`;
+      message += `체크아웃: ${checkoutDate || '미정'}\n`;
+      message += `인원: ${guestCount}명\n\n`;
+      message += '추가 요청사항: ';
+
+      const encodedMessage = encodeURIComponent(message);
+      const kakaoUrl = `https://open.kakao.com/o/s01047177233`;
+
+      // Try to open KakaoTalk chat - fallback to SMS with pre-filled message
+      const smsUrl = `sms:01047177233${/iPhone|iPad/i.test(navigator.userAgent) ? '&' : '?'}body=${encodedMessage}`;
+
+      // Try KakaoTalk channel first, fallback to SMS
+      window.open(smsUrl, '_blank') || (window.location.href = smsUrl);
     }
-
-    function closeAttractionModal() {
-      document.getElementById('attractionModal').classList.remove('show');
-      document.body.style.overflow = 'auto';
-    }
-
-    // Close modal: click X button
-    document.getElementById('attrModalCloseBtn').addEventListener('click', (e) => {
-      e.stopPropagation();
-      closeAttractionModal();
-    });
-
-    // Close modal: click backdrop
-    document.getElementById('attractionModal').addEventListener('click', (e) => {
-      if (e.target.id === 'attractionModal') closeAttractionModal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && document.getElementById('attractionModal').classList.contains('show')) {
-        closeAttractionModal();
-      }
-    });
-
-    // ===== FORM SUBMISSIONS =====
-    document.getElementById('bookingForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const messageEl = document.getElementById('bookingMessage');
-
-      try {
-        const response = await fetch(`${API_BASE}/reservations`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            room_id: formData.get('room'),
-            guest_name: formData.get('name'),
-            guest_phone: formData.get('phone'),
-            guest_email: formData.get('email') || '',
-            check_in: formData.get('checkIn'),
-            check_out: formData.get('checkOut'),
-            num_adults: parseInt(formData.get('adults')),
-            num_children: parseInt(formData.get('children')),
-            special_requests: formData.get('requests') || '',
-            total_price: 0
-          })
-        });
-
-        if (response.ok) {
-          messageEl.className = 'form-message success show';
-          messageEl.textContent = '예약이 완료되었습니다! 곧 연락드리겠습니다.';
-          e.target.reset();
-          setTimeout(() => messageEl.classList.remove('show'), 3000);
-        } else {
-          throw new Error('예약 실패');
-        }
-      } catch (error) {
-        messageEl.className = 'form-message error show';
-        messageEl.textContent = '예약 중 오류가 발생했습니다. 전화로 문의해주세요.';
-      }
-    });
-
-    document.getElementById('inquiryForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const messageEl = document.getElementById('inquiryMessage');
-
-      try {
-        const response = await fetch(`${API_BASE}/inquiries`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: formData.get('name'),
-            phone: formData.get('phone'),
-            email: formData.get('email'),
-            message: formData.get('message')
-          })
-        });
-
-        if (response.ok) {
-          messageEl.className = 'form-message success show';
-          messageEl.textContent = '문의가 접수되었습니다. 감사합니다!';
-          e.target.reset();
-          setTimeout(() => messageEl.classList.remove('show'), 3000);
-        } else {
-          throw new Error('문의 전송 실패');
-        }
-      } catch (error) {
-        messageEl.className = 'form-message error show';
-        messageEl.textContent = '문의 전송 중 오류가 발생했습니다. 전화로 문의해주세요.';
-      }
-    });
-
-    document.getElementById('modalBookingForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const messageEl = document.getElementById('modalMessage');
-
-      try {
-        const response = await fetch(`${API_BASE}/reservations`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            room_id: formData.get('room'),
-            guest_name: formData.get('name'),
-            guest_phone: formData.get('phone'),
-            guest_email: formData.get('email') || '',
-            check_in: formData.get('checkIn'),
-            check_out: formData.get('checkOut'),
-            num_adults: parseInt(formData.get('adults')),
-            num_children: parseInt(formData.get('children')),
-            total_price: 0
-          })
-        });
-
-        if (response.ok) {
-          messageEl.className = 'form-message success show';
-          messageEl.textContent = '예약이 완료되었습니다! 곧 연락드리겠습니다.';
-          e.target.reset();
-          setTimeout(() => {
-            messageEl.classList.remove('show');
-            document.getElementById('bookingModal').classList.remove('show');
-          }, 2000);
-        } else {
-          throw new Error('예약 실패');
-        }
-      } catch (error) {
-        messageEl.className = 'form-message error show';
-        messageEl.textContent = '예약 중 오류가 발생했습니다. 전화로 문의해주세요.';
-      }
-    });
 
     // ===== UTILITIES =====
     function viewRoom(slug) {
       // 상세 페이지 또는 모달 처리
       alert(`${slug} 객실 상세 정보`);
     }
-
-    // Close modal on click outside
-    document.getElementById('bookingModal').addEventListener('click', (e) => {
-      if (e.target.id === 'bookingModal') {
-        e.target.classList.remove('show');
-      }
-    });
 
     document.getElementById('lightbox').addEventListener('click', (e) => {
       if (e.target.id === 'lightbox') {
@@ -2684,6 +2215,78 @@
         }
       });
     });
+
+    // ===== ADMIN PANEL =====
+    let isAdminMode = false;
+    const ADMIN_PASSWORD = 'jangm2026';
+
+    function toggleAdmin() {
+      if (!isAdminMode) {
+        const pw = prompt('관리자 비밀번호를 입력하세요:');
+        if (pw === ADMIN_PASSWORD) {
+          isAdminMode = true;
+          document.getElementById('adminPanel').style.display = 'block';
+          document.getElementById('adminToggle').textContent = '관리자 모드 종료';
+          renderAdminGallery();
+        } else {
+          alert('비밀번호가 올바르지 않습니다.');
+        }
+      } else {
+        isAdminMode = false;
+        document.getElementById('adminPanel').style.display = 'none';
+        document.getElementById('adminToggle').textContent = '관리자';
+      }
+    }
+
+    function renderAdminGallery() {
+      const list = document.getElementById('adminGalleryList');
+      const categories = {
+        'main-exterior': '본관외부',
+        'main-interior': '본관내부',
+        'cherry-exterior': '벚꽃동 외부',
+        'cherry-interior': '벚꽃동 내부',
+        'bbq': '바베큐장',
+        'valley': '계곡',
+        'scenery': '풍경'
+      };
+
+      list.innerHTML = galleryData.map((item, idx) => `
+        <div style="display: flex; align-items: center; gap: 1rem; padding: 0.8rem; background: #faf8f4; border-radius: 8px; margin-bottom: 0.5rem;">
+          <img src="${item.file_path}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px;" onerror="this.src='https://picsum.photos/60/60?random=${item.id}'">
+          <div style="flex: 1;">
+            <input type="text" value="${item.title}" onchange="galleryData[${idx}].title = this.value; renderGallery();" style="width: 100%; padding: 0.4rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem;">
+          </div>
+          <select onchange="galleryData[${idx}].category = this.value; renderGallery();" style="padding: 0.4rem; border: 1px solid #ddd; border-radius: 4px; font-size: 0.85rem;">
+            ${Object.entries(categories).map(([val, label]) => `<option value="${val}" ${item.category === val ? 'selected' : ''}>${label}</option>`).join('')}
+          </select>
+          <button onclick="galleryData.splice(${idx}, 1); renderGallery(); renderAdminGallery();" style="padding: 0.4rem 0.8rem; background: #e74c3c; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 0.8rem;">삭제</button>
+        </div>
+      `).join('');
+    }
+
+    function addGalleryItem() {
+      const fileInput = document.getElementById('adminFileInput');
+      const category = document.getElementById('adminCategory').value;
+      const title = document.getElementById('adminTitle').value || '새 사진';
+
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          galleryData.push({
+            id: Date.now(),
+            title: title,
+            file_path: e.target.result,
+            category: category
+          });
+          renderGallery();
+          renderAdminGallery();
+          fileInput.value = '';
+          document.getElementById('adminTitle').value = '';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
 
     // ===== SEO: JSON-LD =====
     const schema = {
