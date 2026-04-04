@@ -10,6 +10,9 @@ const rateLimit = require('express-rate-limit');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// 프록시 신뢰 설정 (nginx 등 리버스 프록시 사용 시 필요)
+app.set('trust proxy', 1);
+
 // ===== 미들웨어 =====
 app.use(helmet({
   contentSecurityPolicy: {

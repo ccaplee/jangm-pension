@@ -991,6 +991,13 @@
       display: block;
     }
 
+    .amenity-icon-sm {
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+      display: block;
+      color: var(--amber-gold);
+    }
+
     .amenity-name {
       font-family: 'Nanum Myeongjo', serif;
       font-size: 1.1rem;
@@ -1010,6 +1017,100 @@
       gap: 50px;
       max-width: 1280px;
       margin: 0 auto;
+    }
+
+    .booking-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .contact-card {
+      background: #fff;
+      padding: 2.5rem 2rem;
+      border-radius: 20px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+      animation: fadeInUp 0.8s ease both;
+    }
+
+    .contact-card:nth-child(1) { animation-delay: 0.1s; }
+    .contact-card:nth-child(2) { animation-delay: 0.2s; }
+    .contact-card:nth-child(3) { animation-delay: 0.3s; }
+
+    .contact-card-icon {
+      font-size: 2.2rem;
+      color: var(--amber-gold);
+      margin-bottom: 1rem;
+    }
+
+    .contact-card h3 {
+      font-family: 'Nanum Myeongjo', serif;
+      font-size: 1.3rem;
+      color: var(--wood-deep);
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-detail {
+      font-size: 1.1rem !important;
+      font-weight: 600;
+      color: var(--wood-deep) !important;
+      margin: 0.8rem 0 1.2rem !important;
+    }
+
+    .kakao-btn {
+      display: inline-block;
+      background: #FEE500;
+      color: #3C1E1E;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .kakao-btn:hover {
+      background: #F5DC00;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(254, 229, 0, 0.4);
+    }
+
+    .phone-btn {
+      display: inline-block;
+      background: var(--amber-gold);
+      color: #fff;
+      padding: 0.9rem 2rem;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .phone-btn:hover {
+      background: var(--wood-deep);
+      transform: translateY(-2px);
+    }
+
+    .info-card .info-list {
+      text-align: left;
+      margin-top: 1rem;
+    }
+
+    .info-card .info-list p {
+      padding: 0.4rem 0;
+      border-bottom: 1px solid #f0e8d8;
+      font-size: 0.9rem;
     }
 
     .booking-form-wrap, .inquiry-form-wrap {
@@ -1760,7 +1861,7 @@
       <a href="#attractions">주변관광</a>
       <a href="#contact">예약/문의</a>
     </div>
-    <button class="navbar-cta" onclick="document.getElementById('bookingModal').classList.add('show')">예약하기</button>
+    <button class="navbar-cta" onclick="openKakaoChat()">예약하기</button>
     <button class="navbar-toggle" id="navToggle">
       <i class="fas fa-bars"></i>
     </button>
@@ -1779,7 +1880,7 @@
       <h1>정겨운 산장에서<br>만나는 자연</h1>
       <p class="tagline">도시의 소음에서 벗어나<br>가족과 함께 누리는 따뜻하고 편안한 시간</p>
       <div class="hero-actions">
-        <button class="btn btn-primary" onclick="document.getElementById('bookingModal').classList.add('show')">
+        <button class="btn btn-primary" onclick="openKakaoChat()">
           <i class="fas fa-calendar-alt"></i> 예약하기
         </button>
         <button class="btn btn-secondary" onclick="document.getElementById('hero').scrollIntoView({behavior: 'smooth'}); setTimeout(() => document.getElementById('about').scrollIntoView({behavior: 'smooth'}), 500)">
@@ -1892,10 +1993,12 @@
 
       <div class="gallery-filters">
         <button class="filter-btn active" data-filter="all">전체</button>
-        <button class="filter-btn" data-filter="exterior">외부</button>
-        <button class="filter-btn" data-filter="interior">내부</button>
+        <button class="filter-btn" data-filter="main_exterior">본관 외부</button>
+        <button class="filter-btn" data-filter="main_interior">본관 내부</button>
+        <button class="filter-btn" data-filter="cherry_exterior">벚꽃동 외부</button>
+        <button class="filter-btn" data-filter="cherry_interior">벚꽃동 내부</button>
+        <button class="filter-btn" data-filter="bbq">바베큐장</button>
         <button class="filter-btn" data-filter="valley">계곡</button>
-        <button class="filter-btn" data-filter="bbq">바베큐</button>
         <button class="filter-btn" data-filter="scenery">풍경</button>
       </div>
 
@@ -1945,28 +2048,28 @@
 
       <div class="amenities-grid" id="amenitiesGrid">
         <div class="amenity-item">
-          <span class="amenity-icon">📶</span>
+          <span class="amenity-icon-sm"><i class="fas fa-wifi"></i></span>
           <div class="amenity-name">무선 인터넷</div>
         </div>
         <div class="amenity-item">
-          <span class="amenity-icon">🅿️</span>
+          <span class="amenity-icon-sm"><i class="fas fa-parking"></i></span>
           <div class="amenity-name">넓은 주차장</div>
         </div>
         <div class="amenity-item">
-          <span class="amenity-icon">🔥</span>
+          <span class="amenity-icon-sm"><i class="fas fa-fire"></i></span>
           <div class="amenity-name">바베큐 시설</div>
         </div>
         <div class="amenity-item">
-          <span class="amenity-icon">⚽</span>
+          <span class="amenity-icon-sm"><i class="fas fa-futbol"></i></span>
           <div class="amenity-name">족구장</div>
         </div>
         <div class="amenity-item">
-          <span class="amenity-icon">🕹️</span>
-          <div class="amenity-name">게임기</div>
+          <span class="amenity-icon-sm"><i class="fas fa-water"></i></span>
+          <div class="amenity-name">맑은 계곡</div>
         </div>
         <div class="amenity-item">
-          <span class="amenity-icon">💧</span>
-          <div class="amenity-name">맑은 계곡</div>
+          <span class="amenity-icon-sm"><i class="fas fa-utensils"></i></span>
+          <div class="amenity-name">개별 주방</div>
         </div>
       </div>
     </div>
@@ -1986,94 +2089,37 @@
         </div>
       </div>
 
-      <div class="booking-grid">
-        <div class="booking-form-wrap">
-          <h3 class="form-title">
-            <i class="fas fa-calendar-check"></i> 온라인 예약
-          </h3>
-          <form id="bookingForm">
-            <div class="form-message" id="bookingMessage"></div>
-
-            <div class="form-group">
-              <label>선호하는 객실 (선택)</label>
-              <select id="bookingRoom" name="room">
-                <option value="">-- 선택하세요 --</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <label>성명 *</label>
-              <input type="text" name="name" required>
-            </div>
-
-            <div class="form-group">
-              <label>전화번호 *</label>
-              <input type="tel" name="phone" required>
-            </div>
-
-            <div class="form-group">
-              <label>이메일</label>
-              <input type="email" name="email">
-            </div>
-
-            <div class="form-group">
-              <label>체크인 *</label>
-              <input type="date" name="checkIn" required>
-            </div>
-
-            <div class="form-group">
-              <label>체크아웃 *</label>
-              <input type="date" name="checkOut" required>
-            </div>
-
-            <div class="form-group">
-              <label>성인 인원 *</label>
-              <input type="number" name="adults" min="1" value="2" required>
-            </div>
-
-            <div class="form-group">
-              <label>아동 인원</label>
-              <input type="number" name="children" min="0" value="0">
-            </div>
-
-            <div class="form-group">
-              <label>특별 요청사항</label>
-              <textarea name="requests" placeholder="편의사항을 입력해주세요..."></textarea>
-            </div>
-
-            <button type="submit" class="form-submit">예약 신청</button>
-          </form>
+      <div class="booking-contact-grid">
+        <div class="contact-card kakao-card">
+          <div class="contact-card-icon"><i class="fas fa-comment"></i></div>
+          <h3>카카오톡 문의</h3>
+          <p>카톡으로 편하게 예약/문의하세요</p>
+          <p class="contact-detail">빠르고 편리한 상담</p>
+          <button class="kakao-btn" onclick="openKakaoChat()">
+            <i class="fas fa-comment"></i> 카톡으로 예약 문의
+          </button>
         </div>
 
-        <div class="inquiry-form-wrap">
-          <h3 class="form-title">
-            <i class="fas fa-comments"></i> 문의하기
-          </h3>
-          <form id="inquiryForm">
-            <div class="form-message" id="inquiryMessage"></div>
+        <div class="contact-card phone-card">
+          <div class="contact-card-icon"><i class="fas fa-phone-alt"></i></div>
+          <h3>전화 문의</h3>
+          <p>직접 통화로 상담받으세요</p>
+          <p class="contact-detail">010-4717-7233</p>
+          <a href="tel:01047177233" class="phone-btn">
+            <i class="fas fa-phone"></i> 전화 걸기
+          </a>
+        </div>
 
-            <div class="form-group">
-              <label>성명 *</label>
-              <input type="text" name="name" required>
-            </div>
-
-            <div class="form-group">
-              <label>전화번호 *</label>
-              <input type="tel" name="phone" required>
-            </div>
-
-            <div class="form-group">
-              <label>이메일 *</label>
-              <input type="email" name="email" required>
-            </div>
-
-            <div class="form-group">
-              <label>문의 내용 *</label>
-              <textarea name="message" required placeholder="궁금한 점을 자유롭게 입력해주세요..."></textarea>
-            </div>
-
-            <button type="submit" class="form-submit">문의 전송</button>
-          </form>
+        <div class="contact-card info-card">
+          <div class="contact-card-icon"><i class="fas fa-info-circle"></i></div>
+          <h3>이용 안내</h3>
+          <div class="info-list">
+            <p><strong>입실:</strong> 15:00 이후</p>
+            <p><strong>퇴실:</strong> 11:00 이전</p>
+            <p><strong>본관:</strong> 30만원 (8~20인)</p>
+            <p><strong>벚꽃동 1층:</strong> 12만원 (2~4인)</p>
+            <p><strong>벚꽃동 2층:</strong> 12만원 (4~6인)</p>
+          </div>
         </div>
       </div>
     </div>
@@ -2122,67 +2168,13 @@
     <a href="tel:01047177233" class="float-btn" title="전화 문의">
       <i class="fas fa-phone"></i>
     </a>
-    <button class="float-btn" onclick="document.getElementById('bookingModal').classList.add('show')" title="예약하기">
+    <button class="float-btn" onclick="openKakaoChat()" title="예약하기">
       <i class="fas fa-calendar-alt"></i>
     </button>
   </div>
 
   <!-- Booking Modal -->
-  <div class="modal" id="bookingModal">
-    <div class="modal-content">
-      <button class="modal-close" onclick="document.getElementById('bookingModal').classList.remove('show')">
-        <i class="fas fa-times"></i>
-      </button>
-      <h2 class="modal-title">온라인 예약</h2>
-      <form id="modalBookingForm">
-        <div class="form-message" id="modalMessage"></div>
-
-        <div class="form-group">
-          <label>객실 선택 *</label>
-          <select name="room" required>
-            <option value="">-- 선택하세요 --</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label>체크인 *</label>
-          <input type="date" name="checkIn" required>
-        </div>
-
-        <div class="form-group">
-          <label>체크아웃 *</label>
-          <input type="date" name="checkOut" required>
-        </div>
-
-        <div class="form-group">
-          <label>성인 인원 *</label>
-          <input type="number" name="adults" min="1" value="2" required>
-        </div>
-
-        <div class="form-group">
-          <label>아동 인원</label>
-          <input type="number" name="children" min="0" value="0">
-        </div>
-
-        <div class="form-group">
-          <label>성명 *</label>
-          <input type="text" name="name" required>
-        </div>
-
-        <div class="form-group">
-          <label>전화번호 *</label>
-          <input type="tel" name="phone" required>
-        </div>
-
-        <div class="form-group">
-          <label>이메일</label>
-          <input type="email" name="email">
-        </div>
-
-        <button type="submit" class="form-submit">예약 신청</button>
-      </form>
-    </div>
-  </div>
+  <!-- Booking modal removed - using KakaoTalk chat instead -->
 
   <!-- Attraction Detail Modal -->
   <div class="attraction-modal" id="attractionModal">
@@ -2273,8 +2265,8 @@
             id: 1,
             name: '본관',
             slug: 'main',
-            description: '대가족과 단체를 위한 넉넉한 공간. 거실과 게임기가 구비되어 있어 온 가족이 함께 즐길 수 있습니다.',
-            short_desc: '8~20인, 거실+게임기',
+            description: '대가족과 단체를 위한 넉넉한 공간. 넓은 거실과 주방이 구비되어 온 가족이 편안하게 지낼 수 있습니다.',
+            short_desc: '8~20인, 넓은 거실+주방',
             capacity_min: 8,
             capacity_max: 20,
             area_sqm: 82,
@@ -2291,8 +2283,8 @@
             capacity_min: 2,
             capacity_max: 4,
             area_sqm: 33,
-            price_weekday: 100000,
-            price_weekend: 100000,
+            price_weekday: 120000,
+            price_weekend: 120000,
             thumbnail: '/uploads/gallery/preview_137_fb84d0b2.jpg'
           },
           {
@@ -2304,8 +2296,8 @@
             capacity_min: 4,
             capacity_max: 6,
             area_sqm: 49,
-            price_weekday: 100000,
-            price_weekend: 100000,
+            price_weekday: 120000,
+            price_weekend: 120000,
             thumbnail: '/uploads/gallery/preview_111_59927ec7.jpg'
           }
         ];
@@ -2540,126 +2532,40 @@
       }
     });
 
-    // ===== FORM SUBMISSIONS =====
-    document.getElementById('bookingForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const messageEl = document.getElementById('bookingMessage');
+    // ===== KAKAO CHAT =====
+    function openKakaoChat() {
+      const phone = '01047177233';
+      const message = '안녕하세요, 장령산계곡산장 예약 문의드립니다.\n\n희망 객실: \n체크인 날짜: \n체크아웃 날짜: \n인원: 명\n\n추가 문의사항: ';
+      const encodedMsg = encodeURIComponent(message);
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
 
-      try {
-        const response = await fetch(`${API_BASE}/reservations`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            room_id: formData.get('room'),
-            guest_name: formData.get('name'),
-            guest_phone: formData.get('phone'),
-            guest_email: formData.get('email') || '',
-            check_in: formData.get('checkIn'),
-            check_out: formData.get('checkOut'),
-            num_adults: parseInt(formData.get('adults')),
-            num_children: parseInt(formData.get('children')),
-            special_requests: formData.get('requests') || '',
-            total_price: 0
-          })
-        });
-
-        if (response.ok) {
-          messageEl.className = 'form-message success show';
-          messageEl.textContent = '예약이 완료되었습니다! 곧 연락드리겠습니다.';
-          e.target.reset();
-          setTimeout(() => messageEl.classList.remove('show'), 3000);
-        } else {
-          throw new Error('예약 실패');
-        }
-      } catch (error) {
-        messageEl.className = 'form-message error show';
-        messageEl.textContent = '예약 중 오류가 발생했습니다. 전화로 문의해주세요.';
+      if (isMobile) {
+        // iOS는 sms:번호&body=, Android는 sms:번호?body=
+        const separator = isIOS ? '&' : '?';
+        window.location.href = `sms:${phone}${separator}body=${encodedMsg}`;
+      } else {
+        // PC에서는 팝업으로 안내
+        const popup = document.createElement('div');
+        popup.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:9999;';
+        popup.innerHTML = `
+          <div style="background:#fff;padding:2.5rem;border-radius:20px;max-width:400px;text-align:center;">
+            <div style="font-size:2rem;margin-bottom:1rem;"><i class="fas fa-comment" style="color:#FEE500;"></i></div>
+            <h3 style="margin-bottom:1rem;color:#3d2b1f;">카톡/문자 예약 문의</h3>
+            <p style="font-size:1.3rem;font-weight:700;color:#3d2b1f;margin-bottom:0.5rem;">010-4717-7233</p>
+            <p style="color:#666;font-size:0.9rem;margin-bottom:1.5rem;">위 번호로 카톡 또는 문자를 보내주세요</p>
+            <button onclick="this.closest('div').parentElement.remove()" style="background:#c8a96e;color:#fff;border:none;padding:0.8rem 2rem;border-radius:10px;cursor:pointer;font-size:1rem;">닫기</button>
+          </div>
+        `;
+        document.body.appendChild(popup);
+        popup.addEventListener('click', (e) => { if (e.target === popup) popup.remove(); });
       }
-    });
-
-    document.getElementById('inquiryForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const messageEl = document.getElementById('inquiryMessage');
-
-      try {
-        const response = await fetch(`${API_BASE}/inquiries`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: formData.get('name'),
-            phone: formData.get('phone'),
-            email: formData.get('email'),
-            message: formData.get('message')
-          })
-        });
-
-        if (response.ok) {
-          messageEl.className = 'form-message success show';
-          messageEl.textContent = '문의가 접수되었습니다. 감사합니다!';
-          e.target.reset();
-          setTimeout(() => messageEl.classList.remove('show'), 3000);
-        } else {
-          throw new Error('문의 전송 실패');
-        }
-      } catch (error) {
-        messageEl.className = 'form-message error show';
-        messageEl.textContent = '문의 전송 중 오류가 발생했습니다. 전화로 문의해주세요.';
-      }
-    });
-
-    document.getElementById('modalBookingForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-      const messageEl = document.getElementById('modalMessage');
-
-      try {
-        const response = await fetch(`${API_BASE}/reservations`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            room_id: formData.get('room'),
-            guest_name: formData.get('name'),
-            guest_phone: formData.get('phone'),
-            guest_email: formData.get('email') || '',
-            check_in: formData.get('checkIn'),
-            check_out: formData.get('checkOut'),
-            num_adults: parseInt(formData.get('adults')),
-            num_children: parseInt(formData.get('children')),
-            total_price: 0
-          })
-        });
-
-        if (response.ok) {
-          messageEl.className = 'form-message success show';
-          messageEl.textContent = '예약이 완료되었습니다! 곧 연락드리겠습니다.';
-          e.target.reset();
-          setTimeout(() => {
-            messageEl.classList.remove('show');
-            document.getElementById('bookingModal').classList.remove('show');
-          }, 2000);
-        } else {
-          throw new Error('예약 실패');
-        }
-      } catch (error) {
-        messageEl.className = 'form-message error show';
-        messageEl.textContent = '예약 중 오류가 발생했습니다. 전화로 문의해주세요.';
-      }
-    });
+    }
 
     // ===== UTILITIES =====
     function viewRoom(slug) {
-      // 상세 페이지 또는 모달 처리
-      alert(`${slug} 객실 상세 정보`);
+      openKakaoChat();
     }
-
-    // Close modal on click outside
-    document.getElementById('bookingModal').addEventListener('click', (e) => {
-      if (e.target.id === 'bookingModal') {
-        e.target.classList.remove('show');
-      }
-    });
 
     document.getElementById('lightbox').addEventListener('click', (e) => {
       if (e.target.id === 'lightbox') {

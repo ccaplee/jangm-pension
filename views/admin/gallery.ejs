@@ -11,7 +11,7 @@ body { font-family:'Noto Sans KR',sans-serif; background:#f4f7f5; color:#2d3a2e;
 .sidebar { position:fixed; left:0; top:0; bottom:0; width:240px; background:#1a3c27; color:#fff; padding:20px 0; z-index:100; }
 .sidebar .logo { padding:0 20px 20px; font-size:1.1rem; font-weight:600; border-bottom:1px solid rgba(255,255,255,0.1); }
 .sidebar nav { margin-top:20px; }
-.sidebar nav a { display:flex; align-items:center; gap:10px; padding:12px 20px; color:rgba(255,255,255,0.7); font-size:0.9rem; transition:all 0.2s; }
+.sidebar nav a { display:flex; align-items:center; gap:10px; padding:12px 20px; color:rgba(255,255,255,0.7); font-size:0.9rem; text-decoration:none; transition:all 0.2s; }
 .sidebar nav a:hover, .sidebar nav a.active { background:rgba(255,255,255,0.1); color:#fff; }
 .sidebar .user-info { position:absolute; bottom:0; left:0; right:0; padding:16px 20px; border-top:1px solid rgba(255,255,255,0.1); font-size:0.8rem; }
 .sidebar .user-info a { color:#8fdfb0; }
@@ -25,12 +25,27 @@ body { font-family:'Noto Sans KR',sans-serif; background:#f4f7f5; color:#2d3a2e;
 .upload-form input, .upload-form select { padding:10px 12px; border:1px solid #dde8df; border-radius:8px; font-size:0.9rem; width:100%; font-family:inherit; }
 .btn-upload { padding:10px 20px; background:#2d6b4a; color:#fff; border:none; border-radius:8px; font-size:0.9rem; cursor:pointer; font-family:inherit; white-space:nowrap; }
 .btn-upload:hover { background:#1a3c27; }
-.gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:16px; }
-.gallery-item { border-radius:10px; overflow:hidden; position:relative; box-shadow:0 2px 8px rgba(0,0,0,0.06); }
-.gallery-item img { width:100%; height:160px; object-fit:cover; }
-.gallery-item .info { padding:10px; font-size:0.8rem; }
-.gallery-item .info .category { color:#6b8a70; }
-.btn-delete { position:absolute; top:8px; right:8px; background:rgba(220,38,38,0.9); color:#fff; border:none; border-radius:50%; width:28px; height:28px; cursor:pointer; font-size:1rem; display:flex; align-items:center; justify-content:center; }
+.filter-tabs { display:flex; gap:8px; margin-bottom:20px; flex-wrap:wrap; }
+.filter-tab { padding:8px 16px; border:1px solid #dde8df; border-radius:20px; background:#fff; cursor:pointer; font-size:0.85rem; font-family:inherit; transition:all 0.2s; }
+.filter-tab:hover { background:#e8f0ea; }
+.filter-tab.active { background:#2d6b4a; color:#fff; border-color:#2d6b4a; }
+.filter-count { font-size:0.75rem; color:#999; margin-left:4px; }
+.filter-tab.active .filter-count { color:rgba(255,255,255,0.7); }
+.gallery-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:16px; }
+.gallery-item { border-radius:10px; overflow:hidden; position:relative; box-shadow:0 2px 8px rgba(0,0,0,0.06); background:#fff; transition:all 0.2s; }
+.gallery-item.inactive { opacity:0.4; }
+.gallery-item img { width:100%; height:170px; object-fit:cover; }
+.gallery-item .info { padding:10px 12px; }
+.gallery-item .info .title { font-size:0.85rem; font-weight:500; margin-bottom:4px; }
+.gallery-item .info .cat-select { width:100%; padding:6px 8px; border:1px solid #dde8df; border-radius:6px; font-size:0.8rem; font-family:inherit; background:#f9faf9; }
+.gallery-item .actions { display:flex; gap:6px; padding:0 12px 10px; }
+.btn-sm { padding:5px 10px; border:none; border-radius:6px; font-size:0.75rem; cursor:pointer; font-family:inherit; }
+.btn-toggle { background:#e8f0ea; color:#2d6b4a; }
+.btn-toggle:hover { background:#d0e4d5; }
+.btn-del { background:#fee; color:#c33; }
+.btn-del:hover { background:#fdd; }
+.toast { position:fixed; bottom:30px; right:30px; background:#2d6b4a; color:#fff; padding:12px 24px; border-radius:10px; font-size:0.9rem; opacity:0; transform:translateY(10px); transition:all 0.3s; z-index:999; }
+.toast.show { opacity:1; transform:translateY(0); }
 @media(max-width:768px) {
   .sidebar { width:100%; height:auto; position:relative; }
   .sidebar nav { display:flex; overflow-x:auto; }
@@ -43,23 +58,21 @@ body { font-family:'Noto Sans KR',sans-serif; background:#f4f7f5; color:#2d3a2e;
 </head>
 <body>
 <aside class="sidebar">
-  <div class="logo">🏔 장령산계곡산장</div>
+  <div class="logo">장령산계곡산장</div>
   <nav>
-    <a href="/admin">📊 대시보드</a>
-    <a href="/admin/reservations">📋 예약 관리</a>
-    <a href="/admin/rooms">🏠 객실 관리</a>
-    <a href="/admin/inquiries">💬 문의 관리</a>
-    <a href="/admin/gallery" class="active">🖼 갤러리 관리</a>
-    <a href="/" target="_blank">🌐 사이트 보기</a>
+    <a href="/admin">대시보드</a>
+    <a href="/admin/reservations">예약 관리</a>
+    <a href="/admin/rooms">객실 관리</a>
+    <a href="/admin/inquiries">문의 관리</a>
+    <a href="/admin/gallery" class="active">갤러리 관리</a>
+    <a href="/" target="_blank">사이트 보기</a>
   </nav>
   <div class="user-info">
-    👤 <%= admin.name %><br><a href="/admin/logout">로그아웃</a>
+    <%= admin.name %><br><a href="/admin/logout">로그아웃</a>
   </div>
 </aside>
-
 <main class="main">
   <h1 class="page-title">갤러리 관리</h1>
-
   <div class="card">
     <h3>사진 업로드</h3>
     <form method="POST" action="/admin/gallery/upload" enctype="multipart/form-data">
@@ -68,13 +81,15 @@ body { font-family:'Noto Sans KR',sans-serif; background:#f4f7f5; color:#2d3a2e;
           <label>사진 선택 (최대 10장)</label>
           <input type="file" name="images" multiple accept="image/*" required>
         </div>
-        <div class="form-group" style="max-width:150px;">
+        <div class="form-group" style="max-width:180px;">
           <label>카테고리</label>
           <select name="category">
-            <option value="exterior">외관</option>
-            <option value="interior">내부</option>
+            <option value="main_exterior">본관 외부</option>
+            <option value="main_interior">본관 내부</option>
+            <option value="cherry_exterior">벚꽃동 외부</option>
+            <option value="cherry_interior">벚꽃동 내부</option>
+            <option value="bbq">바베큐장</option>
             <option value="valley">계곡</option>
-            <option value="bbq">바베큐</option>
             <option value="scenery">풍경</option>
             <option value="etc">기타</option>
           </select>
@@ -87,17 +102,39 @@ body { font-family:'Noto Sans KR',sans-serif; background:#f4f7f5; color:#2d3a2e;
       </div>
     </form>
   </div>
-
   <div class="card">
     <h3>등록된 사진 (<%= images.length %>장)</h3>
-    <div class="gallery-grid">
+    <div class="filter-tabs">
+      <button class="filter-tab active" data-cat="all">전체 <span class="filter-count"><%= images.length %></span></button>
+      <button class="filter-tab" data-cat="main_exterior">본관 외부</button>
+      <button class="filter-tab" data-cat="main_interior">본관 내부</button>
+      <button class="filter-tab" data-cat="cherry_exterior">벚꽃동 외부</button>
+      <button class="filter-tab" data-cat="cherry_interior">벚꽃동 내부</button>
+      <button class="filter-tab" data-cat="bbq">바베큐장</button>
+      <button class="filter-tab" data-cat="valley">계곡</button>
+      <button class="filter-tab" data-cat="scenery">풍경</button>
+      <button class="filter-tab" data-cat="etc">기타</button>
+    </div>
+    <div class="gallery-grid" id="galleryGrid">
       <% images.forEach(img => { %>
-      <div class="gallery-item" id="img-<%= img.id %>">
+      <div class="gallery-item <%= img.is_active ? '' : 'inactive' %>" id="img-<%= img.id %>" data-category="<%= img.category %>">
         <img src="<%= img.file_path %>" alt="<%= img.title %>" loading="lazy">
-        <button class="btn-delete" onclick="deleteImage(<%= img.id %>)" title="삭제">&times;</button>
         <div class="info">
-          <strong><%= img.title || '제목 없음' %></strong>
-          <div class="category"><%= img.category %></div>
+          <div class="title"><%= img.title || '제목 없음' %></div>
+          <select class="cat-select" onchange="changeCategory(<%= img.id %>, this.value)">
+            <option value="main_exterior" <%= img.category === 'main_exterior' ? 'selected' : '' %>>본관 외부</option>
+            <option value="main_interior" <%= img.category === 'main_interior' ? 'selected' : '' %>>본관 내부</option>
+            <option value="cherry_exterior" <%= img.category === 'cherry_exterior' ? 'selected' : '' %>>벚꽃동 외부</option>
+            <option value="cherry_interior" <%= img.category === 'cherry_interior' ? 'selected' : '' %>>벚꽃동 내부</option>
+            <option value="bbq" <%= img.category === 'bbq' ? 'selected' : '' %>>바베큐장</option>
+            <option value="valley" <%= img.category === 'valley' ? 'selected' : '' %>>계곡</option>
+            <option value="scenery" <%= img.category === 'scenery' ? 'selected' : '' %>>풍경</option>
+            <option value="etc" <%= img.category === 'etc' ? 'selected' : '' %>>기타</option>
+          </select>
+        </div>
+        <div class="actions">
+          <button class="btn-sm btn-toggle" onclick="toggleImage(<%= img.id %>, this)"><%= img.is_active ? '숨기기' : '표시' %></button>
+          <button class="btn-sm btn-del" onclick="deleteImage(<%= img.id %>)">삭제</button>
         </div>
       </div>
       <% }); %>
@@ -107,15 +144,55 @@ body { font-family:'Noto Sans KR',sans-serif; background:#f4f7f5; color:#2d3a2e;
     </div>
   </div>
 </main>
+<div class="toast" id="toast"></div>
 <script>
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2000);
+}
+async function changeCategory(id, category) {
+  try {
+    const res = await fetch('/admin/gallery/' + id + '/category', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category })
+    });
+    if (res.ok) {
+      document.getElementById('img-' + id).dataset.category = category;
+      showToast('카테고리 변경 완료');
+    } else alert('변경 실패');
+  } catch (e) { alert('오류 발생'); }
+}
+async function toggleImage(id, btn) {
+  try {
+    const res = await fetch('/admin/gallery/' + id + '/toggle', { method: 'POST' });
+    if (res.ok) {
+      const item = document.getElementById('img-' + id);
+      item.classList.toggle('inactive');
+      btn.textContent = item.classList.contains('inactive') ? '표시' : '숨기기';
+      showToast(item.classList.contains('inactive') ? '갤러리에서 숨김' : '갤러리에 표시');
+    }
+  } catch (e) { alert('오류 발생'); }
+}
 async function deleteImage(id) {
   if (!confirm('이 사진을 삭제하시겠습니까?')) return;
   try {
-    const res = await fetch(`/admin/gallery/${id}/delete`, { method: 'POST' });
-    if (res.ok) document.getElementById(`img-${id}`).remove();
+    const res = await fetch('/admin/gallery/' + id + '/delete', { method: 'POST' });
+    if (res.ok) { document.getElementById('img-' + id).remove(); showToast('삭제 완료'); }
     else alert('삭제 실패');
   } catch (e) { alert('오류 발생'); }
 }
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const cat = tab.dataset.cat;
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.style.display = (cat === 'all' || item.dataset.category === cat) ? '' : 'none';
+    });
+  });
+});
 </script>
 </body>
 </html>

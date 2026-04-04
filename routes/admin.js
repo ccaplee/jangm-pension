@@ -266,6 +266,31 @@ router.post('/gallery/:id/delete', requireAdmin, async (req, res) => {
   }
 });
 
+// 갤러리 카테고리 변경
+router.post('/gallery/:id/category', requireAdmin, async (req, res) => {
+  try {
+    const { category } = req.body;
+    const validCategories = ['main_exterior','main_interior','cherry_exterior','cherry_interior','bbq','valley','scenery','etc'];
+    if (!validCategories.includes(category)) {
+      return res.status(400).json({ error: '유효하지 않은 카테고리' });
+    }
+    await db.query('UPDATE gallery_images SET category = ? WHERE id = ?', [category, req.params.id]);
+    res.json({ message: '카테고리 변경 완료' });
+  } catch (err) {
+    res.status(500).json({ error: '카테고리 변경 실패' });
+  }
+});
+
+// 갤러리 활성/비활성 토글
+router.post('/gallery/:id/toggle', requireAdmin, async (req, res) => {
+  try {
+    await db.query('UPDATE gallery_images SET is_active = NOT is_active WHERE id = ?', [req.params.id]);
+    res.json({ message: '상태 변경 완료' });
+  } catch (err) {
+    res.status(500).json({ error: '상태 변경 실패' });
+  }
+});
+
 // ===== 비밀번호 변경 =====
 router.post('/change-password', requireAdmin, async (req, res) => {
   try {
