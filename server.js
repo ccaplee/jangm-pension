@@ -23,7 +23,8 @@ app.use(helmet({
       fontSrc: ["'self'", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"],
       imgSrc: ["'self'", "data:", "https:", "blob:"],
       frameSrc: ["'self'", "https://js.tosspayments.com", "https://map.kakao.com"],
-      connectSrc: ["'self'", "https://api.tosspayments.com"]
+      connectSrc: ["'self'", "https://api.tosspayments.com"],
+      scriptSrcAttr: ["'unsafe-inline'"]
     }
   }
 }));
